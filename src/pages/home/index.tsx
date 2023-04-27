@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import styles from '@/styles/Home.module.css'
 import LayoutContainer from '@/components/layout'
 import { Col, Row } from 'antd'
-import { ShareChart } from './components/ShareChart'
-import { ShareList } from './components/ShareList'
+import { ShareChart } from '../../components/home/ShareChart'
+import { ShareList } from '../../components/home/ShareList'
 
 
 export default function ChartPage() {
