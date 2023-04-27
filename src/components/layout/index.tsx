@@ -15,6 +15,7 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
 
 
   const [collapsed, setCollapsed] = useState(false);
+  const [darkMode, setDartMode] = useState(true)
 
   let siderMenu: any[] = [];
 
@@ -35,14 +36,14 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
   return (
     <ConfigProvider
       theme={{
-        algorithm: theme.darkAlgorithm,
+        algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
       }}
     >
       <Layout
-      style={{padding:10}}
+        style={{ padding: 10 }}
       >
         {/* <Header> */}
-          <HeaderContainer/>
+        {/* <HeaderContainer/> */}
         {/* </Header> */}
         <Content style={{
           minHeight: "calc(100vh - 136px)",
@@ -51,8 +52,7 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
             {children}
           </AnimatedPage>
         </Content>
-        <BottomNav
-        />
+        <BottomNav setDartMode={setDartMode}/>
       </Layout>
     </ConfigProvider>
   );

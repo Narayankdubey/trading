@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import LayoutContainer from '@/components/layout'
-import { Col, Row } from 'antd'
-import { ShareChart } from '../../components/home/ShareChart'
-import { ShareList } from '../../components/home/ShareList'
+import { HomeContainer } from '@/components/screens'
+
 
 
 export default function ChartPage() {
@@ -15,14 +14,7 @@ export default function ChartPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutContainer>
-        <Row gutter={8} style={{padding:10}}>
-          <Col span={16}>
-            <ShareChart/>
-          </Col>
-          <Col span={8}>
-            <ShareList/>
-          </Col>
-        </Row>
+        <HomeContainer />
       </LayoutContainer>
     </>
   )
