@@ -1,5 +1,7 @@
 import { Avatar, Button, Card, Progress, Row, Space, Typography } from "antd";
 import React, { FC } from "react";
+import { useRouter } from 'next/router';
+import { ROUTES } from "@/common/constants";
 
 const dummyData = [
   { name: "HDFC", icon: "H", percentange: 20, quantity: 2700 },
@@ -15,12 +17,13 @@ interface SharesProps {
   icon: string;
   percentage: number;
   quantity: number;
+  setDisplayChart:any;
 }
 
-const Shares: FC<SharesProps> = ({ name, icon, percentage, quantity }) => {
+const Shares: FC<SharesProps> = ({ name, icon, percentage, quantity,setDisplayChart }) => {
   return (
-    <div>
-      <Row justify={"space-between"}>
+    <div onClick={()=>setDisplayChart(name)} style={{cursor:"pointer"}}>
+      <Row justify={"space-between"} >
         <Space>
           <Avatar>{icon}</Avatar>
           <Typography.Text>{name}</Typography.Text>
@@ -38,9 +41,16 @@ const Shares: FC<SharesProps> = ({ name, icon, percentage, quantity }) => {
   );
 };
 
-interface ShareListProps {}
+interface ShareListProps {
+  setDisplayChart:any
+}
 
-export const ShareList: FC<ShareListProps> = ({}) => {
+export const ShareList: FC<ShareListProps> = ({setDisplayChart}) => {
+  const router = useRouter();
+
+  const viewMoreClick = ()=>{
+    router.push(ROUTES.TRADING)
+  }
   return (
     <Card title="Watchlist" size="small">
       {dummyData.map((item) => (
@@ -50,9 +60,10 @@ export const ShareList: FC<ShareListProps> = ({}) => {
           percentage={item?.percentange}
           icon={item?.icon}
           quantity={item?.quantity}
+          setDisplayChart={setDisplayChart}
         />
       ))}
-      <Button block>View More</Button>
+      <Button block onClick={viewMoreClick}>View More</Button>
     </Card>
   );
 };
