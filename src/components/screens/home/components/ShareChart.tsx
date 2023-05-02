@@ -1,5 +1,14 @@
 import { Card, Col, Row, Typography } from 'antd'
 import React, { FC, useEffect, useState } from 'react'
+import Chart from "react-google-charts";
+const data = [
+  ['day', 'a', 'b', 'c', 'd'],
+  ['Mon', 20, 28, 38, 45],
+  ['Tue', 31, 38, 55, 66],
+  ['Wed', 50, 55, 77, 80],
+  ['Thu', 77, 77, 66, 50],
+  ['Fri', 68, 66, 22, 15],
+];
 
 
 
@@ -14,11 +23,23 @@ const ShareChart: FC<ShareChartProps> = ({ displayChart }) => {
 
   return (
     <>
-      {dataLength > 0 ? (<Row gutter={[8, 8]} style={{ height: dataLength <= 2 ? "100%" : "50%" }}>
+      {dataLength > 0 ? (<Row gutter={[8, 8]} style={{ height: dataLength <= 1 ? "100%" : "50%" }}>
         {displayChart.map((item: string) => (
-          <Col key={item} span={dataLength > 1 ? 12 : 24} style={{ height: "100%" }}>
+          <Col key={item} span={dataLength > 2 ? 12 : 24} style={{ height: "100%", transition:"ease-in 0.3s" }}>
             <Card style={{ height: "100%" }}>
-              <div>{item}</div>
+              <Chart
+                width={'100%'}
+                height={'100%'}
+                chartType="CandlestickChart"
+                loader={<div>Loading Chart...</div>}
+                data={data}
+                options={{
+                  legend: 'none',
+                  backgroundColor: '#141414',
+                  color:"white"
+                }}
+                rootProps={{ 'data-testid': '1' }}
+              /> 
             </Card>
           </Col>))}
       </Row>)
