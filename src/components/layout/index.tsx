@@ -40,19 +40,19 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
       }}
     >
       <Layout
-        style={{ padding: 10 }}
       >
-        {/* <Header> */}
-        {/* <HeaderContainer/> */}
-        {/* </Header> */}
+        <Header>
+        <HeaderContainer setDartMode={setDartMode}/>
+        </Header>
         <Content style={{
-          minHeight: "calc(100vh - 136px)",
+          minHeight: "calc(100vh - 64px)",
+          padding:5
         }}>
           <AnimatedPage>
             {children}
           </AnimatedPage>
         </Content>
-        <BottomNav setDartMode={setDartMode}/>
+        {/* <BottomNav setDartMode={setDartMode}/> */}
       </Layout>
     </ConfigProvider>
   );
