@@ -1,51 +1,124 @@
 import { Button, Card, Col, Radio, Row, Space, Table, Typography } from "antd";
-import React, { FC } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import TradingFilter from "./component/TradingFilter";
 
-interface TradingProps {}
+interface TradingProps { }
 
-const TradingContainer: FC<TradingProps> = ({}) => {
+const TradingContainer: FC<TradingProps> = ({ }) => {
+  const [status, setStatus] = useState("orders");
+  const [filteredData, setFilteredData] = useState<dataType[]>([]);
+
   const tradingTabs = [
-    { title: "ORDERS" },
-    { title: "POSITIONS" },
-    { title: "HOLDINGS" },
+    { title: "ORDERS", value: "orders" },
+    { title: "POSITIONS", value: "positions" },
+    { title: "HOLDINGS", value: "holdings" },
   ];
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+
+  interface dataType {
+    key: number;
+    symbol: string;
+    order: number;
+    netQty: number;
+    averagePrice: number;
+    ltp: number;
+    daypl: number;
+    overallpl: number;
+    status: string;
+  }
+
+  const createData = useMemo(() => {
+    let data = [];
+    let n = 0;
+    for (let i = 0; i < 100; i++) {
+      let obj: dataType = {
+        key: i,
+        symbol: `${n}-symbol`,
+        order: n * 2,
+        netQty: n,
+        averagePrice: n * 5,
+        ltp: n * 3,
+        daypl: n * 4,
+        overallpl: n * 3,
+        status: n % 2 === 0 ? "orders" : n % 3 === 0 ? "positions" : "holdings",
+      };
+      data.push(obj);
+      if (n < 7) n++;
+      else n = 1;
+    }
+    return data;
+  }, []);
+
+  const getOptions = (key: string, data: any) => {
+    let result: any = [];
+    data.map((item: any) => result.push(item[key]));
+    return [...new Set(result)];
+  };
+
+  const filterElement = useMemo(() => {
+    const data = filteredData;
+    let head: any = [];
+    let result = [];
+    if (data.length) {
+      head = Object.keys(data[0]);
+    }
+    for (let item of head) {
+      if (item != "key" && item != "status") {
+        let abc = {
+          name: item,
+          options: getOptions(item, data),
+        };
+        result.push(abc);
+      }
+    }
+    return result;
+  }, [filteredData]);
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "SYMBOL",
+      dataIndex: "symbol",
+      key: "symbol",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "ORDER",
+      dataIndex: "order",
+      key: "order",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Net Qty",
+      dataIndex: "netQty",
+      key: "netQty",
+    },
+    {
+      title: "Average Price",
+      dataIndex: "averagePrice",
+      key: "averagePrice",
+    },
+    {
+      title: "LTP",
+      dataIndex: "ltp",
+      key: "ltp",
+    },
+    {
+      title: "Day P&L",
+      dataIndex: "daypl",
+      key: "daypl",
+    },
+    {
+      title: "Overall P&L",
+      dataIndex: "overallpl",
+      key: "overallpl",
     },
   ];
+
+  useEffect(() => {
+    setFilteredData(() => createData.filter((e) => e.status === status));
+  }, [status, createData]);
+
   return (
     <Row gutter={8}>
       <Col span={4}>
-        <TradingFilter />
+        <TradingFilter data={filterElement} />
       </Col>
       <Col span={20}>
         <Row gutter={[8, 8]}>
@@ -56,9 +129,13 @@ const TradingContainer: FC<TradingProps> = ({}) => {
           </Col>
           <Col span={24}>
             <Space wrap>
-              <Radio.Group defaultValue="ORDERS" buttonStyle="solid">
-                {tradingTabs.map((item, index) => (
-                  <Radio.Button key={item?.title} value={item?.title}>
+              <Radio.Group
+                buttonStyle="solid"
+                defaultValue={status}
+                onChange={({ target }) => setStatus(target.value)}
+              >
+                {tradingTabs.map((item) => (
+                  <Radio.Button key={item?.title} value={item?.value}>
                     {item?.title}
                   </Radio.Button>
                 ))}
@@ -66,7 +143,7 @@ const TradingContainer: FC<TradingProps> = ({}) => {
             </Space>
           </Col>
           <Col span={24}>
-            <Table dataSource={dataSource} columns={columns} />
+            <Table dataSource={filteredData} columns={columns} />
           </Col>
         </Row>
       </Col>

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import styles from "./Logo.module.css";
+import { Card } from "antd";
 
 interface LogoProps {
   size?: number;
@@ -15,15 +16,15 @@ const Logo: FC<LogoProps> = ({ size = 1 }) => {
   };
   return (
     <div className={styles.container} style={constainerStyle}>
-      <div
+      <Card
         style={{ width: size * 8, height: size * 8, backgroundColor: "white" }}
-      ></div>
-      <div
+      ></Card>
+      <Card
         style={{ width: size * 8, height: size * 8, backgroundColor: "white" }}
-      ></div>
-      <div
+      ></Card>
+      <Card
         style={{ width: size * 8, height: size * 8, backgroundColor: "white" }}
-      ></div>
+      ></Card>
     </div>
   );
 };
