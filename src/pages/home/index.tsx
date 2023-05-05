@@ -1,8 +1,6 @@
-import Head from 'next/head'
-import LayoutContainer from '@/components/layout'
-import { HomeContainer } from '@/components/screens'
-
-
+import Head from "next/head";
+import LayoutContainer from "@/components/layout";
+import { HomeContainer } from "@/components/screens";
 
 export default function ChartPage() {
   return (
@@ -17,5 +15,5 @@ export default function ChartPage() {
         <HomeContainer />
       </LayoutContainer>
     </>
-  )
+  );
 }

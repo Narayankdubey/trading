@@ -1,6 +1,6 @@
 import { Avatar, Button, Card, Progress, Row, Space, Typography } from "antd";
 import React, { FC } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { ROUTES } from "@/common/constants";
 
 const dummyData = [
@@ -8,8 +8,8 @@ const dummyData = [
   { name: "ICICI", icon: "I", percentange: 10, quantity: 20 },
   { name: "NMDC", icon: "N", percentange: 50, quantity: 500 },
   { name: "TCS", icon: "T", percentange: 20, quantity: 70 },
-//   { name: "INFOSYS", icon: "I", percentange: 50, quantity: 90 },
-//   { name: "HDFC LIFE", icon: "H", percentange: 10, quantity: 100 },
+  //   { name: "INFOSYS", icon: "I", percentange: 50, quantity: 90 },
+  //   { name: "HDFC LIFE", icon: "H", percentange: 10, quantity: 100 },
 ];
 
 interface SharesProps {
@@ -17,13 +17,19 @@ interface SharesProps {
   icon: string;
   percentage: number;
   quantity: number;
-  setDisplayChart:any;
+  setDisplayChart: any;
 }
 
-const Shares: FC<SharesProps> = ({ name, icon, percentage, quantity,setDisplayChart }) => {
+const Shares: FC<SharesProps> = ({
+  name,
+  icon,
+  percentage,
+  quantity,
+  setDisplayChart,
+}) => {
   return (
-    <div onClick={()=>setDisplayChart(name)} style={{cursor:"pointer"}}>
-      <Row justify={"space-between"} >
+    <div onClick={() => setDisplayChart(name)} style={{ cursor: "pointer" }}>
+      <Row justify={"space-between"}>
         <Space>
           <Avatar>{icon}</Avatar>
           <Typography.Text>{name}</Typography.Text>
@@ -42,15 +48,15 @@ const Shares: FC<SharesProps> = ({ name, icon, percentage, quantity,setDisplayCh
 };
 
 interface ShareListProps {
-  setDisplayChart:any
+  setDisplayChart: any;
 }
 
-export const ShareList: FC<ShareListProps> = ({setDisplayChart}) => {
+export const ShareList: FC<ShareListProps> = ({ setDisplayChart }) => {
   const router = useRouter();
 
-  const viewMoreClick = ()=>{
-    router.push(ROUTES.TRADING)
-  }
+  const viewMoreClick = () => {
+    router.push(ROUTES.TRADING);
+  };
   return (
     <Card title="Watchlist" size="small">
       {dummyData.map((item) => (
@@ -63,7 +69,9 @@ export const ShareList: FC<ShareListProps> = ({setDisplayChart}) => {
           setDisplayChart={setDisplayChart}
         />
       ))}
-      <Button block onClick={viewMoreClick}>View More</Button>
+      <Button block onClick={viewMoreClick}>
+        View More
+      </Button>
     </Card>
   );
 };

@@ -1,7 +1,8 @@
 export const ROUTES = {
-    HOME:"/",
-    ALGO:"/algo",
-    TRADING:"/trading",
-    LOGIN:"/login",
-    REGISTER:"/register",
-}
+    HOME: "/",
+    ALGO: "/algo",
+    TRADING: "/trading",
+    LOGIN: "/login",
+    REGISTER: "/register",
+    SETTINGS: "settings",
+};

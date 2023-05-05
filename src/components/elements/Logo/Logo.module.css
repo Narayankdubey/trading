@@ -1,8 +1,8 @@
-.container{
-    background-color: transparent;
-    display: flex;
-    flex-wrap: wrap;
+.container {
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
 }
-.box{
-    background-color: white;
+.box {
+  background-color: white;
 }

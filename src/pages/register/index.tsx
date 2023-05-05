@@ -1,16 +1,14 @@
-import React, { FC } from 'react'
-import { Card, Typography } from 'antd'
+import React, { FC } from "react";
+import { Card, Typography } from "antd";
 
-interface registerProps {
-  
-}
+interface registerProps {}
 
-const Register: FC<registerProps> = ({  }) => {
+const Register: FC<registerProps> = ({}) => {
   return (
     <Card>
-        <Typography.Title>Register</Typography.Title>
+      <Typography.Title>Register</Typography.Title>
     </Card>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

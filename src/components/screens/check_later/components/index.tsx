@@ -4,4 +4,4 @@ import RightOptions from "./RightOptions";
 import ShareChart from "./ShareChart";
 import ShareList from "./ShareList";
 
-export {ShareChart, ShareList,RightOptions,Dof,LeftOptions}
+export { ShareChart, ShareList, RightOptions, Dof, LeftOptions };

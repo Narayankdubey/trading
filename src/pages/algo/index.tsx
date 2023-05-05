@@ -1,17 +1,15 @@
-import LayoutContainer from '@/components/layout';
-import AlgoContainer from '@/components/screens/algo';
-import React, { FC } from 'react'
+import LayoutContainer from "@/components/layout";
+import AlgoContainer from "@/components/screens/algo";
+import React, { FC } from "react";
 
-interface AlgoProps {
+interface AlgoProps {}
 
-}
-
-const Algo: FC<AlgoProps> = ({ }) => {
-    return (
-        <LayoutContainer>
-            <AlgoContainer />
-        </LayoutContainer>
-    )
-}
+const Algo: FC<AlgoProps> = ({}) => {
+  return (
+    <LayoutContainer>
+      <AlgoContainer />
+    </LayoutContainer>
+  );
+};
 
 export default Algo;

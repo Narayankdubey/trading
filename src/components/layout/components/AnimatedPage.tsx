@@ -1,17 +1,16 @@
-import React from "react"
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 type AnimatedPageProps = {
-  children?: React.ReactNode
-}
+  children?: React.ReactNode;
+};
 
 const AnimatedPage: React.FC<AnimatedPageProps> = ({ children }) => {
-
   const animationStyles = {
     initial: { height: "100%", opacity: 1 },
     animate: { height: 0 },
     exit: { y: -10, opacity: 0 },
-  }
+  };
 
   return (
     <motion.div
@@ -23,7 +22,7 @@ const AnimatedPage: React.FC<AnimatedPageProps> = ({ children }) => {
     >
       {children}
     </motion.div>
-  )
+  );
 };
 
 export default AnimatedPage;
