@@ -9,13 +9,13 @@ interface TradingFilterProps {
 }
 
 const TradingFilter: FC<TradingFilterProps> = ({ data }) => {
-  
+
   const Header = ({ item }: any) => (
     <Typography.Text className={"fontWeight600"}>
       {item?.name?.toUpperCase()}
     </Typography.Text>
   );
-
+  console.log(data?.map((elem: any) => elem?.name), 'data?.map((elem: any) => elem?.name)')
   return (
     <Space
       direction="vertical"

@@ -4,9 +4,10 @@ import { Card } from "antd";
 
 interface LogoProps {
   size?: number;
+  color?: string;
 }
 
-const Logo: FC<LogoProps> = ({ size = 1 }) => {
+const Logo: FC<LogoProps> = ({ size = 1, color }) => {
   const constainerStyle = {
     gap: size * 8 * 0.5,
     width: 2 * size * 8 + 8,
@@ -16,15 +17,22 @@ const Logo: FC<LogoProps> = ({ size = 1 }) => {
   };
   return (
     <div className={styles.container} style={constainerStyle}>
-      <Card
+      {[1, 2, 3].map((item) => (
+        <Card
+          key={item}
+          style={{
+            width: size * 8,
+            height: size * 8,
+            backgroundColor: color ?? "white",
+          }}
+        ></Card>
+      ))}
+      {/* <Card
         style={{ width: size * 8, height: size * 8, backgroundColor: "white" }}
       ></Card>
       <Card
         style={{ width: size * 8, height: size * 8, backgroundColor: "white" }}
-      ></Card>
-      <Card
-        style={{ width: size * 8, height: size * 8, backgroundColor: "white" }}
-      ></Card>
+      ></Card> */}
     </div>
   );
 };

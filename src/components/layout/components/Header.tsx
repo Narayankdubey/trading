@@ -32,6 +32,8 @@ import {
 import { Logo, LogoWithText } from "@/components/elements";
 import Link from "next/link";
 import { ROUTES } from "@/common/constants";
+import { useAppDispatch } from "@/redux/hooks";
+import { logOutAsync } from "@/pages/auth/authSlice";
 
 interface HeaderContainerProps {
   setDartMode: Dispatch<SetStateAction<boolean>>;
@@ -47,6 +49,7 @@ const menus = [
 ];
 
 export const HeaderContainer: FC<HeaderContainerProps> = ({ setDartMode }) => {
+  const dispatch = useAppDispatch()
   const router = useRouter();
   const { useBreakpoint } = Grid;
   const screen = useBreakpoint();
@@ -68,6 +71,7 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({ setDartMode }) => {
       key: "3",
       label: "Log Out",
       icon: <LogoutOutlined />,
+      onClick:()=>dispatch(logOutAsync())
     },
   ];
 

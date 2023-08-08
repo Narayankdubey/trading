@@ -10,6 +10,7 @@ import {
   ConfigProvider,
 } from "antd";
 import { AnimatedPage, BottomNav, HeaderContainer } from "./components";
+import PrivateRoute from "../hoc/AuthChecker";
 
 type layoutContainerProps = {
   children: any;
@@ -23,7 +24,7 @@ const initialTheme = {
 };
 
 const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
-  const [darkMode, setDartMode] = useState(true);
+  const [darkMode, setDartMode] = useState(false);
   const [localTheme, setLocalTheme] = useState(initialTheme);
 
   const { useBreakpoint } = Grid;
@@ -39,32 +40,34 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
   }, []);
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
-        token: {
-          colorPrimary: localTheme?.primaryColor || initialTheme.primaryColor,
-          borderRadius: localTheme?.borderRadius || initialTheme.borderRadius,
-        },
-      }}
-    >
-      <Layout>
-        <Header>
-          <HeaderContainer setDartMode={setDartMode} />
-        </Header>
-        <Content
-          style={{
-            minHeight: "calc(100vh - 64px)",
-            padding: 5,
-          }}
-        >
-          {/* <AnimatedPage> */}
-          {children}
-          {/* </AnimatedPage> */}
-        </Content>
-        {/* <BottomNav setDartMode={setDartMode}/> */}
-      </Layout>
-    </ConfigProvider>
+    <PrivateRoute>
+      <ConfigProvider
+        theme={{
+          algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
+          token: {
+            colorPrimary: localTheme?.primaryColor || initialTheme.primaryColor,
+            borderRadius: localTheme?.borderRadius || initialTheme.borderRadius,
+          },
+        }}
+      >
+        <Layout>
+          <Header>
+            <HeaderContainer setDartMode={setDartMode} />
+          </Header>
+          <Content
+            style={{
+              minHeight: "calc(100vh - 64px)",
+              padding: 5,
+            }}
+          >
+            {/* <AnimatedPage> */}
+            {children}
+            {/* </AnimatedPage> */}
+          </Content>
+          {/* <BottomNav setDartMode={setDartMode}/> */}
+        </Layout>
+      </ConfigProvider>
+    </PrivateRoute>
   );
 };
 
