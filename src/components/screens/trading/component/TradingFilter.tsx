@@ -15,7 +15,7 @@ const TradingFilter: FC<TradingFilterProps> = ({ data }) => {
       {item?.name?.toUpperCase()}
     </Typography.Text>
   );
-  console.log(data?.map((elem: any) => elem?.name), 'data?.map((elem: any) => elem?.name)')
+
   return (
     <Space
       direction="vertical"

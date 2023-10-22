@@ -3,8 +3,8 @@ import { notification } from "antd";
 import { STORAGE_KEY_CONSTANT, TOKEN_EXPIRE } from "../common/constants";
 import { getRefreshToken, getToken } from "@/utils/helper";
 import API_PATHS from "./apiPaths";
-// const baseURL = process.env.REACT_APP_API_HOST;
-const baseURL = "http://localhost:4000/v1/";
+const baseURL = process.env.REACT_APP_API_HOST;
+// const baseURL = "http://localhost:4000/v1/";
 // const { config } = require(`../config/${env}.config`);
 
 const instance = axios.create({
@@ -23,17 +23,16 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-    console.log(instance.defaults.headers, "authorization")
-    if (
-      error.response.data?.message === "jwt expired" && !originalRequest._retry
-    ) {
-      originalRequest._retry = true;
-      const newToken = await fetchTokenToken()
-      instance.defaults.headers[
-        "authorization"
-      ] = `Bearer ${newToken}`;
-      return instance(originalRequest);
-    }
+    // if (
+    //   error.response.data?.message === "jwt expired" && !originalRequest._retry
+    // ) {
+    //   originalRequest._retry = true;
+    //   const newToken = await fetchTokenToken()
+    //   instance.defaults.headers[
+    //     "authorization"
+    //   ] = `Bearer ${newToken}`;
+    //   return instance(originalRequest);
+    // }
     if (
       error.response.status >= 400 &&
       error.response.status <= 503 &&

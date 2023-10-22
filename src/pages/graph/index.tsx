@@ -1,8 +1,8 @@
 import Head from "next/head";
 import LayoutContainer from "@/components/layout";
-import { HomeContainer } from "@/components/screens";
+import { GraphContainer, HomeContainer } from "@/components/screens";
 
-export default function LandingPage() {
+export default function GraphPage() {
   return (
     <>
       <Head>
@@ -12,7 +12,8 @@ export default function LandingPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutContainer>
-        <HomeContainer />
+        {/* <HomeContainer /> */}
+        <GraphContainer />
       </LayoutContainer>
     </>
   );

@@ -10,32 +10,32 @@ import React, { FC } from "react";
 interface RightOptionsProps {}
 
 const RightOptions: FC<RightOptionsProps> = ({}) => {
-  const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: "Profile",
-      icon: <UserOutlined />,
-    },
-    {
-      key: "2",
-      label: "Setting",
-      icon: <SettingOutlined />,
-    },
-    {
-      key: "3",
-      label: "Log Out",
-      icon: <LogoutOutlined />,
-    },
-  ];
+  // const items: MenuProps["items"] = [
+  //   {
+  //     key: "1",
+  //     label: "Profile",
+  //     icon: <UserOutlined />,
+  //   },
+  //   {
+  //     key: "2",
+  //     label: "Setting",
+  //     icon: <SettingOutlined />,
+  //   },
+  //   {
+  //     key: "3",
+  //     label: "Log Out",
+  //     icon: <LogoutOutlined />,
+  //   },
+  // ];
   return (
     <Space direction="vertical">
       {/* <Card size='small'> */}
       {/* <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} /> */}
-      <Dropdown menu={{ items }}>
+      {/* <Dropdown menu={{ items }}>
         <Avatar shape="square" size={46} icon={<UserOutlined />} />
-      </Dropdown>
+      </Dropdown> */}
       {/* </Card> */}
-      <Card style={{ height: "288px" }}></Card>
+      <Card style={{ height: "342px" }}></Card>
     </Space>
   );
 };

@@ -34,21 +34,22 @@ import Link from "next/link";
 import { ROUTES } from "@/common/constants";
 import { useAppDispatch } from "@/redux/hooks";
 import { logOutAsync } from "@/pages/auth/authSlice";
+import { appSlice } from "@/redux/appSlice";
 
 interface HeaderContainerProps {
-  setDartMode: Dispatch<SetStateAction<boolean>>;
 }
 
 const menus = [
   { name: "trading", title: "Trading", icon: "" },
   { name: "algo", title: "Algo", icon: "" },
+  { name: "graph", title: "Graph", icon: "" },
   { name: "backtesting", title: "Backtesting", icon: "" },
   { name: "amount", title: "$ 2,45,000", icon: "" },
   { name: "notes", title: "Notes", icon: "" },
   { name: "logs", title: "Logs", icon: "" },
 ];
 
-export const HeaderContainer: FC<HeaderContainerProps> = ({ setDartMode }) => {
+export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {
   const dispatch = useAppDispatch()
   const router = useRouter();
   const { useBreakpoint } = Grid;
@@ -192,7 +193,7 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({ setDartMode }) => {
               checkedChildren={"Dark"}
               unCheckedChildren={"Light"}
               defaultChecked
-              onChange={() => setDartMode((old: boolean) => !old)}
+              onChange={() => dispatch(appSlice.actions.toogleTheme())}
             />
             <Popover
               content={content}

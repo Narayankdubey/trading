@@ -8,9 +8,9 @@ import {
   ShareList,
 } from "./components";
 
-interface homeContainerProps {}
+interface GraphContainerProps {}
 
-const HomeContainer: FC<homeContainerProps> = ({}) => {
+const GraphContainer: FC<GraphContainerProps> = ({}) => {
   const [displayChart, setDisplayChart] = useState<any>([]);
 
   const onAddChartDisplay = (item: string) => {
@@ -42,4 +42,4 @@ const HomeContainer: FC<homeContainerProps> = ({}) => {
   );
 };
 
-export default HomeContainer;
+export default GraphContainer;

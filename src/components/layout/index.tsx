@@ -9,6 +9,7 @@ import {
   theme,
   ConfigProvider,
 } from "antd";
+import { useAppSelector } from "@/redux/hooks";
 import { AnimatedPage, BottomNav, HeaderContainer } from "./components";
 import PrivateRoute from "../hoc/AuthChecker";
 
@@ -21,11 +22,15 @@ const { Sider, Content, Footer, Header } = Layout;
 const initialTheme = {
   primaryColor: "#1677ff",
   borderRadius: 5,
+  colorBgLayout:"red",
+  colorBgContainer: 'green'
 };
 
 const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
-  const [darkMode, setDartMode] = useState(false);
+  // const [darkMode, setDartMode] = useState(false);
   const [localTheme, setLocalTheme] = useState(initialTheme);
+
+  const { darkTheme } = useAppSelector((state) => state.appSlice);
 
   const { useBreakpoint } = Grid;
   const screen = useBreakpoint();
@@ -43,7 +48,7 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
     <PrivateRoute>
       <ConfigProvider
         theme={{
-          algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
+          algorithm: darkTheme ? theme.darkAlgorithm : theme.defaultAlgorithm,
           token: {
             colorPrimary: localTheme?.primaryColor || initialTheme.primaryColor,
             borderRadius: localTheme?.borderRadius || initialTheme.borderRadius,
@@ -51,8 +56,8 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
         }}
       >
         <Layout>
-          <Header>
-            <HeaderContainer setDartMode={setDartMode} />
+          <Header style={{backgroundColor:darkTheme ?"": "#d1cdcd" }}>
+            <HeaderContainer />
           </Header>
           <Content
             style={{
