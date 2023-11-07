@@ -2,11 +2,13 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import auth from "../pages/auth/authSlice";
 import appSlice from "./appSlice";
+import backtestingSlice from "@/pages/backtesting/backtestingSlice";
 
 export const store = configureStore({
   reducer: {
     auth,
-    appSlice
+    appSlice,
+    backtestingSlice
   },
 });
 

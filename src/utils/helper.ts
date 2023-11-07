@@ -2,7 +2,6 @@ import {
   REFRESH_KEY_CONSTANT,
   STORAGE_KEY_CONSTANT,
   USER_INFO,
-  tempStrategyData,
 } from "@/common/constants";
 import moment from "moment";
 
@@ -31,30 +30,76 @@ export const deFormatData = (data: any) => {
   let tempArr = [];
 
   tempArr = data?.signals?.map((elem: any, i: number) => {
-    let tempObj: any = {};
+    let tempObj: any = { conditions: [] };
     if (elem?.transaction) tempObj.transaction = elem?.transaction;
-    if (elem?.models[0]?.operator) tempObj.operator = elem?.models[0]?.operator;
+    elem?.conditions?.map((condition: any, idx: number) => {
+      let tempConObj: any = {};
 
-    for (let i = 1; i <= 2; i++) {
-      ["type", "symbol", "attribute", "start", "end", "value"].forEach(
-        (item: any) => {
-          if (elem?.models[0]?.param1?.[item]) {
-            if (item === "start" || item === "end")
-              tempObj[`${item}_param${i}`] = moment(
-                elem?.models[0]?.param1?.[item]
-              );
-            else tempObj[`${item}_param${i}`] = elem?.models[0]?.param1?.[item];
+      if (condition?.operator) tempConObj.operator = condition?.operator;
+      for (let i = 1; i <= 2; i++) {
+        ["type", "symbol", "attribute", "start", "end", "value"].forEach(
+          (item: any) => {
+            if (condition?.[`param${i}`]?.[item]) {
+              if (item === "start" || item === "end")
+                tempConObj[`${item}_param${i}`] = moment(
+                  condition?.[`param${i}`]?.[item]
+                );
+              else
+                tempConObj[`${item}_param${i}`] =
+                  condition?.[`param${i}`]?.[item];
+            }
           }
-        }
-      );
-    }
+        );
+      }
 
+      tempObj.conditions.push(tempConObj);
+    });
     return tempObj;
   });
 
   return { ...data, ["signals"]: tempArr };
 };
 
-export const getStrategyData = (id:string) =>{
-  return tempStrategyData;
+export const formData = (raw:any)=>{
+  const signals = raw?.signals.map((signal:any)=>{
+      const conditions = signal.conditions.map((condition:any)=>{
+          return {
+              param1: {
+          symbol: condition?.symbol_param1,
+          timeframe: condition?.timeframe_param1,
+          type: condition?.type_param1,
+          attribute: condition?.attribute_param1,
+          indicator: condition?.indicator_param1,
+          period: condition?.period_param1,
+          value: condition?.value_param1,
+        },
+        operator: condition?.operator,
+        param2: {
+          symbol: condition?.symbol_param2,
+          timeframe: condition?.timeframe_param2,
+          type: condition?.type_param2,
+          attribute: condition?.attribute_param2,
+          indicator: condition?.indicator_param2,
+          period: condition?.period_param2,
+          value: condition?.value_param2,
+        },
+          }
+      })
+      return {...signal, conditions}
+  })
+  
+  return {...raw, signals}
 }
+
+export const getColorByStatus = (status: string) => {
+  switch (status.toLowerCase()) {
+    case "created":
+      return "warning";
+    case "processing":
+      return "processing";
+    case "completed":
+      return "success";
+    default:
+      break;
+  }
+};

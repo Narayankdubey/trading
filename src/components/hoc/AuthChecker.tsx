@@ -15,9 +15,9 @@ const PrivateRoute = ({ children }: { children: any }) => {
     const token = getToken();
     //comment this condition if you don't want authentication
     if (authenticated) {
-      token && dispatch(logOutAsync());
+      // token && dispatch(logOutAsync());
     } else {
-      router.push(ROUTES.LOGIN); // Redirect on the client side
+      // router.push(ROUTES.LOGIN); // Redirect on the client side
     }
   }, [authenticated, dispatch, router]);
 

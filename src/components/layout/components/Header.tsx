@@ -41,12 +41,12 @@ interface HeaderContainerProps {
 
 const menus = [
   { name: "trading", title: "Trading", icon: "" },
-  { name: "algo", title: "Algo", icon: "" },
-  { name: "graph", title: "Graph", icon: "" },
+  // { name: "algo", title: "Algo", icon: "" },
+  // { name: "graph", title: "Graph", icon: "" },
   { name: "backtesting", title: "Backtesting", icon: "" },
-  { name: "amount", title: "$ 2,45,000", icon: "" },
-  { name: "notes", title: "Notes", icon: "" },
-  { name: "logs", title: "Logs", icon: "" },
+  // { name: "amount", title: "$ 2,45,000", icon: "" },
+  // { name: "notes", title: "Notes", icon: "" },
+  // { name: "logs", title: "Logs", icon: "" },
 ];
 
 export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {

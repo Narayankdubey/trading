@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect } from "react";
 import {
   Button,
   Card,
@@ -11,14 +10,28 @@ import {
   Input,
   Select,
   DatePicker,
+  Spin,
+  Divider,
 } from "antd";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import {
+  MinusCircleOutlined,
+  PlusOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
 import type { FormInstance } from "antd/es/form";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
-import { deFormatData, getStrategyData } from "@/utils/helper";
+import style from "@/styles/Backtesting.module.css";
+import { deFormatData, formData } from "@/utils/helper";
+import {
+  addStrategies,
+  getStrategies,
+  updateStrategies,
+} from "@/pages/backtesting/backtestingSlice";
 
 const { Title } = Typography;
 const { Option } = Select;
+const { RangePicker } = DatePicker;
 
 type Props = {
   isStrategyModalOpen: boolean;
@@ -33,14 +46,20 @@ const StrategyModal = ({
   strategyId,
   setStrategyId,
 }: Props) => {
-  const formRef = React.useRef<FormInstance>(null);
+  const [form] = Form.useForm();
+  const dispatch = useAppDispatch();
 
-  const parameter = (name: number, type: string) => {
+  const { strategiesStatus, strategies } = useAppSelector(
+    (state) => state.backtestingSlice
+  );
+  const loading = strategiesStatus === "loading";
+
+  const parameter = (subName: number, name: number, type: string) => {
     return (
       <Row>
         <Col span={24}>
           <Form.Item
-            name={[name, `type_${type}`]}
+            name={[subName, `type_${type}`]}
             label="Type"
             rules={[{ required: true }]}
           >
@@ -54,16 +73,21 @@ const StrategyModal = ({
             noStyle
             shouldUpdate={(prevValues, currentValues) => {
               return (
-                prevValues["signals"][name]?.[`type_${type}`] !==
-                currentValues["signals"][name]?.[`type_${type}`]
+                prevValues["signals"][name]?.["conditions"][subName]?.[
+                  `type_${type}`
+                ] !==
+                currentValues["signals"][name]?.["conditions"][subName]?.[
+                  `type_${type}`
+                ]
               );
             }}
           >
             {({ getFieldValue }) => {
-              return getFieldValue("signals")[name]?.[`type_${type}`] ===
-                "value" ? (
+              return getFieldValue("signals")[name]?.["conditions"][subName]?.[
+                `type_${type}`
+              ] === "value" ? (
                 <Form.Item
-                  name={[name, `value_${type}`]}
+                  name={[subName, `value_${type}`]}
                   label="Value"
                   rules={[{ required: true }]}
                 >
@@ -72,7 +96,7 @@ const StrategyModal = ({
               ) : (
                 <>
                   <Form.Item
-                    name={[name, `symbol_${type}`]}
+                    name={[subName, `symbol_${type}`]}
                     label="Symbol"
                     rules={[{ required: true }]}
                   >
@@ -81,7 +105,7 @@ const StrategyModal = ({
                     </Select>
                   </Form.Item>
                   <Form.Item
-                    name={[name, `attribute_${type}`]}
+                    name={[subName, `attribute_${type}`]}
                     label="Attribute"
                     rules={[{ required: true }]}
                   >
@@ -90,16 +114,41 @@ const StrategyModal = ({
                       <Option value="open">OPEN</Option>
                     </Select>
                   </Form.Item>
-                  <Form.Item label="Start" name={[name, `start_${type}`]}>
+                  {/* <Form.Item label="Start" name={[subName, `start_${type}`]}>
                     <DatePicker />
                   </Form.Item>
-                  <Form.Item label="End" name={[name, `end_${type}`]}>
+                  <Form.Item label="End" name={[subName, `end_${type}`]}>
                     <DatePicker />
+                  </Form.Item> */}
+                  <Form.Item
+                    name={[subName, `timeframe_${type}`]}
+                    label="Timeframe"
+                    rules={[{ required: true }]}
+                  >
+                    <Select placeholder="Timeframe">
+                      {[
+                        "1sec",
+                        "1min",
+                        "3min",
+                        "5min",
+                        "7min",
+                        "10min",
+                        "15min",
+                        "20min",
+                        "30min",
+                      ].map((elem) => (
+                        <Option key={elem} value={elem}>
+                          {elem}
+                        </Option>
+                      ))}
+                      <Option value="open">OPEN</Option>
+                    </Select>
                   </Form.Item>
-                  {getFieldValue("signals")[name]?.[`type_${type}`] ===
-                    "indicator" && (
+                  {getFieldValue("signals")[name]?.["conditions"][subName]?.[
+                    `type_${type}`
+                  ] === "indicator" && (
                     <Form.Item
-                      name={[name, `timeperiod_${type}`]}
+                      name={[subName, `timeperiod_${type}`]}
                       label="Timeperiod"
                       rules={[{ required: true }]}
                     >
@@ -119,102 +168,104 @@ const StrategyModal = ({
   };
 
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    const formedData = formData(values)
+    if (strategyId) dispatch(updateStrategies({ formedData, strategyId }));
+    else dispatch(addStrategies(formedData));
+  };
+
+  const onModalClose = () => {
+    form.setFieldsValue({});
+    setStrategyId("");
+    setIsStrategyModalOpen(false);
   };
 
   useEffect(() => {
-    const formRefTemp = formRef.current;
     if (strategyId) {
-      const dummyData = getStrategyData(strategyId);
-      formRefTemp?.setFieldsValue(deFormatData(dummyData));
+      dispatch(getStrategies(strategyId));
+      form.setFieldsValue(deFormatData(strategies));
     }
-    return () => {
-      formRefTemp?.setFieldsValue({});
-      setStrategyId("");
-    };
-  }, [setStrategyId, strategyId]);
+  }, [dispatch, form, setStrategyId, strategies, strategyId]);
 
   return (
     <Modal
       open={isStrategyModalOpen}
       footer={null}
-      onCancel={() => setIsStrategyModalOpen(false)}
-      width={"95%"}
+      onCancel={onModalClose}
+      width={"100%"}
+      style={{ top: 30 }}
     >
-      <Form
-        name="strategy"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        onFinish={onFinish}
-        autoComplete="off"
-        ref={formRef}
-      >
-        <Row>
-          <Col span={24}>
-            <Row gutter={8}>
-              <Col span={8}>
-                <Form.Item
-                  name="title"
-                  rules={[
-                    { required: true, message: "Please input your Title!" },
-                  ]}
-                >
-                  <Input placeholder="Title" />
-                </Form.Item>
-              </Col>
-              <Col span={6}>
-                <Form.Item name="type" rules={[{ required: true }]}>
-                  <Select placeholder="Type" allowClear>
-                    <Option value="HISTORICAL">HISTORICAL</Option>
-                    <Option value="type2">type2</Option>
-                    <Option value="type3">type3</Option>
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col span={4}>
-                <Title level={3}>BACKTEST</Title>
-              </Col>
-              <Col span={6}>
-                <Form.Item>
-                  <Button type="primary" htmlType="submit" block>
-                    Submit
-                  </Button>
-                </Form.Item>
-              </Col>
-            </Row>
-          </Col>
-          <Col span={18}>
-            <div
-              style={{
-                maxHeight: "calc(100vh - 200px)",
-                minHeight: "calc(100vh - 300px)",
-                overflow: "auto",
-              }}
-            >
-              <Row>
-                <Col span={4}></Col>
-                <Col span={8} style={{ textAlign: "center" }}>
-                  <Title level={4}>Parameter 1</Title>
+      <Spin spinning={loading}>
+        <Form
+          name="strategy"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          onFinish={onFinish}
+          autoComplete="off"
+          form={form}
+        >
+          <Row gutter={8}>
+            <Col span={24}>
+              <Row gutter={8}>
+                <Col span={8}>
+                  <Form.Item
+                    name="title"
+                    rules={[
+                      { required: true, message: "Please input your Title!" },
+                    ]}
+                  >
+                    <Input placeholder="Title" size="large" />
+                  </Form.Item>
                 </Col>
-                <Col span={4} style={{ textAlign: "center" }}>
-                  <Title level={4}>Operator</Title>
+                <Col span={6}>
+                  <Form.Item name="type" rules={[{ required: true }]}>
+                    <Select placeholder="Type" allowClear size="large">
+                      <Option value="backtest">backtest</Option>
+                    </Select>
+                  </Form.Item>
                 </Col>
-                <Col span={8} style={{ textAlign: "center" }}>
-                  <Title level={4}>Parameter 2</Title>
+                <Col span={6}>
+                  <Title level={3}>BACKTEST</Title>
+                </Col>
+
+                <Col span={4}>
+                  <Form.Item wrapperCol={{ span: 22 }}>
+                    <Button type="primary" htmlType="submit" block>
+                      Submit
+                    </Button>
+                  </Form.Item>
                 </Col>
               </Row>
-              <Form.List name="signals">
-                {(fields, { add, remove }) => (
-                  <>
-                    {fields.map(({ key, name, ...restField }) => (
-                      <>
-                        <Card size="small">
+            </Col>
+            <Col span={20}>
+              <Card size="small">
+                <Row>
+                  <Col span={4}></Col>
+                  <Col span={7} style={{ textAlign: "center" }}>
+                    <Title level={5}>Parameter 1</Title>
+                  </Col>
+                  <Divider type="vertical" style={{ height: "32px" }} />
+                  <Col span={3} style={{ textAlign: "center" }}>
+                    <Title level={5}>Operator</Title>
+                  </Col>
+                  <Divider type="vertical" style={{ height: "32px" }} />
+                  <Col span={6} style={{ textAlign: "center" }}>
+                    <Title level={5}>Parameter 2</Title>
+                  </Col>
+                </Row>
+              </Card>
+              <div className={`${style.dynamicFormContainer} styledScrollBar`}>
+                <Form.List name="signals">
+                  {(fields, { add, remove }) => (
+                    <>
+                      {fields.map(({ key, name, ...restField }) => (
+                        <Card size="small" key={key}>
                           <Row gutter={8} style={{ marginBottom: 16 }}>
                             <Col span={3}>
                               <Form.Item
                                 {...restField}
                                 name={[name, "transaction"]}
                                 rules={[{ required: true }]}
+                                wrapperCol={{ span: 24 }}
                               >
                                 <Select placeholder="Transaction" allowClear>
                                   <Option value="BUY">BUY</Option>
@@ -222,20 +273,75 @@ const StrategyModal = ({
                                 </Select>
                               </Form.Item>
                             </Col>
-                            <Col span={8}>{parameter(name, "param1")}</Col>
-                            <Col>
-                              <Form.Item
-                                {...restField}
-                                name={[name, "operator"]}
-                                rules={[{ required: true }]}
-                              >
-                                <Select placeholder="Operator" allowClear>
-                                  <Option value="GT">GT</Option>
-                                  <Option value="LTE">LTE</Option>
-                                </Select>
-                              </Form.Item>
+                            <Col span={20}>
+                              <Form.List name={[name, "conditions"]}>
+                                {(subFields, subOpt) => (
+                                  <>
+                                    {subFields.map((subField) => (
+                                      <Card size="small" key={subField.key}>
+                                        <Row>
+                                          <Col span={9}>
+                                            {parameter(
+                                              subField.name,
+                                              name,
+                                              "param1"
+                                            )}
+                                          </Col>
+                                          <Col
+                                            span={4}
+                                            style={{ marginLeft: "auto" }}
+                                          >
+                                            <Form.Item
+                                              name={[subField.name, "operator"]}
+                                              rules={[{ required: true }]}
+                                              wrapperCol={{ span: 20 }}
+                                            >
+                                              <Select
+                                                placeholder="Operator"
+                                                allowClear
+                                              >
+                                                <Option value="GT">GT</Option>
+                                                <Option value="LTE">LTE</Option>
+                                              </Select>
+                                            </Form.Item>
+                                          </Col>
+                                          <Col span={9}>
+                                            {parameter(
+                                              subField.name,
+                                              name,
+                                              "param2"
+                                            )}
+                                          </Col>
+                                          <Col
+                                            span={1}
+                                            style={{
+                                              display: "flex",
+                                              justifyContent: "flex-end",
+                                              alignItems: "baseline",
+                                            }}
+                                          >
+                                            <MinusCircleOutlined
+                                              onClick={() =>
+                                                subOpt.remove(subField.name)
+                                              }
+                                            />
+                                          </Col>
+                                        </Row>
+                                      </Card>
+                                    ))}
+                                    <Form.Item>
+                                      <Button
+                                        type="dashed"
+                                        onClick={() => subOpt.add()}
+                                        icon={<PlusOutlined />}
+                                      >
+                                        Add Conditions
+                                      </Button>
+                                    </Form.Item>
+                                  </>
+                                )}
+                              </Form.List>
                             </Col>
-                            <Col span={8}>{parameter(name, "param2")}</Col>
                             <Col
                               span={1}
                               style={{
@@ -244,36 +350,115 @@ const StrategyModal = ({
                                 alignItems: "baseline",
                               }}
                             >
-                              <MinusCircleOutlined
-                                onClick={() => remove(name)}
-                              />
+                              <CloseOutlined onClick={() => remove(name)} />
                             </Col>
                           </Row>
                         </Card>
-                      </>
-                    ))}
-                    <Form.Item>
-                      <Button
-                        type="dashed"
-                        onClick={() => add()}
-                        icon={<PlusOutlined />}
-                      >
-                        Add field
-                      </Button>
-                    </Form.Item>
-                  </>
-                )}
-              </Form.List>
-            </div>
-          </Col>
-          <Col span={6}>
-            <Card style={{ height: "50%" }}></Card>
-            <Card style={{ height: "50%" }}></Card>
-          </Col>
-        </Row>
-      </Form>
+                      ))}
+                      <Form.Item>
+                        <Button
+                          type="dashed"
+                          onClick={() => add()}
+                          icon={<PlusOutlined />}
+                        >
+                          Add field
+                        </Button>
+                      </Form.Item>
+                    </>
+                  )}
+                </Form.List>
+              </div>
+            </Col>
+            <Col span={4}>
+              <Card
+                type="inner"
+                title="Information"
+                style={{ height: "30%" }}
+              ></Card>
+              <Card
+                type="inner"
+                title="Orders"
+                className="styledScrollBar"
+                style={{
+                  minHeight: "70%",
+                  overflow: "auto",
+                  maxHeight: "300px",
+                  marginTop: "8px",
+                }}
+              >
+                <Form.List name="orderList">
+                  {(fields, { add, remove }) => (
+                    <>
+                      {fields.map(({ key, name, ...restField }) => (
+                        <Row key={key} gutter={8}>
+                          <Col span={22}>
+                            <Form.Item
+                              name={[name, "symbol"]}
+                              rules={[{ required: true }]}
+                              wrapperCol={{ span: 24 }}
+                            >
+                              <Select placeholder="Symbol" allowClear>
+                                <Option value="TATA">TATA</Option>
+                                <Option value="REL">REL</Option>
+                              </Select>
+                            </Form.Item>
+                          </Col>
+                          <Col span={2}>
+                            <MinusCircleOutlined onClick={() => remove(name)} />
+                          </Col>
+                          <Col span={12}>
+                            <Form.Item
+                              {...restField}
+                              name={[name, "buy"]}
+                              rules={[
+                                {
+                                  required: true,
+                                  // message: "Missing first name",
+                                },
+                              ]}
+                              wrapperCol={{ span: 24 }}
+                            >
+                              <Input type="number" placeholder="buy" />
+                            </Form.Item>
+                          </Col>
+                          <Col span={12}>
+                            <Form.Item
+                              {...restField}
+                              name={[name, "sell"]}
+                              rules={[
+                                {
+                                  required: true,
+                                  // message: "Missing last name",
+                                },
+                              ]}
+                              wrapperCol={{ span: 24 }}
+                            >
+                              <Input type="number" placeholder="Sell" />
+                            </Form.Item>
+                          </Col>
+                          <Divider />
+                        </Row>
+                      ))}
+                      <Form.Item>
+                        <Button
+                          type="dashed"
+                          onClick={() => add()}
+                          block
+                          icon={<PlusOutlined />}
+                        >
+                          Add field
+                        </Button>
+                      </Form.Item>
+                    </>
+                  )}
+                </Form.List>
+              </Card>
+            </Col>
+          </Row>
+        </Form>
+      </Spin>
     </Modal>
   );
 };
 
-export default StrategyModal;
+export default memo(StrategyModal);

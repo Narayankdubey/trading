@@ -1,5 +1,5 @@
 import LayoutContainer from "@/components/layout";
-import { TradingContainer } from "@/components/screens";
+import { BacktestingContainer } from "@/components/screens";
 import Head from "next/head";
 import React, { FC } from "react";
 
@@ -15,7 +15,7 @@ const index: FC<indexProps> = ({}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <LayoutContainer>
-        <TradingContainer />
+        <BacktestingContainer />
       </LayoutContainer>
     </>
   );

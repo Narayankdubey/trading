@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {
   Layout,
-  Menu,
-  Typography,
-  Tooltip,
-  Button,
   Grid,
   theme,
   ConfigProvider,
 } from "antd";
 import { useAppSelector } from "@/redux/hooks";
-import { AnimatedPage, BottomNav, HeaderContainer } from "./components";
+import { HeaderContainer } from "./components";
 import PrivateRoute from "../hoc/AuthChecker";
 
 type layoutContainerProps = {

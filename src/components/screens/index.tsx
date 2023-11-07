@@ -1,7 +1,8 @@
 import AlgoContainer from "./algo";
 import HomeContainer from "./home";
 import SettingsContainer from "./settings";
-import TradingContainer from "./trading";
+import BacktestingContainer from "./trading";
 import GraphContainer from "./graph";
+import TradingContainer from "./tradingMain";
 
-export { HomeContainer, AlgoContainer, TradingContainer, SettingsContainer , GraphContainer};
+export { HomeContainer, AlgoContainer, BacktestingContainer, SettingsContainer , GraphContainer, TradingContainer};
