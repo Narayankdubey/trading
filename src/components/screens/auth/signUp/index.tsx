@@ -8,7 +8,7 @@ import {
   Divider,
 } from "antd";
 import { useAppDispatch } from "@/redux/hooks";
-import { signupAsync } from "@/pages/auth/authSlice";
+import { signupAsync } from "@/redux/slices/authSlice";
 import style from "./SignupContainer.module.css";
 import { LogoWithText } from "@/components/elements";
 import Link from "next/link";

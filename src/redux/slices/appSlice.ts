@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { RootState } from "../store";
 
-import API from "../services/axios";
+import API from "../../services/axios";
 import {
   REFRESH_KEY_CONSTANT,
   ROUTES,
   STORAGE_KEY_CONSTANT,
   TOKEN_EXPIRE,
   USER_INFO,
-} from "../common/constants";
+} from "../../common/constants";
 import API_PATHS from "@/services/apiPaths";
 import { getUserInfo } from "@/utils/helper";
 const env = process.env.REACT_APP_ENV;

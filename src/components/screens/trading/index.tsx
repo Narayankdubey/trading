@@ -29,7 +29,7 @@ import StrategyModal from "./component/StrategyModal";
 import {
   deleteStrategies,
   getStrategiesListdata,
-} from "@/pages/backtesting/backtestingSlice";
+} from "@/redux/slices/backtestingSlice";
 import { getColorByStatus } from "@/utils/helper";
 import RunModal from "./component/RunModal";
 

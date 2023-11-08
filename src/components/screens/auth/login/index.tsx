@@ -2,7 +2,7 @@ import React, { FC, useEffect, useContext } from "react";
 import Image from "next/image";
 import { Button, Form, Input, Card, Divider } from "antd";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { loginAsync } from "@/pages/auth/authSlice";
+import { loginAsync } from "@/redux/slices/authSlice";
 import style from "./LoginContainer.module.css";
 import { LogoWithText } from "@/components/elements";
 import Link from "next/link";

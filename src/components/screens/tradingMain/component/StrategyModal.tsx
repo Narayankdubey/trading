@@ -15,7 +15,7 @@ import {
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import type { FormInstance } from "antd/es/form";
 
-import { deFormatData, getStrategyData } from "@/utils/helper";
+import { deFormatData } from "@/utils/helper";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -125,8 +125,6 @@ const StrategyModal = ({
   useEffect(() => {
     const formRefTemp = formRef.current;
     if (strategyId) {
-      const dummyData = getStrategyData(strategyId);
-      formRefTemp?.setFieldsValue(deFormatData(dummyData));
     }
     return () => {
       formRefTemp?.setFieldsValue({});

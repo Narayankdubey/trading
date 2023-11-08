@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../redux/store";
+import { RootState } from "../store";
 
 import API from "../../services/axios";
 import API_PATHS from "@/services/apiPaths";
@@ -29,7 +29,7 @@ const initialState: backtestingState = {
 
 export const getStrategiesListdata = createAsyncThunk(
   "getStrategiesData/backtesing",
-  async (payload, { rejectWithValue }) => {
+  async (payload:any, { rejectWithValue }) => {
     try {
       const response = await API.get(API_PATHS.STRATEGIESLIST, {
         params: payload,

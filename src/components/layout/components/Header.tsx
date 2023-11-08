@@ -33,14 +33,14 @@ import { Logo, LogoWithText } from "@/components/elements";
 import Link from "next/link";
 import { ROUTES } from "@/common/constants";
 import { useAppDispatch } from "@/redux/hooks";
-import { logOutAsync } from "@/pages/auth/authSlice";
-import { appSlice } from "@/redux/appSlice";
+import { logOutAsync } from "@/redux/slices/authSlice";
+import { appSlice } from "@/redux/slices/appSlice";
 
 interface HeaderContainerProps {
 }
 
 const menus = [
-  { name: "trading", title: "Trading", icon: "" },
+  // { name: "trading", title: "Trading", icon: "" },
   // { name: "algo", title: "Algo", icon: "" },
   // { name: "graph", title: "Graph", icon: "" },
   { name: "backtesting", title: "Backtesting", icon: "" },

@@ -4,7 +4,7 @@ import AuthContext from "@/utils/AuthContext";
 import { getToken } from "@/utils/helper";
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import { logOutAsync } from "@/pages/auth/authSlice";
+import { logOutAsync } from "@/redux/slices/authSlice";
 
 const PrivateRoute = ({ children }: { children: any }) => {
   const dispatch = useAppDispatch();

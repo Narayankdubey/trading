@@ -9,7 +9,6 @@ import {
   Form,
   Input,
   Select,
-  DatePicker,
   Spin,
   Divider,
 } from "antd";
@@ -18,7 +17,6 @@ import {
   PlusOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-import type { FormInstance } from "antd/es/form";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import style from "@/styles/Backtesting.module.css";
@@ -27,11 +25,10 @@ import {
   addStrategies,
   getStrategies,
   updateStrategies,
-} from "@/pages/backtesting/backtestingSlice";
+} from "@/redux/slices/backtestingSlice";
 
 const { Title } = Typography;
 const { Option } = Select;
-const { RangePicker } = DatePicker;
 
 type Props = {
   isStrategyModalOpen: boolean;
