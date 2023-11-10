@@ -24,7 +24,7 @@ import React, { FC, useEffect, useMemo, useState } from "react";
 import moment from "moment";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
-import TradingFilter from "./component/BacktestingFilter";
+import BacktestingFilter from "./component/BacktestingFilter";
 import StrategyModal from "./component/StrategyModal";
 import {
   deleteStrategies,
@@ -32,6 +32,7 @@ import {
 } from "@/redux/slices/backtestingSlice";
 import { getColorByStatus } from "@/utils/helper";
 import RunModal from "./component/RunModal";
+import { backtestingConstant } from "@/common/constants";
 
 const { Paragraph, Title, Text } = Typography;
 const { confirm } = Modal;
@@ -79,13 +80,33 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   };
 
   const onFilter = (key: string, value: any) => {
-    setFilterData((old: any) => ({ ...old, [key]: value }));
+    if (key === "title")
+      setFilterData((old: any) => ({ ...old, [key]: value }));
+    else {
+      if (filterData.hasOwnProperty(key)) {
+        // @ts-ignore
+        if (filterData[key]?.includes(value)) {
+          setFilterData((old: any) => ({
+            ...old,
+             // @ts-ignore
+            [key]: filterData[key].filter((item: string) => item != value),
+          }));
+        } else
+          setFilterData((old: any) => ({
+            ...old,
+             // @ts-ignore
+            [key]: [...filterData[key], value],
+          }));
+      } else {
+        setFilterData((old: any) => ({ ...old, [key]: [value]}));
+      }
+    }
   };
 
   const filterElement = useMemo(() => {
     const data = filteredData;
     let result: any = [];
-    ["status"].forEach((item) => {
+    backtestingConstant.filterElement.forEach((item) => {
       let obj = {
         name: item,
         options: getOptions(item, data),
@@ -166,7 +187,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   return (
     <Row gutter={8}>
       <Col span={4}>
-        <TradingFilter
+        <BacktestingFilter
           data={filterElement}
           loading={loading}
           filterData={filterData}

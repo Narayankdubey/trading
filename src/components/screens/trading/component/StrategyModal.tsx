@@ -27,6 +27,9 @@ import {
   updateStrategies,
 } from "@/redux/slices/backtestingSlice";
 
+import { backtestingConstant } from "@/common/constants";
+const constants = backtestingConstant.form;
+
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -61,9 +64,11 @@ const StrategyModal = ({
             rules={[{ required: true }]}
           >
             <Select placeholder="type">
-              <Option value="attribute">Attribute</Option>
-              <Option value="indicator">Indicator</Option>
-              <Option value="value">Value</Option>
+              {constants.parameterType.map((elem) => (
+                <Option key={elem} value={elem}>
+                  {elem}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item
@@ -107,7 +112,11 @@ const StrategyModal = ({
                     rules={[{ required: true }]}
                   >
                     <Select placeholder="Attribute">
-                      <Option value="close">CLOSE</Option>
+                      {constants.attribute.map((elem) => (
+                        <Option key={elem} value={elem}>
+                          {elem}
+                        </Option>
+                      ))}
                       <Option value="open">OPEN</Option>
                     </Select>
                   </Form.Item>
@@ -123,22 +132,11 @@ const StrategyModal = ({
                     rules={[{ required: true }]}
                   >
                     <Select placeholder="Timeframe">
-                      {[
-                        "1sec",
-                        "1min",
-                        "3min",
-                        "5min",
-                        "7min",
-                        "10min",
-                        "15min",
-                        "20min",
-                        "30min",
-                      ].map((elem) => (
+                      {constants.timeframe.map((elem) => (
                         <Option key={elem} value={elem}>
                           {elem}
                         </Option>
                       ))}
-                      <Option value="open">OPEN</Option>
                     </Select>
                   </Form.Item>
                   {getFieldValue("signals")[name]?.["conditions"][subName]?.[
@@ -165,7 +163,7 @@ const StrategyModal = ({
   };
 
   const onFinish = (values: any) => {
-    const formedData = formData(values)
+    const formedData = formData(values);
     if (strategyId) dispatch(updateStrategies({ formedData, strategyId }));
     else dispatch(addStrategies(formedData));
   };
@@ -216,7 +214,11 @@ const StrategyModal = ({
                 <Col span={6}>
                   <Form.Item name="type" rules={[{ required: true }]}>
                     <Select placeholder="Type" allowClear size="large">
-                      <Option value="backtest">backtest</Option>
+                      {constants.type.map((elem) => (
+                        <Option key={elem} value={elem}>
+                          {elem}
+                        </Option>
+                      ))}
                     </Select>
                   </Form.Item>
                 </Col>
@@ -265,8 +267,11 @@ const StrategyModal = ({
                                 wrapperCol={{ span: 24 }}
                               >
                                 <Select placeholder="Transaction" allowClear>
-                                  <Option value="BUY">BUY</Option>
-                                  <Option value="SELL">SELL</Option>
+                                  {constants.transaction.map((elem) => (
+                                    <Option key={elem} value={elem}>
+                                      {elem}
+                                    </Option>
+                                  ))}
                                 </Select>
                               </Form.Item>
                             </Col>
@@ -443,7 +448,7 @@ const StrategyModal = ({
                           block
                           icon={<PlusOutlined />}
                         >
-                          Add field
+                          Add
                         </Button>
                       </Form.Item>
                     </>
