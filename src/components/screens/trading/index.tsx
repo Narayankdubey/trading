@@ -21,7 +21,6 @@ import {
 } from "@ant-design/icons";
 import type { PaginationProps } from "antd";
 import React, { FC, useEffect, useMemo, useState } from "react";
-import moment from "moment";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import BacktestingFilter from "./component/BacktestingFilter";
@@ -231,7 +230,6 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
                 onShowSizeChange={(_, next) => setPageSize(next)}
                 // hideOnSinglePage
               />
-              ;
             </Flex>
           </Col>
         </Row>

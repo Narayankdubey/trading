@@ -3,7 +3,7 @@ import { RootState } from "../store";
 
 import API from "../../services/axios";
 import API_PATHS from "@/services/apiPaths";
-import { strategiesListMock, strategiesMock } from "@/common/mock";
+import { runDataMock, strategiesListMock, strategiesMock } from "@/common/mock";
 
 interface backtestingState {
   status: "idle" | "loading" | "failed";
@@ -15,6 +15,9 @@ interface backtestingState {
   strategies: any;
 
   deleteStatus: "idle" | "loading" | "failed";
+
+  runData: any;
+  runStatus: "idle" | "loading" | "failed";
 }
 
 const initialState: backtestingState = {
@@ -25,6 +28,8 @@ const initialState: backtestingState = {
   strategiesError: null,
   strategies: [],
   deleteStatus: "idle",
+  runData: {},
+  runStatus: "idle",
 };
 
 export const getStrategiesListdata = createAsyncThunk(
@@ -93,6 +98,21 @@ export const deleteStrategies = createAsyncThunk(
         API_PATHS.STRATEGIES + `/${payload}`,
         payload
       );
+      const { data } = response.data;
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error?.response?.data?.message);
+    }
+  }
+);
+
+export const getRunData = createAsyncThunk(
+  "getRunData/backtesing",
+  async (payload:any, { rejectWithValue }) => {
+    try {
+      const response = await API.get(API_PATHS.RUNDATA, {
+        params: payload,
+      });
       const { data } = response.data;
       return data;
     } catch (error: any) {
@@ -175,6 +195,20 @@ export const backtesingSlice = createSlice({
       })
       .addCase(deleteStrategies.rejected, (state) => {
         state.deleteStatus = "failed";
+      });
+
+    //Get run data
+    builder
+      .addCase(getRunData.pending, (state) => {
+        state.runStatus = "loading";
+      })
+      .addCase(getRunData.fulfilled, (state, action) => {
+        state.runStatus = "idle";
+        // state.strategies = action.payload;
+      })
+      .addCase(getRunData.rejected, (state) => {
+        state.runStatus = "failed";
+        state.runData = runDataMock;
       });
   },
 });

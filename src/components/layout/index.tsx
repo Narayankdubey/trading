@@ -8,6 +8,7 @@ import {
 import { useAppSelector } from "@/redux/hooks";
 import { AnimatedPage, HeaderContainer } from "./components";
 import PrivateRoute from "../hoc/AuthChecker";
+import ScrollUpAnimation from "../elements/animation/ScrollUpAnimation";
 
 type layoutContainerProps = {
   children: any;
@@ -62,7 +63,9 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
             }}
           >
             {/* <AnimatedPage> */}
+            <ScrollUpAnimation>
             {children}
+            </ScrollUpAnimation>
             {/* </AnimatedPage> */}
           </Content>
           {/* <BottomNav setDartMode={setDartMode}/> */}

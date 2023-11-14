@@ -3,11 +3,12 @@ import { notification } from "antd";
 import { STORAGE_KEY_CONSTANT, TOKEN_EXPIRE } from "../common/constants";
 import { getRefreshToken, getToken } from "@/utils/helper";
 import API_PATHS from "./apiPaths";
-const baseURL = process.env.REACT_APP_API_HOST;
-// const baseURL = "http://localhost:4000/v1/";
+const baseURL = "http://localhost:4000/v1/";
+// const env = process.env.NEXT_PUBLIC_REACT_APP_ENV;
 // const { config } = require(`../config/${env}.config`);
 
 const instance = axios.create({
+  //change this to baseURL: config.REACT_APP_API_HOST if you are using .env with config
   baseURL: baseURL,
   headers: {
     authorization: "Bearer" + " " + getToken(),
@@ -49,15 +50,13 @@ instance.interceptors.response.use(
 
 const fetchTokenToken = async () => {
   try {
-    const refreshToken = getRefreshToken()
-    const res = await instance.post(API_PATHS.REFRESH_TOKEN, { refreshToken })
+    const refreshToken = getRefreshToken();
+    const res = await instance.post(API_PATHS.REFRESH_TOKEN, { refreshToken });
     const { data } = res.data;
     localStorage.setItem(STORAGE_KEY_CONSTANT, data?.token?.accessToken);
     localStorage.setItem(TOKEN_EXPIRE, data?.token?.expiresIn);
-    return data?.token?.accessToken
-  } catch (error) {
-
-  }
-}
+    return data?.token?.accessToken;
+  } catch (error) {}
+};
 
 export default instance;

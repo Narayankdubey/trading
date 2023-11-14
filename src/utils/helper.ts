@@ -60,11 +60,11 @@ export const deFormatData = (data: any) => {
   return { ...data, ["signals"]: tempArr };
 };
 
-export const formData = (raw:any)=>{
-  const signals = raw?.signals.map((signal:any)=>{
-      const conditions = signal.conditions.map((condition:any)=>{
-          return {
-              param1: {
+export const formData = (raw: any) => {
+  const signals = raw?.signals.map((signal: any) => {
+    const conditions = signal.conditions.map((condition: any) => {
+      return {
+        param1: {
           symbol: condition?.symbol_param1,
           timeframe: condition?.timeframe_param1,
           type: condition?.type_param1,
@@ -83,13 +83,13 @@ export const formData = (raw:any)=>{
           period: condition?.period_param2,
           value: condition?.value_param2,
         },
-          }
-      })
-      return {...signal, conditions}
-  })
-  
-  return {...raw, signals}
-}
+      };
+    });
+    return { ...signal, conditions };
+  });
+
+  return { ...raw, signals };
+};
 
 export const getColorByStatus = (status: string) => {
   switch (status.toLowerCase()) {
@@ -102,4 +102,26 @@ export const getColorByStatus = (status: string) => {
     default:
       break;
   }
+};
+
+export const createColumns = (data: any) => {
+  let result: any = [];
+  data &&
+    data.map((elem: any, i: number) => {
+      if (elem === "Datetime") {
+        result.push({
+          title: elem,
+          dataIndex: elem,
+          key: elem,
+          render: (date: any) => moment(date).format("DD/MM/YYYY"),
+        });
+      } else {
+        result.push({
+          title: elem,
+          dataIndex: elem,
+          key: elem,
+        });
+      }
+    });
+  return result;
 };

@@ -6,6 +6,7 @@ const API_PATHS = {
   
   STRATEGIESLIST: "strategies",
   STRATEGIES: "strategies",
+  RUNDATA: "runResultdata",
 };
 
 export default API_PATHS;
