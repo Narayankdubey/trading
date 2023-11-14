@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 type AnimatedPageProps = {
   children?: React.ReactNode;
@@ -13,15 +13,17 @@ const AnimatedPage: React.FC<AnimatedPageProps> = ({ children }) => {
   };
 
   return (
-    <motion.div
-      variants={animationStyles}
-      transition={{ ease: "circIn", duration: 0.3 }}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      {children}
-    </motion.div>
+    <AnimatePresence mode='wait'>
+      <motion.div
+        variants={animationStyles}
+        transition={{ ease: "circIn", duration: 0.3 }}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

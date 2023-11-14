@@ -22,11 +22,11 @@ const RunModal = ({
     setIsRunModalOpen(false);
     setRunStrategyData({});
   };
-  console.log(data, "data");
+
   return (
     <Modal
       open={isRunModalOpen}
-      title="Create a new collection"
+      title={data?.title || ""}
       okText="Run"
       cancelText="Cancel"
       onCancel={onCancel}
@@ -36,22 +36,23 @@ const RunModal = ({
           .validateFields()
           .then((values) => {
             form.resetFields();
-            router.push("backtesting/result/" + data?.id,);
+            router.push({
+              pathname: `backtesting/result/${data?.id}/`,
+              query: {
+                ...values,
+                end: values.end.toString(),
+                start: values.start.toString(),
+              },
+            });
           })
           .catch((info) => {
             console.log("Validate Failed:", info);
           });
       }}
     >
-      <Form
-        form={form}
-        // layout="vertical"
-        name="form_in_modal"
-        layout="inline"
-      >
+      <Form form={form} name="runData" layout="inline">
         <Form.Item
           name="title"
-          //   label="Title"
           rules={[
             {
               required: true,
@@ -63,21 +64,17 @@ const RunModal = ({
         </Form.Item>
         <Form.Item
           name="start"
-          //   label="Start"
           rules={[
             {
               required: true,
               message: "Please input the start",
             },
           ]}
-          //   wrapperCol={{ span: 12 }}
         >
           <DatePicker />
         </Form.Item>
         <Form.Item
           name="end"
-          //   label="End"
-          // wrapperCol={{ span: 12 }}
           rules={[
             {
               required: true,

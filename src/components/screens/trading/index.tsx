@@ -34,7 +34,7 @@ import { getColorByStatus } from "@/utils/helper";
 import RunModal from "./component/RunModal";
 import { backtestingConstant } from "@/common/constants";
 
-const { Paragraph, Title, Text } = Typography;
+const { Title, Text } = Typography;
 const { confirm } = Modal;
 
 interface BacktesingProps {}
@@ -50,7 +50,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   const [currentPage, setPageCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(3);
 
-  const { status, strategiesList, deleteStatus } = useAppSelector(
+  const { status, strategiesList } = useAppSelector(
     (state) => state.backtestingSlice
   );
   const loading = status === "loading";
@@ -88,17 +88,17 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
         if (filterData[key]?.includes(value)) {
           setFilterData((old: any) => ({
             ...old,
-             // @ts-ignore
+            // @ts-ignore
             [key]: filterData[key].filter((item: string) => item != value),
           }));
         } else
           setFilterData((old: any) => ({
             ...old,
-             // @ts-ignore
+            // @ts-ignore
             [key]: [...filterData[key], value],
           }));
       } else {
-        setFilterData((old: any) => ({ ...old, [key]: [value]}));
+        setFilterData((old: any) => ({ ...old, [key]: [value] }));
       }
     }
   };
@@ -172,12 +172,18 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   );
 
   useEffect(() => {
-    dispatch(
-      getStrategiesListdata({
-        ...filterData,
-        ...{ page: currentPage, pageSize },
-      })
+    //Debounced api call
+    const timer = setTimeout(
+      () =>
+        dispatch(
+          getStrategiesListdata({
+            ...filterData,
+            ...{ page: currentPage, pageSize },
+          })
+        ),
+      600
     );
+    return () => clearTimeout(timer);
   }, [currentPage, dispatch, filterData, pageSize]);
 
   useEffect(() => {

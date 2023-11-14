@@ -6,7 +6,7 @@ import {
   ConfigProvider,
 } from "antd";
 import { useAppSelector } from "@/redux/hooks";
-import { HeaderContainer } from "./components";
+import { AnimatedPage, HeaderContainer } from "./components";
 import PrivateRoute from "../hoc/AuthChecker";
 
 type layoutContainerProps = {

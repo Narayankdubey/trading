@@ -66,7 +66,7 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {
       key: "2",
       label: "Settings",
       icon: <SettingOutlined />,
-      onClick: () => router.push(ROUTES.SETTINGS),
+      onClick: () => router.push(`/${ROUTES.SETTINGS}`),
     },
     {
       key: "3",
