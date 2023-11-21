@@ -11,6 +11,7 @@ import {
   Pagination,
   Tooltip,
   Tag,
+  Collapse,
 } from "antd";
 import {
   DeleteOutlined,
@@ -32,9 +33,11 @@ import {
 import { getColorByStatus } from "@/utils/helper";
 import RunModal from "./component/RunModal";
 import { backtestingConstant } from "@/common/constants";
+import Link from "next/link";
 
 const { Title, Text } = Typography;
 const { confirm } = Modal;
+const { Panel } = Collapse;
 
 interface BacktesingProps {}
 
@@ -116,7 +119,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   }, [filteredData]);
 
   const listItem = (data: any) => (
-    <Row style={{ width: "100%" }}>
+    <Row style={{ width: "100%" }} gutter={[0,8]}>
       <Col span={7}>
         <Title level={4} style={{ marginBottom: 0 }}>
           {data?.title}
@@ -166,6 +169,19 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
             ></Button>
           </Tooltip>
         </Space>
+      </Col>
+      <Col span={24}>
+        <Collapse>
+          <Panel header="History" key="1">
+            {["first", "second", "third"].map((item, i) => (
+              <p key={i}>
+              <Link href={`/backtesting/result/${item}`}>
+                {item}
+              </Link>
+              </p>
+            ))}
+          </Panel>
+        </Collapse>
       </Col>
     </Row>
   );

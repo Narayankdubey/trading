@@ -108,7 +108,7 @@ export const deleteStrategies = createAsyncThunk(
 
 export const getRunData = createAsyncThunk(
   "getRunData/backtesing",
-  async (payload:any, { rejectWithValue }) => {
+  async (payload:any = {}, { rejectWithValue }) => {
     try {
       const response = await API.get(API_PATHS.RUNDATA, {
         params: payload,

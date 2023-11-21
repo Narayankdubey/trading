@@ -106,22 +106,26 @@ export const getColorByStatus = (status: string) => {
 
 export const createColumns = (data: any) => {
   let result: any = [];
-  data &&
-    data.map((elem: any, i: number) => {
-      if (elem === "Datetime") {
-        result.push({
-          title: elem,
-          dataIndex: elem,
-          key: elem,
-          render: (date: any) => moment(date).format("DD/MM/YYYY"),
-        });
-      } else {
-        result.push({
-          title: elem,
-          dataIndex: elem,
-          key: elem,
-        });
-      }
-    });
+  if (Array.isArray(data)) {
+    data &&
+      data.map((elem: any, i: number) => {
+        if (elem === "Datetime") {
+          result.push({
+            title: elem,
+            dataIndex: elem,
+            key: elem,
+            render: (date: any) => moment(date).format("DD/MM/YYYY"),
+          });
+        } else {
+          result.push({
+            title: elem,
+            dataIndex: elem,
+            key: elem,
+            defaultSortOrder: "descend",
+            // sorter: ()=>{}
+          });
+        }
+      });
+  }
   return result;
 };

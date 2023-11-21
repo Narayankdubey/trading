@@ -39,14 +39,18 @@ const ResultContainer = () => {
   const queryData = router.query;
   const dispatch = useAppDispatch();
 
-  const [filterData, setFilterData] = useState({});
+  const [filterData, setFilterData] = useState({
+    headers: [],
+  });
 
   const { runData, runStatus } = useAppSelector(
     (state) => state.backtestingSlice
   );
   const loading = runStatus === "loading";
 
-  const columns: ColumnsType<DataType> = createColumns(runData.columns);
+  const columns: ColumnsType<DataType> = createColumns(
+    filterData?.headers || []
+  );
 
   const onFilterChange = (value: any, key: string) => {
     setFilterData((old: any) => ({ ...old, [key]: value }));
@@ -64,16 +68,18 @@ const ResultContainer = () => {
   ];
 
   useEffect(() => {
-    const apiCall = setTimeout(() => {
-      dispatch(getRunData(filterData));
-    }, 300);
-    return () => clearTimeout(apiCall);
-  }, [dispatch, filterData]);
+    dispatch(getRunData({}));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setFilterData((old) => ({ ...old, headers: runData.columns || [] }));
+  }, [runData]);
 
   return (
     <Row gutter={8}>
       <Col span={4}>
         <Checkbox.Group
+          value={filterData?.headers}
           style={{ width: "100%" }}
           onChange={(value) => onFilterChange(value, "headers")}
         >
