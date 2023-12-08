@@ -4,5 +4,14 @@ import SettingsContainer from "./settings";
 import BacktestingContainer from "./trading";
 import GraphContainer from "./graph";
 import TradingContainer from "./tradingMain";
+import ProfileContainer from "./profile";
 
-export { HomeContainer, AlgoContainer, BacktestingContainer, SettingsContainer , GraphContainer, TradingContainer};
+export {
+  HomeContainer,
+  AlgoContainer,
+  BacktestingContainer,
+  SettingsContainer,
+  GraphContainer,
+  TradingContainer,
+  ProfileContainer,
+};

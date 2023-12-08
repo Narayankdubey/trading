@@ -106,9 +106,10 @@ export const getColorByStatus = (status: string) => {
 
 export const createColumns = (data: any) => {
   let result: any = [];
-  if (Array.isArray(data)) {
-    data &&
-      data.map((elem: any, i: number) => {
+  if (Array.isArray(data) && data.length) {
+    let sortedArr = data.toSorted()
+    sortedArr &&
+      sortedArr.map((elem: any, i: number) => {
         if (elem === "Datetime") {
           result.push({
             title: elem,

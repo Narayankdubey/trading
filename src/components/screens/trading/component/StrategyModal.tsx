@@ -54,7 +54,18 @@ const StrategyModal = ({
   );
   const loading = strategiesStatus === "loading";
 
+  const options = (arr:any)=>(
+    <>
+    {arr.map((elem:string) => (
+              <Option key={elem} value={elem}>
+                {elem}
+              </Option>
+            ))}
+    </>
+  )
+
   const parameter = (subName: number, name: number, type: string) => {
+    
     return (
       <Row>
         <Col span={24}>
@@ -64,11 +75,7 @@ const StrategyModal = ({
             rules={[{ required: true }]}
           >
             <Select placeholder="type">
-              {constants.parameterType.map((elem) => (
-                <Option key={elem} value={elem}>
-                  {elem}
-                </Option>
-              ))}
+              {options(constants.parameterType)}
             </Select>
           </Form.Item>
           <Form.Item
@@ -103,7 +110,7 @@ const StrategyModal = ({
                     rules={[{ required: true }]}
                   >
                     <Select placeholder="Symbol">
-                      <Option value="sbin">SBIN</Option>
+                      {options(constants.symbol)}
                     </Select>
                   </Form.Item>
                   <Form.Item
@@ -112,12 +119,7 @@ const StrategyModal = ({
                     rules={[{ required: true }]}
                   >
                     <Select placeholder="Attribute">
-                      {constants.attribute.map((elem) => (
-                        <Option key={elem} value={elem}>
-                          {elem}
-                        </Option>
-                      ))}
-                      <Option value="open">OPEN</Option>
+                      {options(constants.attribute)}
                     </Select>
                   </Form.Item>
                   {/* <Form.Item label="Start" name={[subName, `start_${type}`]}>
@@ -132,11 +134,7 @@ const StrategyModal = ({
                     rules={[{ required: true }]}
                   >
                     <Select placeholder="Timeframe">
-                      {constants.timeframe.map((elem) => (
-                        <Option key={elem} value={elem}>
-                          {elem}
-                        </Option>
-                      ))}
+                      {options(constants.timeframe)}
                     </Select>
                   </Form.Item>
                   {getFieldValue("signals")[name]?.["conditions"][subName]?.[
@@ -148,8 +146,7 @@ const StrategyModal = ({
                       rules={[{ required: true }]}
                     >
                       <Select placeholder="Timeperiod">
-                        <Option value="7days">7 Days</Option>
-                        <Option value="14days">14 Days</Option>
+                        {options(constants.timePeriod)}
                       </Select>
                     </Form.Item>
                   )}
@@ -214,11 +211,7 @@ const StrategyModal = ({
                 <Col span={6}>
                   <Form.Item name="type" rules={[{ required: true }]}>
                     <Select placeholder="Type" allowClear size="large">
-                      {constants.type.map((elem) => (
-                        <Option key={elem} value={elem}>
-                          {elem}
-                        </Option>
-                      ))}
+                      {options(constants.type)}
                     </Select>
                   </Form.Item>
                 </Col>
@@ -267,11 +260,7 @@ const StrategyModal = ({
                                 wrapperCol={{ span: 24 }}
                               >
                                 <Select placeholder="Transaction" allowClear>
-                                  {constants.transaction.map((elem) => (
-                                    <Option key={elem} value={elem}>
-                                      {elem}
-                                    </Option>
-                                  ))}
+                                  {options(constants.transaction)}
                                 </Select>
                               </Form.Item>
                             </Col>
@@ -302,8 +291,7 @@ const StrategyModal = ({
                                                 placeholder="Operator"
                                                 allowClear
                                               >
-                                                <Option value="GT">GT</Option>
-                                                <Option value="LTE">LTE</Option>
+                                                {options(constants.operator)}
                                               </Select>
                                             </Form.Item>
                                           </Col>
@@ -400,8 +388,7 @@ const StrategyModal = ({
                               wrapperCol={{ span: 24 }}
                             >
                               <Select placeholder="Symbol" allowClear>
-                                <Option value="TATA">TATA</Option>
-                                <Option value="REL">REL</Option>
+                                {options(constants.symbol)}
                               </Select>
                             </Form.Item>
                           </Col>

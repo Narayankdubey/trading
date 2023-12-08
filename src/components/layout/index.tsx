@@ -53,13 +53,13 @@ const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
         }}
       >
         <Layout>
-          <Header style={{backgroundColor:darkTheme ?"": "#d1cdcd" }}>
+          <Header style={{backgroundColor:darkTheme ?"#121212": "#d1cdcd" }}>
             <HeaderContainer />
           </Header>
           <Content
             style={{
               minHeight: "calc(100vh - 64px)",
-              padding: 5,
+              // padding: 5,
             }}
           >
             {/* <AnimatedPage> */}

@@ -12,6 +12,7 @@ import {
   Tooltip,
   Tag,
   Collapse,
+  Table,
 } from "antd";
 import {
   DeleteOutlined,
@@ -19,23 +20,27 @@ import {
   PlayCircleOutlined,
   PlusOutlined,
   ExclamationCircleOutlined,
+  ReloadOutlined,
 } from "@ant-design/icons";
 import type { PaginationProps } from "antd";
 import React, { FC, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import BacktestingFilter from "./component/BacktestingFilter";
 import StrategyModal from "./component/StrategyModal";
 import {
   deleteStrategies,
+  getHistoryData,
   getStrategiesListdata,
+  backtesingSlice,
 } from "@/redux/slices/backtestingSlice";
-import { getColorByStatus } from "@/utils/helper";
+import { createColumns, getColorByStatus } from "@/utils/helper";
 import RunModal from "./component/RunModal";
 import { backtestingConstant } from "@/common/constants";
 import Link from "next/link";
 
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 const { confirm } = Modal;
 const { Panel } = Collapse;
 
@@ -43,6 +48,7 @@ interface BacktesingProps {}
 
 const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const [filteredData, setFilteredData] = useState<any>([]);
   const [isStrategyModalOpen, setIsStrategyModalOpen] = useState(false);
   const [strategyId, setStrategyId] = useState("");
@@ -51,11 +57,14 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   const [filterData, setFilterData] = useState({});
   const [currentPage, setPageCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(3);
+  const [historyActiveKey, setHistoryActiveKey] = useState(-1);
+  const [showRefresh, setShowRefresh] = useState(false);
 
-  const { status, strategiesList } = useAppSelector(
+  const { status, strategiesList, historyData, historyStatus } = useAppSelector(
     (state) => state.backtestingSlice
   );
   const loading = status === "loading";
+  const historyLoading = historyStatus === "loading";
 
   const getOptions = (key: string, data: any) => {
     let result: any = [];
@@ -105,6 +114,25 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
     }
   };
 
+  const collapseHandle = (e: any) => {
+    dispatch(backtesingSlice.actions.resetHistoryData());
+
+    if (e.length) {
+      setHistoryActiveKey(e[1]);
+      dispatch(getHistoryData({ strategyId: e[1] }));
+    } else setHistoryActiveKey(-1);
+  };
+
+  const handleRefresh = () => {
+    dispatch(
+      getStrategiesListdata({
+        ...filterData,
+        ...{ page: currentPage, pageSize },
+      })
+    );
+    setShowRefresh(false);
+  };
+
   const filterElement = useMemo(() => {
     const data = filteredData;
     let result: any = [];
@@ -119,7 +147,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   }, [filteredData]);
 
   const listItem = (data: any) => (
-    <Row style={{ width: "100%" }} gutter={[0,8]}>
+    <Row style={{ width: "100%" }} gutter={[0, 8]}>
       <Col span={7}>
         <Title level={4} style={{ marginBottom: 0 }}>
           {data?.title}
@@ -171,15 +199,64 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
         </Space>
       </Col>
       <Col span={24}>
-        <Collapse>
-          <Panel header="History" key="1">
-            {["first", "second", "third"].map((item, i) => (
-              <p key={i}>
-              <Link href={`/backtesting/result/${item}`}>
-                {item}
+        <Collapse onChange={collapseHandle} activeKey={historyActiveKey}>
+          <Panel header="History" key={data?.id}>
+            <Table
+              loading={historyLoading}
+              columns={[
+                ...createColumns(
+                  Object.keys(
+                    historyData && historyData?.data?.length
+                      ? historyData?.data[0]
+                      : {}
+                  ) || []
+                ),
+                {
+                  title: "Action",
+                  render: (elem: any) => (
+                    <Link href={`/backtesting/result/${elem?.id}`} >Go</Link>
+                  ),
+                },
+              ]}
+              dataSource={historyData?.data || []}
+              scroll={{ x: 300 }}
+              // pagination={{
+              //   pageSize: 5,
+              // }}
+            />
+            {/* <List
+              size="small"
+              dataSource={historyData?.data || []}
+              renderItem={(item: any) => (
+                <List.Item
+                  onClick={() =>
+                    router.push({
+                      pathname: `backtesting/result/${item?.id}/`,
+                      query: {
+                        ...item,
+                        end: item.end.toString(),
+                        start: item.start.toString(),
+                      },
+                    })
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  <div>
+                    <Title level={5}>{item?.title}</Title>
+                    <Text>{item?.strategyId}</Text>
+                    <Paragraph>{item?.status}</Paragraph>
+                  </div>
+                </List.Item>
+              )}
+              loading={historyLoading}
+            /> */}
+            {/* {historyData?.data?.map((item: any, i: number) => (
+              <Card key={i} size="small" loading={historyLoading}>
+              <Link href={`/backtesting/result/${item?.id}?title=checking`}>
+                {item?.title}
               </Link>
-              </p>
-            ))}
+            </Card>
+            ))} */}
           </Panel>
         </Collapse>
       </Col>
@@ -206,67 +283,75 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   }, [strategiesList]);
 
   return (
-    <Row gutter={8}>
-      <Col span={4}>
-        <BacktestingFilter
-          data={filterElement}
-          loading={loading}
-          filterData={filterData}
-          onFilter={onFilter}
-        />
-      </Col>
-      <Col span={20}>
-        <Row gutter={[8, 8]}>
-          <Col span={24}>
-            <Flex justify="flex-end">
-              <Button
-                onClick={() => setIsStrategyModalOpen(true)}
-                icon={<PlusOutlined />}
-              >
-                Add
-              </Button>
-            </Flex>
-          </Col>
-          <Col span={24}>
-            <Card size="small">
-              <List
-                size="small"
-                dataSource={filteredData}
-                renderItem={(item) => <List.Item>{listItem(item)}</List.Item>}
-                loading={loading}
-              />
-            </Card>
-            <Flex justify="flex-end" style={{ marginTop: 10 }}>
-              <Pagination
-                current={currentPage}
-                onChange={onPageChange}
-                total={strategiesList?.total}
-                pageSize={pageSize}
-                showSizeChanger
-                onShowSizeChange={(_, next) => setPageSize(next)}
-                // hideOnSinglePage
-              />
-            </Flex>
-          </Col>
-        </Row>
-      </Col>
-      {isStrategyModalOpen && (
-        <StrategyModal
-          isStrategyModalOpen={isStrategyModalOpen}
-          setIsStrategyModalOpen={setIsStrategyModalOpen}
-          strategyId={strategyId}
-          setStrategyId={setStrategyId}
-        />
-      )}
-      {isRunModalOpen && (
-        <RunModal
-          data={runStrategyData}
-          isRunModalOpen={isRunModalOpen}
-          setIsRunModalOpen={setIsRunModalOpen}
-          setRunStrategyData={setRunStrategyData}
-        />
-      )}
-    </Row>
+    <div className="m-5">
+      <Row gutter={8}>
+        <Col span={4}>
+          <BacktestingFilter
+            data={filterElement}
+            loading={loading}
+            filterData={filterData}
+            onFilter={onFilter}
+          />
+        </Col>
+        <Col span={20}>
+          <Row gutter={[8, 8]}>
+            <Col span={24}>
+              <Flex justify="flex-end" gap={8}>
+                {showRefresh && (
+                  <Button onClick={handleRefresh} icon={<ReloadOutlined />}>
+                    Refresh
+                  </Button>
+                )}
+                <Button
+                  onClick={() => setIsStrategyModalOpen(true)}
+                  icon={<PlusOutlined />}
+                >
+                  Add
+                </Button>
+              </Flex>
+            </Col>
+            <Col span={24}>
+              <Card size="small">
+                <List
+                  size="small"
+                  dataSource={filteredData}
+                  renderItem={(item) => <List.Item>{listItem(item)}</List.Item>}
+                  loading={loading}
+                />
+              </Card>
+              <Flex justify="flex-end" style={{ marginTop: 10 }}>
+                <Pagination
+                  current={currentPage}
+                  onChange={onPageChange}
+                  total={strategiesList?.total}
+                  pageSize={pageSize}
+                  showSizeChanger
+                  onShowSizeChange={(_, next) => setPageSize(next)}
+                  // hideOnSinglePage
+                />
+              </Flex>
+            </Col>
+          </Row>
+        </Col>
+        {isStrategyModalOpen && (
+          <StrategyModal
+            isStrategyModalOpen={isStrategyModalOpen}
+            setIsStrategyModalOpen={setIsStrategyModalOpen}
+            strategyId={strategyId}
+            setStrategyId={setStrategyId}
+          />
+        )}
+        {isRunModalOpen && (
+          <RunModal
+            data={runStrategyData}
+            isRunModalOpen={isRunModalOpen}
+            setIsRunModalOpen={setIsRunModalOpen}
+            setRunStrategyData={setRunStrategyData}
+            setShowRefresh={setShowRefresh}
+          />
+        )}
+      </Row>
+    </div>
   );
 };
 

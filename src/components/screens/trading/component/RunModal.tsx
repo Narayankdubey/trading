@@ -1,3 +1,5 @@
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { runStrategy } from "@/redux/slices/backtestingSlice";
 import { DatePicker, Form, Input, Modal } from "antd";
 import { useRouter } from "next/router";
 import React, { Dispatch, SetStateAction } from "react";
@@ -7,6 +9,7 @@ type Props = {
   isRunModalOpen: boolean;
   setIsRunModalOpen: Dispatch<SetStateAction<boolean>>;
   setRunStrategyData: Dispatch<SetStateAction<any>>;
+  setShowRefresh: Dispatch<SetStateAction<boolean>>;
 };
 
 const RunModal = ({
@@ -14,9 +17,14 @@ const RunModal = ({
   isRunModalOpen,
   setIsRunModalOpen,
   setRunStrategyData,
+  setShowRefresh,
 }: Props) => {
   const [form] = Form.useForm();
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const { startRunStatus } = useAppSelector((state) => state.backtestingSlice);
+  const loading = startRunStatus === "loading";
 
   const onCancel = () => {
     setIsRunModalOpen(false);
@@ -31,19 +39,23 @@ const RunModal = ({
       cancelText="Cancel"
       onCancel={onCancel}
       width={"55%"}
+      confirmLoading={loading}
       onOk={() => {
         form
           .validateFields()
-          .then((values) => {
+          .then(async (values) => {
+            await dispatch(runStrategy(values));
             form.resetFields();
-            router.push({
-              pathname: `backtesting/result/${data?.id}/`,
-              query: {
-                ...values,
-                end: values.end.toString(),
-                start: values.start.toString(),
-              },
-            });
+            setIsRunModalOpen(false);
+            setTimeout(() => setShowRefresh(true), 50000);
+            // router.push({
+            //   pathname: `backtesting/result/${data?.id}/`,
+            //   query: {
+            //     ...values,
+            //     end: values.end.toString(),
+            //     start: values.start.toString(),
+            //   },
+            // });
           })
           .catch((info) => {
             console.log("Validate Failed:", info);

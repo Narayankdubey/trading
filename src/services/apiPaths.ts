@@ -4,9 +4,11 @@ const API_PATHS = {
   SIGNOUT: "auth/sign-out",
   REFRESH_TOKEN: "auth/refresh-token",
   
-  STRATEGIESLIST: "strategies",
   STRATEGIES: "strategies",
   RUNDATA: "runResultdata",
+  RUNSTRATEGY: "trading/start",
+
+  TRADING: "trading",
 };
 
 export default API_PATHS;

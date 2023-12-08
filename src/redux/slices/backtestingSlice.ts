@@ -3,7 +3,13 @@ import { RootState } from "../store";
 
 import API from "../../services/axios";
 import API_PATHS from "@/services/apiPaths";
-import { runDataMock, strategiesListMock, strategiesMock } from "@/common/mock";
+import {
+  historyDataMock,
+  runDataMock,
+  strategiesListMock,
+  strategiesMock,
+} from "@/common/mock";
+import { notification } from "antd";
 
 interface backtestingState {
   status: "idle" | "loading" | "failed";
@@ -18,6 +24,10 @@ interface backtestingState {
 
   runData: any;
   runStatus: "idle" | "loading" | "failed";
+  startRunStatus: "idle" | "loading" | "failed";
+
+  historyData: any;
+  historyStatus: "idle" | "loading" | "failed";
 }
 
 const initialState: backtestingState = {
@@ -30,13 +40,16 @@ const initialState: backtestingState = {
   deleteStatus: "idle",
   runData: {},
   runStatus: "idle",
+  startRunStatus: "idle",
+  historyData: {},
+  historyStatus: "idle",
 };
 
 export const getStrategiesListdata = createAsyncThunk(
   "getStrategiesData/backtesing",
-  async (payload:any, { rejectWithValue }) => {
+  async (payload: any, { rejectWithValue }) => {
     try {
-      const response = await API.get(API_PATHS.STRATEGIESLIST, {
+      const response = await API.get(API_PATHS.STRATEGIES, {
         params: payload,
       });
       const { data } = response.data;
@@ -108,9 +121,40 @@ export const deleteStrategies = createAsyncThunk(
 
 export const getRunData = createAsyncThunk(
   "getRunData/backtesing",
-  async (payload:any = {}, { rejectWithValue }) => {
+  async (payload: any = {}, { rejectWithValue }) => {
     try {
       const response = await API.get(API_PATHS.RUNDATA, {
+        params: payload,
+      });
+      const { data } = response.data;
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error?.response?.data?.message);
+    }
+  }
+);
+
+export const runStrategy = createAsyncThunk(
+  "runStrategy/backtesing",
+  async (payload: any = {}, { rejectWithValue }) => {
+    try {
+      const response = await API.get(API_PATHS.RUNSTRATEGY, {
+        params: payload,
+      });
+      notification.success({ message: "Started" });
+      const { data } = response.data;
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error?.response?.data?.message);
+    }
+  }
+);
+
+export const getHistoryData = createAsyncThunk(
+  "getHistoryData/backtesing",
+  async (payload: any = {}, { rejectWithValue }) => {
+    try {
+      const response = await API.get(API_PATHS.TRADING, {
         params: payload,
       });
       const { data } = response.data;
@@ -124,7 +168,11 @@ export const getRunData = createAsyncThunk(
 export const backtesingSlice = createSlice({
   name: "backtesting",
   initialState,
-  reducers: {},
+  reducers: {
+    resetHistoryData: (state) => {
+      state.historyData = {};
+    },
+  },
   extraReducers: (builder) => {
     //Get strategies list
     builder
@@ -209,6 +257,35 @@ export const backtesingSlice = createSlice({
       .addCase(getRunData.rejected, (state) => {
         state.runStatus = "failed";
         state.runData = runDataMock;
+      });
+
+    //run strategy
+    builder
+      .addCase(runStrategy.pending, (state) => {
+        state.startRunStatus = "loading";
+      })
+      .addCase(runStrategy.fulfilled, (state, action) => {
+        state.startRunStatus = "idle";
+        // state.strategies = action.payload;
+      })
+      .addCase(runStrategy.rejected, (state) => {
+        state.startRunStatus = "failed";
+      });
+
+    //get history data
+    builder
+      .addCase(getHistoryData.pending, (state) => {
+        state.historyStatus = "loading";
+      })
+      .addCase(getHistoryData.fulfilled, (state, action) => {
+        state.historyStatus = "idle";
+        // state.strategies = action.payload;
+      })
+      .addCase(getHistoryData.rejected, (state) => {
+        state.historyStatus = "failed";
+
+        //setting dummy data just for testing purpose
+        state.historyData = historyDataMock;
       });
   },
 });

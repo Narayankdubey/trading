@@ -5,6 +5,7 @@ export const ROUTES = {
   LOGIN: "auth/login",
   SIGNUP: "auth/signup",
   SETTINGS: "settings",
+  PROFILE: "profile",
 };
 
 export const STORAGE_KEY_CONSTANT = "access_token";
@@ -29,6 +30,18 @@ export const backtestingConstant = {
       "20min",
       "30min",
     ],
-    attribute: ["open", "close"],
+    attribute: ["OPEN", "HIGH", "LOW,", "CLOSE"],
+    symbol: ["SBIN", "ICICIBANK", "ABB", "ITC", "TCS", "ONGC", "WIPRO"],
+    indicator: ["SMA", "EMA", "RSI", "BBANDS"],
+    timePeriod: ["7days", "14days"],
+    operator: ["GT", "LTE"],
   },
+};
+
+export const profileConstant = {
+  basicDetails: [
+    { label: "Mobile No.", value: "mobile" },
+    { label: "Date of Birth", value: "dob" },
+    { label: "Something", value: "some" },
+  ],
 };
