@@ -97,9 +97,9 @@ export const loginSlice = createSlice({
         state.status = "idle";
         state.error = null;
 
-        localStorage.setItem(STORAGE_KEY_CONSTANT, data?.token?.accessToken);
-        localStorage.setItem(TOKEN_EXPIRE, data?.token?.expiresIn);
-        localStorage.setItem(REFRESH_KEY_CONSTANT, data?.token?.refreshToken);
+        localStorage.setItem(STORAGE_KEY_CONSTANT, data?.authToken?.accessToken);
+        localStorage.setItem(TOKEN_EXPIRE, data?.authToken?.expiresIn);
+        localStorage.setItem(REFRESH_KEY_CONSTANT, data?.authToken?.refreshToken);
         delete data.token;
         localStorage.setItem(USER_INFO, JSON.stringify(data));
 

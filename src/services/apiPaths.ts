@@ -1,6 +1,6 @@
 const API_PATHS = {
-  LOGIN: "auth/sign-in",
-  SIGNUP: "auth/sign-up",
+  LOGIN: "auth/user/sign-in",
+  SIGNUP: "auth/user/sign-up",
   SIGNOUT: "auth/sign-out",
   REFRESH_TOKEN: "auth/refresh-token",
   

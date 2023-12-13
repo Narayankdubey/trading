@@ -66,9 +66,9 @@ const LoginContainer: FC<LoginContainerProps> = ({}) => {
             autoComplete="off"
           >
             <Form.Item
-              label="Mobile"
-              name="mobile"
-              rules={[{ required: true, message: "Please input your mobile!" }]}
+              label="Email"
+              name="email"
+              rules={[{ required: true, message: "Please input your email!" }]}
             >
               <Input />
             </Form.Item>
