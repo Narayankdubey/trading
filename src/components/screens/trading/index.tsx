@@ -133,6 +133,15 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
     setShowRefresh(false);
   };
 
+  const applyFilter = () => {
+    dispatch(
+      getStrategiesListdata({
+        ...filterData,
+        ...{ page: currentPage, pageSize },
+      })
+    );
+  };
+
   const filterElement = useMemo(() => {
     const data = filteredData;
     let result: any = [];
@@ -214,7 +223,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
                 {
                   title: "Action",
                   render: (elem: any) => (
-                    <Link href={`/backtesting/result/${elem?.id}`} >Go</Link>
+                    <Link href={`/backtesting/result/${elem?.id}`}>Go</Link>
                   ),
                 },
               ]}
@@ -276,7 +285,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
       600
     );
     return () => clearTimeout(timer);
-  }, [currentPage, dispatch, filterData, pageSize]);
+  }, [currentPage, dispatch, pageSize]);
 
   useEffect(() => {
     setFilteredData(strategiesList?.data);
@@ -291,6 +300,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
             loading={loading}
             filterData={filterData}
             onFilter={onFilter}
+            applyFilter={applyFilter}
           />
         </Col>
         <Col span={20}>

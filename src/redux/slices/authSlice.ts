@@ -30,8 +30,9 @@ export const signupAsync = createAsyncThunk(
   "auth/signup",
   async (payload: any, { rejectWithValue }) => {
     try {
-      const response = await API.post(API_PATHS.SIGNUP, payload);
-      console.log(response, "reponse");
+      const response = await API.post(API_PATHS.SIGNUP, payload, {
+        params: { domain: "tcs" },
+      });
       return {
         accessToken: response.data.data.accessToken,
       };
@@ -45,7 +46,9 @@ export const loginAsync = createAsyncThunk(
   "auth/login",
   async (payload: any, { rejectWithValue }) => {
     try {
-      const response = await API.post(API_PATHS.LOGIN, payload);
+      const response = await API.post(API_PATHS.LOGIN, payload, {
+        params: { domain: "tcs" },
+      });
       const { data } = response.data;
       return data;
     } catch (error: any) {
@@ -97,9 +100,15 @@ export const loginSlice = createSlice({
         state.status = "idle";
         state.error = null;
 
-        localStorage.setItem(STORAGE_KEY_CONSTANT, data?.authToken?.accessToken);
+        localStorage.setItem(
+          STORAGE_KEY_CONSTANT,
+          data?.authToken?.accessToken
+        );
         localStorage.setItem(TOKEN_EXPIRE, data?.authToken?.expiresIn);
-        localStorage.setItem(REFRESH_KEY_CONSTANT, data?.authToken?.refreshToken);
+        localStorage.setItem(
+          REFRESH_KEY_CONSTANT,
+          data?.authToken?.refreshToken
+        );
         delete data.token;
         localStorage.setItem(USER_INFO, JSON.stringify(data));
 

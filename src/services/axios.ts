@@ -14,7 +14,6 @@ const instance = axios.create({
     authorization: "Bearer" + " " + getToken(),
   },
   timeout: 30 * 1000,
-  params: { domain: "tcs" },
 });
 
 instance.interceptors.response.use(

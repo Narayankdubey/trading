@@ -36,6 +36,9 @@ export const backtestingConstant = {
     timePeriod: ["7days", "14days"],
     operator: ["GT", "LTE"],
   },
+  filterElements: [
+    { name: "STATUS", options: ["created", "processing", "completed"] },
+  ],
 };
 
 export const profileConstant = {

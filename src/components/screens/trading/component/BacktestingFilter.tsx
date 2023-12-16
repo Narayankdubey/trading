@@ -1,16 +1,20 @@
-import { Card, Checkbox, Input, Row, Space, Typography } from "antd";
+import { Button, Card, Checkbox, Input, Row, Space, Typography } from "antd";
 import React, { FC } from "react";
 import { Collapse } from "antd";
 import { Loader } from "@/components/elements";
+import { backtestingConstant } from "@/common/constants";
 
 const { Panel } = Collapse;
 const { Title } = Typography;
+
+const filterElements = backtestingConstant.filterElements;
 
 interface BacktestingFilterProps {
   data: any;
   loading: boolean;
   filterData: any;
   onFilter: (key: string, value: any) => void;
+  applyFilter: () => void;
 }
 
 const BacktestingFilter: FC<BacktestingFilterProps> = ({
@@ -18,6 +22,7 @@ const BacktestingFilter: FC<BacktestingFilterProps> = ({
   loading,
   onFilter,
   filterData,
+  applyFilter,
 }) => {
   const Header = ({ item }: any) => (
     <Typography.Text className={"fontWeight600"}>
@@ -27,10 +32,15 @@ const BacktestingFilter: FC<BacktestingFilterProps> = ({
 
   return (
     <Card
-      size="small"
+      // size="small"
       bodyStyle={{ padding: 0 }}
       bordered={false}
       title="Filter"
+      extra={
+        <Button type="primary" onClick={applyFilter}>
+          Apply
+        </Button>
+      }
       // loading={loading}
     >
       <Space
@@ -45,15 +55,15 @@ const BacktestingFilter: FC<BacktestingFilterProps> = ({
           placeholder="Search"
           allowClear
           onChange={({ target }) => onFilter("title", target.value)}
-          value={filterData?.title}
+          value={filterData?.title || ''}
         />
         <Collapse
           bordered={false}
-          defaultActiveKey={data?.map((elem: any) => elem?.name)}
+          defaultActiveKey={filterElements?.map((elem: any) => elem?.name)}
           expandIconPosition={"end"}
         >
-          {data &&
-            data.map((item: any) => (
+          {filterElements &&
+            filterElements.map((item: any) => (
               <Panel header={<Header item={item} />} key={item?.name}>
                 {item?.options &&
                   item?.options?.map((option: any) => (

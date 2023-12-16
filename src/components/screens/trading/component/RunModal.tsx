@@ -44,7 +44,7 @@ const RunModal = ({
         form
           .validateFields()
           .then(async (values) => {
-            await dispatch(runStrategy(values));
+            await dispatch(runStrategy({ ...values, strategyId: data?.id }));
             form.resetFields();
             setIsRunModalOpen(false);
             setTimeout(() => setShowRefresh(true), 50000);
