@@ -1,3 +1,3 @@
 export const TradeXConfig = {
-    HOST: 'http://localhost:3001',
-}
+  HOST: "http://localhost:3001",
+};
