@@ -54,18 +54,17 @@ const StrategyModal = ({
   );
   const loading = strategiesStatus === "loading";
 
-  const options = (arr:any)=>(
+  const options = (arr: any) => (
     <>
-    {arr.map((elem:string) => (
-              <Option key={elem} value={elem}>
-                {elem}
-              </Option>
-            ))}
+      {arr.map((elem: string) => (
+        <Option key={elem} value={elem}>
+          {elem}
+        </Option>
+      ))}
     </>
-  )
+  );
 
   const parameter = (subName: number, name: number, type: string) => {
-    
     return (
       <Row>
         <Col span={24}>
@@ -82,10 +81,10 @@ const StrategyModal = ({
             noStyle
             shouldUpdate={(prevValues, currentValues) => {
               return (
-                prevValues["signals"][name]?.["conditions"][subName]?.[
+                prevValues?.["signals"]?.[name]?.["conditions"][subName]?.[
                   `type_${type}`
                 ] !==
-                currentValues["signals"][name]?.["conditions"][subName]?.[
+                currentValues?.["signals"]?.[name]?.["conditions"][subName]?.[
                   `type_${type}`
                 ]
               );

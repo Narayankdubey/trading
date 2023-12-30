@@ -39,6 +39,15 @@ export const backtestingConstant = {
   filterElements: [
     { name: "STATUS", options: ["created", "processing", "completed"] },
   ],
+  formFields: [
+    "type",
+    "symbol",
+    "attribute",
+    "start",
+    "end",
+    "value",
+    "timeframe",
+  ],
 };
 
 export const profileConstant = {

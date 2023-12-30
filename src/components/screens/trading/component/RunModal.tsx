@@ -44,18 +44,17 @@ const RunModal = ({
         form
           .validateFields()
           .then(async (values) => {
-            await dispatch(runStrategy({ ...values, strategyId: data?.id }));
+            await dispatch(
+              runStrategy({
+                ...values,
+                strategyId: data?.id,
+                start: values?.start.toISOString(),
+                end: values?.end.toISOString(),
+              })
+            );
             form.resetFields();
             setIsRunModalOpen(false);
             setTimeout(() => setShowRefresh(true), 50000);
-            // router.push({
-            //   pathname: `backtesting/result/${data?.id}/`,
-            //   query: {
-            //     ...values,
-            //     end: values.end.toString(),
-            //     start: values.start.toString(),
-            //   },
-            // });
           })
           .catch((info) => {
             console.log("Validate Failed:", info);

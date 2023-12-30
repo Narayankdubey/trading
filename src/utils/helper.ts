@@ -2,6 +2,7 @@ import {
   REFRESH_KEY_CONSTANT,
   STORAGE_KEY_CONSTANT,
   USER_INFO,
+  backtestingConstant,
 } from "@/common/constants";
 import moment from "moment";
 
@@ -37,19 +38,17 @@ export const deFormatData = (data: any) => {
 
       if (condition?.operator) tempConObj.operator = condition?.operator;
       for (let i = 1; i <= 2; i++) {
-        ["type", "symbol", "attribute", "start", "end", "value"].forEach(
-          (item: any) => {
-            if (condition?.[`param${i}`]?.[item]) {
-              if (item === "start" || item === "end")
-                tempConObj[`${item}_param${i}`] = moment(
-                  condition?.[`param${i}`]?.[item]
-                );
-              else
-                tempConObj[`${item}_param${i}`] =
-                  condition?.[`param${i}`]?.[item];
-            }
+        backtestingConstant.formFields.forEach((item: any) => {
+          if (condition?.[`param${i}`]?.[item]) {
+            if (item === "start" || item === "end")
+              tempConObj[`${item}_param${i}`] = moment(
+                condition?.[`param${i}`]?.[item]
+              );
+            else
+              tempConObj[`${item}_param${i}`] =
+                condition?.[`param${i}`]?.[item];
           }
-        );
+        });
       }
 
       tempObj.conditions.push(tempConObj);
@@ -107,7 +106,7 @@ export const getColorByStatus = (status: string) => {
 export const createColumns = (data: any) => {
   let result: any = [];
   if (Array.isArray(data) && data.length) {
-    let sortedArr = data.toSorted()
+    let sortedArr = data.toSorted();
     sortedArr &&
       sortedArr.map((elem: any, i: number) => {
         if (elem === "Datetime") {
