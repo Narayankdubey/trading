@@ -23,6 +23,7 @@ import style from "@/styles/Backtesting.module.css";
 import { deFormatData, formData } from "@/utils/helper";
 import {
   addStrategies,
+  backtesingSlice,
   getStrategies,
   updateStrategies,
 } from "@/redux/slices/backtestingSlice";
@@ -33,18 +34,18 @@ const constants = backtestingConstant.form;
 const { Title } = Typography;
 const { Option } = Select;
 
+type modalData = { open: boolean; id: string };
+
 type Props = {
-  isStrategyModalOpen: boolean;
-  setIsStrategyModalOpen: (boolean: boolean) => void;
-  strategyId?: string;
-  setStrategyId: (a: string) => void;
+  isStrategyModalOpen: modalData;
+  setIsStrategyModalOpen: (a: modalData) => void;
+  filterDetails: any;
 };
 
 const StrategyModal = ({
   isStrategyModalOpen,
   setIsStrategyModalOpen,
-  strategyId,
-  setStrategyId,
+  filterDetails,
 }: Props) => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
@@ -160,26 +161,44 @@ const StrategyModal = ({
 
   const onFinish = (values: any) => {
     const formedData = formData(values);
-    if (strategyId) dispatch(updateStrategies({ formedData, strategyId }));
-    else dispatch(addStrategies(formedData));
+    if (isStrategyModalOpen?.id)
+      dispatch(
+        updateStrategies({
+          formedData,
+          strategyId: isStrategyModalOpen?.id,
+          filterDetails,
+        })
+      ).then((e: any) => {
+        if (!e?.error?.message) setIsStrategyModalOpen({ open: false, id: "" });
+      });
+    else
+      dispatch(addStrategies({ formedData, filterDetails })).then((e: any) => {
+        if (!e?.error?.message) setIsStrategyModalOpen({ open: false, id: "" });
+      });
   };
 
   const onModalClose = () => {
     form.setFieldsValue({});
-    setStrategyId("");
-    setIsStrategyModalOpen(false);
+    setIsStrategyModalOpen({ open: false, id: "" });
   };
 
   useEffect(() => {
-    if (strategyId) {
-      dispatch(getStrategies(strategyId));
-      form.setFieldsValue(deFormatData(strategies));
+    if (isStrategyModalOpen?.id) {
+      dispatch(getStrategies(isStrategyModalOpen?.id));
     }
-  }, [dispatch, form, setStrategyId, strategies, strategyId]);
+    return () => {
+      dispatch(backtesingSlice.actions.resetStratergyData());
+    };
+  }, [dispatch, isStrategyModalOpen?.id]);
+
+  useEffect(() => {
+    form.setFieldsValue(deFormatData(strategies));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [strategies]);
 
   return (
     <Modal
-      open={isStrategyModalOpen}
+      open={isStrategyModalOpen?.open}
       footer={null}
       onCancel={onModalClose}
       width={"100%"}

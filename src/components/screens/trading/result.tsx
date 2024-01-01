@@ -16,7 +16,6 @@ import {
   Table,
   Typography,
 } from "antd";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import { CSVLink } from "react-csv";
@@ -27,7 +26,10 @@ import { createColumns } from "@/utils/helper";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getRunData } from "@/redux/slices/backtestingSlice";
 
-const { Header, Sider, Content } = Layout;
+import dayjs from "dayjs";
+
+
+const { Sider } = Layout;
 
 interface insightsProps {
   data: any;
@@ -70,14 +72,10 @@ interface DataType {
   tags: string[];
 }
 
-const { Title } = Typography;
 const { Option } = Select;
 
-type Props = {};
 
 const ResultContainer = () => {
-  const router = useRouter();
-  const queryData = router.query;
   const dispatch = useAppDispatch();
 
   const [filterData, setFilterData] = useState({
@@ -104,7 +102,7 @@ const ResultContainer = () => {
     <CSVLink
       key="2"
       data={runData.records || []}
-      filename={`${queryData.title}.csv`}
+      filename={`${runData?.title}.csv`}
     >
       <Button loading={loading}>Download CSV</Button>
     </CSVLink>,
@@ -152,27 +150,30 @@ const ResultContainer = () => {
         </Col>
         <Col span={20}>
           <Flex vertical gap={8} style={{ width: "100%" }}>
-            <PageHeader title={runData?.title} extra={actionBtn} />
+            <PageHeader title={runData?.title || " "} extra={actionBtn} />
             <Row>
               <Space>
                 <Select
-                  placeholder="watchlist"
+                  disabled
+                  placeholder="Watchlist"
+                  value={runData?.watchlist}
                   onChange={(e) => onFilterChange(e, "watchlist")}
                 >
-                  <Option value="watchlist">WatchList</Option>
-                  <Option value="watchlist2">WatchList2</Option>
+                  {/* <Option value="watchlist">WatchList</Option>
+                  <Option value="watchlist2">WatchList2</Option> */}
                 </Select>
-                <DatePicker />
-                <DatePicker />
+                <DatePicker placeholder="Start" value={dayjs(runData?.start)} disabled/>
+                <DatePicker placeholder="End" value={dayjs(runData?.end)} disabled/>
               </Space>
             </Row>
             <Table
               loading={loading}
               columns={columns || []}
               dataSource={runData?.records || []}
-              scroll={{ x: 300 }}
+              scroll={{ x: 300, y: `calc(100vh - 300px)` }}
+              sticky={{ offsetHeader: 64 }}
               pagination={{
-                pageSize: 5,
+                defaultPageSize: 100
               }}
             />
           </Flex>
@@ -187,7 +188,7 @@ const ResultContainer = () => {
         defaultCollapsed
         reverseArrow
         theme={darkTheme ? "dark" : "light"}
-        onCollapse={(value) => setRepoRtsOpen(false)}
+        onCollapse={() => setRepoRtsOpen(false)}
         style={{
           height: "calc(100vh - 70px)",
           marginLeft: 5,

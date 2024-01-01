@@ -106,7 +106,8 @@ export const getColorByStatus = (status: string) => {
 export const createColumns = (data: any) => {
   let result: any = [];
   if (Array.isArray(data) && data.length) {
-    let sortedArr = data.toSorted();
+    // let sortedArr = data.toSorted(); //todo : need to implement sequence
+    let sortedArr = data;
     sortedArr &&
       sortedArr.map((elem: any, i: number) => {
         if (elem === "Datetime") {
@@ -114,6 +115,7 @@ export const createColumns = (data: any) => {
             title: elem,
             dataIndex: elem,
             key: elem,
+            width: 150,
             render: (date: any) => moment(date).format("DD/MM/YYYY"),
           });
         } else {
@@ -121,6 +123,7 @@ export const createColumns = (data: any) => {
             title: elem,
             dataIndex: elem,
             key: elem,
+            width: 200,
             defaultSortOrder: "descend",
             // sorter: ()=>{}
           });

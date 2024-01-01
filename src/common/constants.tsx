@@ -30,7 +30,7 @@ export const backtestingConstant = {
       "20min",
       "30min",
     ],
-    attribute: ["OPEN", "HIGH", "LOW,", "CLOSE"],
+    attribute: ["OPEN", "HIGH", "LOW", "CLOSE"],
     symbol: ["SBIN", "ICICIBANK", "ABB", "ITC", "TCS", "ONGC", "WIPRO"],
     indicator: ["SMA", "EMA", "RSI", "BBANDS"],
     timePeriod: ["7days", "14days"],
@@ -47,6 +47,15 @@ export const backtestingConstant = {
     "end",
     "value",
     "timeframe",
+  ],
+  historyColumns: [
+    "id",
+    "title",
+    "strategyId",
+    "start",
+    "end",
+    "profit",
+    "status",
   ],
 };
 

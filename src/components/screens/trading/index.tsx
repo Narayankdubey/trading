@@ -50,13 +50,15 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [filteredData, setFilteredData] = useState<any>([]);
-  const [isStrategyModalOpen, setIsStrategyModalOpen] = useState(false);
-  const [strategyId, setStrategyId] = useState("");
+  const [isStrategyModalOpen, setIsStrategyModalOpen] = useState({
+    open: false,
+    id: "",
+  });
   const [isRunModalOpen, setIsRunModalOpen] = useState(false);
   const [runStrategyData, setRunStrategyData] = useState("");
   const [filterData, setFilterData] = useState({});
   const [currentPage, setPageCurrent] = useState(1);
-  const [pageSize, setPageSize] = useState(3);
+  const [pageSize, setPageSize] = useState(10);
   const [historyActiveKey, setHistoryActiveKey] = useState(-1);
   const [showRefresh, setShowRefresh] = useState(false);
 
@@ -194,7 +196,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
             <Button
               icon={<EditOutlined />}
               onClick={() => {
-                setIsStrategyModalOpen(true), setStrategyId(data?.id);
+                setIsStrategyModalOpen({ open: true, id: data?.id });
               }}
             ></Button>
           </Tooltip>
@@ -213,15 +215,11 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
             <Table
               loading={historyLoading}
               columns={[
-                ...createColumns(
-                  Object.keys(
-                    historyData && historyData?.data?.length
-                      ? historyData?.data[0]
-                      : {}
-                  ) || []
-                ),
+                ...createColumns(backtestingConstant.historyColumns),
                 {
                   title: "Action",
+                  fixed: "right",
+                  width: 100,
                   render: (elem: any) => (
                     <Link href={`/backtesting/result/${elem?.id}`}>Go</Link>
                   ),
@@ -229,9 +227,6 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
               ]}
               dataSource={historyData?.data || []}
               scroll={{ x: 300 }}
-              // pagination={{
-              //   pageSize: 5,
-              // }}
             />
             {/* <List
               size="small"
@@ -285,6 +280,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
       600
     );
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, dispatch, pageSize]);
 
   useEffect(() => {
@@ -313,7 +309,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
                   </Button>
                 )}
                 <Button
-                  onClick={() => setIsStrategyModalOpen(true)}
+                  onClick={() => setIsStrategyModalOpen({ open: true, id: "" })}
                   icon={<PlusOutlined />}
                 >
                   Add
@@ -343,12 +339,14 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
             </Col>
           </Row>
         </Col>
-        {isStrategyModalOpen && (
+        {isStrategyModalOpen?.open && (
           <StrategyModal
             isStrategyModalOpen={isStrategyModalOpen}
             setIsStrategyModalOpen={setIsStrategyModalOpen}
-            strategyId={strategyId}
-            setStrategyId={setStrategyId}
+            filterDetails={{
+              ...filterData,
+              ...{ page: currentPage, pageSize },
+            }}
           />
         )}
         {isRunModalOpen && (

@@ -4,91 +4,91 @@ export const strategiesListMock = {
   pageSize: 10,
   totalPages: 1,
   data: [
-    // {
-    //   id: 1,
-    //   title: "test-strategy-2",
-    //   author: null,
-    //   orderList: [],
-    //   signals: [],
-    //   status: "CREATED",
-    // },
-    // {
-    //   id: 2,
-    //   title: "test-strategy-3",
-    //   author: null,
-    //   orderList: [
-    //     {
-    //       buy: 11,
-    //       sell: 7,
-    //       symbol: "TATA",
-    //     },
-    //     {
-    //       buy: 8,
-    //       sell: 3,
-    //       symbol: "REL",
-    //     },
-    //   ],
-    //   signals: [
-    //     {
-    //       conditions: [
-    //         {
-    //           param1: {
-    //             end: "",
-    //             type: "IND",
-    //             start: "",
-    //             period: 5,
-    //             symbol: "SBIN",
-    //             attribute: "close",
-    //             indicator: "SMA",
-    //             timeframe: "",
-    //           },
-    //           param2: {
-    //             end: "",
-    //             type: "IND",
-    //             start: "",
-    //             period: 10,
-    //             symbol: "SBIN",
-    //             attribute: "close",
-    //             indicator: "SMA",
-    //             timeframe: "",
-    //           },
-    //           operator: "GT",
-    //         },
-    //       ],
-    //       transaction: "BUY",
-    //     },
-    //     {
-    //       conditions: [
-    //         {
-    //           param1: {
-    //             end: "",
-    //             type: "ATT",
-    //             start: "",
-    //             period: 5,
-    //             symbol: "SBIN",
-    //             attribute: "close",
-    //             indicator: "SMA",
-    //             timeframe: "",
-    //           },
-    //           param2: {
-    //             end: "",
-    //             type: "VAL",
-    //             start: "",
-    //             value: 1.95,
-    //             period: 10,
-    //             symbol: "SBIN",
-    //             attribute: "close",
-    //             indicator: "SMA",
-    //             timeframe: "",
-    //           },
-    //           operator: "LT",
-    //         },
-    //       ],
-    //       transaction: "SELL",
-    //     },
-    //   ],
-    //   status: "CREATED",
-    // },
+    {
+      id: 1,
+      title: "test-strategy-2",
+      author: null,
+      orderList: [],
+      signals: [],
+      status: "CREATED",
+    },
+    {
+      id: 2,
+      title: "test-strategy-3",
+      author: null,
+      orderList: [
+        {
+          buy: 11,
+          sell: 7,
+          symbol: "TATA",
+        },
+        {
+          buy: 8,
+          sell: 3,
+          symbol: "REL",
+        },
+      ],
+      signals: [
+        {
+          conditions: [
+            {
+              param1: {
+                end: "",
+                type: "IND",
+                start: "",
+                period: 5,
+                symbol: "SBIN",
+                attribute: "close",
+                indicator: "SMA",
+                timeframe: "",
+              },
+              param2: {
+                end: "",
+                type: "IND",
+                start: "",
+                period: 10,
+                symbol: "SBIN",
+                attribute: "close",
+                indicator: "SMA",
+                timeframe: "",
+              },
+              operator: "GT",
+            },
+          ],
+          transaction: "BUY",
+        },
+        {
+          conditions: [
+            {
+              param1: {
+                end: "",
+                type: "ATT",
+                start: "",
+                period: 5,
+                symbol: "SBIN",
+                attribute: "close",
+                indicator: "SMA",
+                timeframe: "",
+              },
+              param2: {
+                end: "",
+                type: "VAL",
+                start: "",
+                value: 1.95,
+                period: 10,
+                symbol: "SBIN",
+                attribute: "close",
+                indicator: "SMA",
+                timeframe: "",
+              },
+              operator: "LT",
+            },
+          ],
+          transaction: "SELL",
+        },
+      ],
+      status: "CREATED",
+    },
     {
       id: 3,
       title: "test-strategy-3",
@@ -267,8 +267,8 @@ export const runDataMock = {
   author: 1,
   type: "backtest",
   title: "tiyiein",
-  start: "",
-  end: "",
+  start: "2023-12-01T11:34:12.082Z",
+  end: "2024-01-01T11:34:12.082Z",
   location: "backtest_tiyiein_cbd7d51b-fae8-4ec6-af5a-241b5d7d928d",
   profit: null,
   status: "CREATED",
@@ -1463,4 +1463,26 @@ export const historyDataMock = {
       status: "CREATED",
     },
   ],
+};
+
+export const loginDataMock = {
+  message: "Success",
+  code: 200,
+  data: {
+    userDetails: {
+      userId: 1,
+      email: "user1@email.com",
+      name: "User1",
+      role: "super-admin",
+    },
+    authToken: {
+      type: "Bearer",
+      accessToken:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb25JZCI6bnVsbCwidXNlcklkIjoxLCJuYW1lIjoiVXNlcjEiLCJyb2xlIjoic3VwZXItYWRtaW4iLCJpYXQiOjE3MDM5NTQxMTYsImV4cCI6MTcwNDA0MDUxNn0.ixdcSCVNHecOGrx2VHUtsROa4TRqcdnJmz5eMnDL2oA",
+      expiresIn: 604800,
+      expiresAt: 1703954721085,
+      refreshToken:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb25JZCI6bnVsbCwidXNlcklkIjoxLCJuYW1lIjoiVXNlcjEiLCJyb2xlIjoic3VwZXItYWRtaW4iLCJpYXQiOjE3MDM5NTQxMTYsImV4cCI6MTcwNDU1ODkxNn0.r3jcIbQsMSlag0pK_oMQ6dAaKl-MVFtNiR9OxvhKMdM",
+    },
+  },
 };

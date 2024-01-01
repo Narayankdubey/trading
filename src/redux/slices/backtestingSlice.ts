@@ -75,9 +75,12 @@ export const getStrategies = createAsyncThunk(
 
 export const addStrategies = createAsyncThunk(
   "addStrategies/backtesing",
-  async (payload: any, { rejectWithValue }) => {
+  async (payload: any, { dispatch, rejectWithValue }) => {
     try {
-      const response = await API.post(API_PATHS.STRATEGIES, payload);
+      const { formedData, filterDetails } = payload;
+      const response = await API.post(API_PATHS.STRATEGIES, formedData);
+      notification.success({ message: "Strategy Add Successfully" });
+      await dispatch(getStrategiesListdata(filterDetails));
       const { data } = response.data;
       return data;
     } catch (error: any) {
@@ -88,14 +91,15 @@ export const addStrategies = createAsyncThunk(
 
 export const updateStrategies = createAsyncThunk(
   "updateStrategies/backtesing",
-  async (payload: any, { rejectWithValue }) => {
+  async (payload: any, { rejectWithValue, dispatch }) => {
     try {
-      const { formedData, strategyId } = payload;
+      const { formedData, strategyId, filterDetails } = payload;
       const response = await API.patch(
         API_PATHS.STRATEGIES + `/${strategyId}`,
         formedData
       );
       const { data } = response.data;
+      await dispatch(getStrategiesListdata(filterDetails));
       return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
@@ -138,7 +142,7 @@ export const runStrategy = createAsyncThunk(
   "runStrategy/backtesing",
   async (payload: any = {}, { rejectWithValue }) => {
     try {
-      const response = await API.get(API_PATHS.RUNSTRATEGY, {
+      const response = await API.post(API_PATHS.RUNSTRATEGY, payload, {
         params: payload,
       });
       notification.success({ message: "Started" });
@@ -171,6 +175,9 @@ export const backtesingSlice = createSlice({
   reducers: {
     resetHistoryData: (state) => {
       state.historyData = {};
+    },
+    resetStratergyData: (state) => {
+      state.strategies = [];
     },
   },
   extraReducers: (builder) => {
