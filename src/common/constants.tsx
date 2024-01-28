@@ -51,7 +51,6 @@ export const backtestingConstant = {
   historyColumns: [
     "id",
     "title",
-    "strategyId",
     "start",
     "end",
     "profit",

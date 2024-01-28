@@ -47,7 +47,7 @@ export const loginAsync = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await API.post(API_PATHS.LOGIN, payload, {
-        params: { domain: "tcs" },
+        // params: { domain: "tcs" },
       });
       const { data } = response.data;
       return data;

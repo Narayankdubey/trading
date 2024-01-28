@@ -50,6 +50,7 @@ const RunModal = ({
                 strategyId: data?.id,
                 start: values?.start.toISOString(),
                 end: values?.end.toISOString(),
+                type: "backtest",
               })
             );
             form.resetFields();

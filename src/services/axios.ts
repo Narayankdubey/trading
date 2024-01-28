@@ -3,7 +3,7 @@ import { notification } from "antd";
 import { STORAGE_KEY_CONSTANT, TOKEN_EXPIRE } from "../common/constants";
 import { getRefreshToken, getToken } from "@/utils/helper";
 import API_PATHS from "./apiPaths";
-const baseURL = "http://localhost:4000/v1/";
+const baseURL = "http://16.171.193.137:3001/v0/";
 // const env = process.env.NEXT_PUBLIC_REACT_APP_ENV;
 // const { config } = require(`../config/${env}.config`);
 

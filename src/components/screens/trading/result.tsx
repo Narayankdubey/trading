@@ -19,7 +19,8 @@ import {
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import { CSVLink } from "react-csv";
-import { DoubleRightOutlined } from '@ant-design/icons';
+import { DoubleRightOutlined } from "@ant-design/icons";
+import { useRouter } from 'next/router'
 
 import PageHeader from "@/components/elements/PageHeader";
 import { createColumns } from "@/utils/helper";
@@ -27,7 +28,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getRunData } from "@/redux/slices/backtestingSlice";
 
 import dayjs from "dayjs";
-
 
 const { Sider } = Layout;
 
@@ -41,7 +41,12 @@ const Insights = ({ data, loading }: insightsProps) => (
     <Flex
       justify="center"
       gap={8}
-      style={{ flexDirection: "column", margin: 8 }}
+      style={{
+        flexDirection: "column",
+        margin: 8,
+        height: `calc(100vh - 160px)`,
+        overflow: "auto",
+      }}
     >
       {Object.keys(data).length > 0 ? (
         Object.keys(data).map((item) => (
@@ -74,9 +79,10 @@ interface DataType {
 
 const { Option } = Select;
 
-
 const ResultContainer = () => {
   const dispatch = useAppDispatch();
+  const router = useRouter()
+  const { id } = router.query
 
   const [filterData, setFilterData] = useState({
     headers: [],
@@ -112,8 +118,8 @@ const ResultContainer = () => {
   ];
 
   useEffect(() => {
-    dispatch(getRunData({}));
-  }, [dispatch]);
+    dispatch(getRunData(id));
+  }, [dispatch,id]);
 
   useEffect(() => {
     setFilterData((old) => ({ ...old, headers: runData.columns || [] }));
@@ -162,18 +168,26 @@ const ResultContainer = () => {
                   {/* <Option value="watchlist">WatchList</Option>
                   <Option value="watchlist2">WatchList2</Option> */}
                 </Select>
-                <DatePicker placeholder="Start" value={dayjs(runData?.start)} disabled/>
-                <DatePicker placeholder="End" value={dayjs(runData?.end)} disabled/>
+                <DatePicker
+                  placeholder="Start"
+                  value={dayjs(runData?.start)}
+                  disabled
+                />
+                <DatePicker
+                  placeholder="End"
+                  value={dayjs(runData?.end)}
+                  disabled
+                />
               </Space>
             </Row>
             <Table
               loading={loading}
               columns={columns || []}
-              dataSource={runData?.records || []}
+              dataSource={Array.isArray(runData?.records || [])? runData?.records :[]}
               scroll={{ x: 300, y: `calc(100vh - 300px)` }}
               sticky={{ offsetHeader: 64 }}
               pagination={{
-                defaultPageSize: 100
+                defaultPageSize: 100,
               }}
             />
           </Flex>
@@ -201,7 +215,11 @@ const ResultContainer = () => {
           >
             Insights
           </Typography.Title>
-          <Button shape="circle" icon={<DoubleRightOutlined />} onClick={() => setRepoRtsOpen(true)}/>
+          <Button
+            shape="circle"
+            icon={<DoubleRightOutlined />}
+            onClick={() => setRepoRtsOpen(true)}
+          />
         </Flex>
         <Divider />
         <Insights data={runData?.insights || {}} loading={loading} />

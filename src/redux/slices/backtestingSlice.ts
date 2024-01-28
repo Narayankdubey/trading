@@ -79,7 +79,7 @@ export const addStrategies = createAsyncThunk(
     try {
       const { formedData, filterDetails } = payload;
       const response = await API.post(API_PATHS.STRATEGIES, formedData);
-      notification.success({ message: "Strategy Add Successfully" });
+      notification.success({ message: "Strategy Added Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
       const { data } = response.data;
       return data;
@@ -99,6 +99,7 @@ export const updateStrategies = createAsyncThunk(
         formedData
       );
       const { data } = response.data;
+      notification.success({ message: "Strategy Updated Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
       return data;
     } catch (error: any) {
@@ -109,13 +110,16 @@ export const updateStrategies = createAsyncThunk(
 
 export const deleteStrategies = createAsyncThunk(
   "deleteStrategies/backtesing",
-  async (payload: any, { rejectWithValue }) => {
+  async (payload: any, { dispatch, rejectWithValue }) => {
     try {
+      const {id, filterDetails} = payload;
       const response = await API.delete(
-        API_PATHS.STRATEGIES + `/${payload}`,
+        API_PATHS.STRATEGIES + `/${id}`,
         payload
       );
       const { data } = response.data;
+      notification.success({ message: "Strategy Deleted Successfully" });
+      await dispatch(getStrategiesListdata(filterDetails));
       return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
@@ -127,9 +131,7 @@ export const getRunData = createAsyncThunk(
   "getRunData/backtesing",
   async (payload: any = {}, { rejectWithValue }) => {
     try {
-      const response = await API.get(API_PATHS.RUNDATA, {
-        params: payload,
-      });
+      const response = await API.get(API_PATHS.TRADING + `/${payload}`);
       const { data } = response.data;
       return data;
     } catch (error: any) {
@@ -142,9 +144,7 @@ export const runStrategy = createAsyncThunk(
   "runStrategy/backtesing",
   async (payload: any = {}, { rejectWithValue }) => {
     try {
-      const response = await API.post(API_PATHS.RUNSTRATEGY, payload, {
-        params: payload,
-      });
+      const response = await API.post(API_PATHS.RUNSTRATEGY, payload);
       notification.success({ message: "Started" });
       const { data } = response.data;
       return data;
@@ -260,10 +260,11 @@ export const backtesingSlice = createSlice({
       .addCase(getRunData.fulfilled, (state, action) => {
         state.runStatus = "idle";
         // state.strategies = action.payload;
+        state.runData = action.payload;
       })
       .addCase(getRunData.rejected, (state) => {
         state.runStatus = "failed";
-        state.runData = runDataMock;
+        // state.runData = runDataMock;
       });
 
     //run strategy
@@ -286,13 +287,13 @@ export const backtesingSlice = createSlice({
       })
       .addCase(getHistoryData.fulfilled, (state, action) => {
         state.historyStatus = "idle";
-        // state.strategies = action.payload;
+        state.historyData = action.payload;
       })
       .addCase(getHistoryData.rejected, (state) => {
         state.historyStatus = "failed";
 
         //setting dummy data just for testing purpose
-        state.historyData = historyDataMock;
+        // state.historyData = historyDataMock;
       });
   },
 });

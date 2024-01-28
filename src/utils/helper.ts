@@ -60,8 +60,10 @@ export const deFormatData = (data: any) => {
 };
 
 export const formData = (raw: any) => {
-  const signals = raw?.signals.map((signal: any) => {
-    const conditions = signal.conditions.map((condition: any) => {
+  console.log(raw,'raw');
+  
+  const signals = raw?.signals?.map((signal: any) => {
+    const conditions = signal.conditions?.map((condition: any) => {
       return {
         param1: {
           symbol: condition?.symbol_param1,
@@ -71,6 +73,7 @@ export const formData = (raw: any) => {
           indicator: condition?.indicator_param1,
           period: condition?.period_param1,
           value: condition?.value_param1,
+          timeperiod: condition?.timeperiod_param1,
         },
         operator: condition?.operator,
         param2: {
@@ -81,6 +84,7 @@ export const formData = (raw: any) => {
           indicator: condition?.indicator_param2,
           period: condition?.period_param2,
           value: condition?.value_param2,
+          timePeriod: condition?.timePeriod_param2,
         },
       };
     });
@@ -110,7 +114,7 @@ export const createColumns = (data: any) => {
     let sortedArr = data;
     sortedArr &&
       sortedArr.map((elem: any, i: number) => {
-        if (elem === "Datetime") {
+        if (elem === "Datetime" || elem === "start" || elem === "end") {
           result.push({
             title: elem,
             dataIndex: elem,

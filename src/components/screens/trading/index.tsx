@@ -83,7 +83,15 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
       okType: "danger",
       cancelText: "No",
       async onOk() {
-        await dispatch(deleteStrategies(id));
+        await dispatch(
+          deleteStrategies({
+            id,
+            filterDetails: {
+              ...filterData,
+              ...{ page: currentPage, pageSize },
+            },
+          })
+        );
       },
     });
   };

@@ -161,6 +161,7 @@ const StrategyModal = ({
 
   const onFinish = (values: any) => {
     const formedData = formData(values);
+    console.log({ formedData, filterDetails },'{ formedData, filterDetails }')
     if (isStrategyModalOpen?.id)
       dispatch(
         updateStrategies({
