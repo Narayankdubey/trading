@@ -140,15 +140,26 @@ const StrategyModal = ({
                   {getFieldValue("signals")[name]?.["conditions"][subName]?.[
                     `type_${type}`
                   ] === "indicator" && (
-                    <Form.Item
-                      name={[subName, `timeperiod_${type}`]}
-                      label="Timeperiod"
-                      rules={[{ required: true }]}
-                    >
-                      <Select placeholder="Timeperiod">
-                        {options(constants.timePeriod)}
-                      </Select>
-                    </Form.Item>
+                    <>
+                      <Form.Item
+                        name={[subName, `indicator_${type}`]}
+                        label="Indicator"
+                        rules={[{ required: true }]}
+                      >
+                        <Select placeholder="Indicator">
+                          {options(constants.indicator)}
+                        </Select>
+                      </Form.Item>
+                      <Form.Item
+                        name={[subName, `timeperiod_${type}`]}
+                        label="Timeperiod"
+                        rules={[{ required: true }]}
+                      >
+                        <Select placeholder="Timeperiod">
+                          {options(constants.timePeriod)}
+                        </Select>
+                      </Form.Item>
+                    </>
                   )}
                 </>
               );
@@ -161,7 +172,6 @@ const StrategyModal = ({
 
   const onFinish = (values: any) => {
     const formedData = formData(values);
-    console.log({ formedData, filterDetails },'{ formedData, filterDetails }')
     if (isStrategyModalOpen?.id)
       dispatch(
         updateStrategies({
