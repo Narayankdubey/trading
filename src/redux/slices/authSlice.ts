@@ -34,8 +34,8 @@ export const signupAsync = createAsyncThunk(
       const response = await API.post(API_PATHS.SIGNUP, payload, {
         params: { domain: "tcs" }
       });
-      
-return {
+
+      return {
         accessToken: response.data.data.accessToken
       };
     } catch (error: any) {
@@ -52,8 +52,8 @@ export const loginAsync = createAsyncThunk(
         // params: { domain: "tcs" },
       });
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -69,8 +69,8 @@ export const logOutAsync = createAsyncThunk(
       const response = await API.post(API_PATHS.SIGNOUT, {
         auth: { userId, realmId }
       });
-      
-return response.data;
+
+      return response.data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }

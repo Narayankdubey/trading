@@ -88,8 +88,8 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({}) => {
         return false;
       } else {
         const path = router.pathname.substring(1, router.pathname.length);
-        
-return path.includes(item?.name);
+
+        return path.includes(item?.name);
       }
     },
     [router.pathname]
@@ -137,8 +137,8 @@ return path.includes(item?.name);
       />
     </div>
   );
-  
-return (
+
+  return (
     <Row justify={"space-between"} align={"middle"}>
       <Col sm={1} xs={3}>
         <Space align="center" style={{ width: "100%" }}>

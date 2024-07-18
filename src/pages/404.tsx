@@ -9,8 +9,8 @@ const NotFound: FC<NotFoundProps> = ({}) => {
   const backToHome = () => {
     router.push("/");
   };
-  
-return (
+
+  return (
     <Result
       status="404"
       title="404"

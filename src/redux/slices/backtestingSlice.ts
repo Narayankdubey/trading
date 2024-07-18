@@ -53,8 +53,8 @@ export const getStrategiesListdata = createAsyncThunk(
         params: payload
       });
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -67,8 +67,8 @@ export const getStrategies = createAsyncThunk(
     try {
       const response = await API.get(API_PATHS.STRATEGIES + `/${payload}`);
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -84,8 +84,8 @@ export const addStrategies = createAsyncThunk(
       notification.success({ message: "Strategy Added Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -104,8 +104,8 @@ export const updateStrategies = createAsyncThunk(
       const { data } = response.data;
       notification.success({ message: "Strategy Updated Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -124,8 +124,8 @@ export const deleteStrategies = createAsyncThunk(
       const { data } = response.data;
       notification.success({ message: "Strategy Deleted Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -138,8 +138,8 @@ export const getRunData = createAsyncThunk(
     try {
       const response = await API.get(API_PATHS.TRADING + `/${payload}`);
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -153,8 +153,8 @@ export const runStrategy = createAsyncThunk(
       const response = await API.post(API_PATHS.RUNSTRATEGY, payload);
       notification.success({ message: "Started" });
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -169,8 +169,8 @@ export const getHistoryData = createAsyncThunk(
         params: payload
       });
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }

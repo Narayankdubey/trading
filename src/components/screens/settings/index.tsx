@@ -28,8 +28,8 @@ const SettingsContainer: FC<SettingsProps> = ({}) => {
       key: "ui"
     }
   ];
-  
-return <Tabs className="m-5" tabPosition={"left"} items={tabs} />;
+
+  return <Tabs className="m-5" tabPosition={"left"} items={tabs} />;
 };
 
 export default SettingsContainer;

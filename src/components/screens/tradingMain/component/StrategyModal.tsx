@@ -118,15 +118,14 @@ const StrategyModal = ({
     );
   };
 
-  const onFinish = (values: any) => {
-  };
+  const onFinish = (values: any) => {};
 
   useEffect(() => {
     const formRefTemp = formRef.current;
     if (strategyId) {
     }
-    
-return () => {
+
+    return () => {
       formRefTemp?.setFieldsValue({});
       setStrategyId("");
     };

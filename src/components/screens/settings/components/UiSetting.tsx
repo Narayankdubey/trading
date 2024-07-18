@@ -34,8 +34,8 @@ const UiSetting: FC<UiSettingProps> = ({}) => {
       );
       if (Object.keys(parsedData)?.length) initialTheme = parsedData;
     }
-    
-return initialTheme;
+
+    return initialTheme;
   };
 
   return (

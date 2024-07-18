@@ -83,15 +83,15 @@ const TradingContainer: FC<TradingProps> = ({}) => {
       if (n < 7) n++;
       else n = 1;
     }
-    
-return data;
+
+    return data;
   }, []);
 
   const getOptions = (key: string, data: any) => {
     const result: any = [];
     data.map((item: any) => result.push(item[key]));
-    
-return [...new Set(result)];
+
+    return [...new Set(result)];
   };
 
   const filterElement = useMemo(() => {
@@ -110,8 +110,8 @@ return [...new Set(result)];
         result.push(abc);
       }
     }
-    
-return result;
+
+    return result;
   }, [filteredData]);
 
   useEffect(() => {

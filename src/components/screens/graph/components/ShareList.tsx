@@ -57,8 +57,8 @@ export const ShareList: FC<ShareListProps> = ({ setDisplayChart }) => {
   const viewMoreClick = () => {
     router.push(ROUTES.TRADING);
   };
-  
-return (
+
+  return (
     <Card title="Watchlist" size="small">
       {dummyData.map((item) => (
         <Shares

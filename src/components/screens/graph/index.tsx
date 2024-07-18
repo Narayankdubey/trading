@@ -19,8 +19,8 @@ const GraphContainer: FC<GraphContainerProps> = ({}) => {
     } else if (displayChart.length < 4)
       setDisplayChart([...displayChart, item]);
   };
-  
-return (
+
+  return (
     <Row gutter={[8, 8]} style={{ padding: 10 }}>
       <Col xs={4} md={2} lg={1}>
         <LeftOptions />

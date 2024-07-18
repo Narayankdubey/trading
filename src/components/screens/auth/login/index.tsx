@@ -23,8 +23,7 @@ const LoginContainer: FC<LoginContainerProps> = ({}) => {
     dispatch(loginAsync(values));
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-  };
+  const onFinishFailed = (errorInfo: any) => {};
 
   useEffect(() => {
     if (authenticated) router.push(ROUTES.HOME);

@@ -8,7 +8,7 @@ String.prototype.format = function (...params: any[]): string {
     if (value !== undefined) {
       return encodeURIComponent(value);
     }
-    
-return match;
+
+    return match;
   });
 };

@@ -198,8 +198,8 @@ const StrategyModal = ({
     if (isStrategyModalOpen?.id) {
       dispatch(getStrategies(isStrategyModalOpen?.id));
     }
-    
-return () => {
+
+    return () => {
       dispatch(backtesingSlice.actions.resetStratergyData());
     };
   }, [dispatch, isStrategyModalOpen?.id]);

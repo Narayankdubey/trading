@@ -71,8 +71,8 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   const getOptions = (key: string, data: any) => {
     const result: any = [];
     data?.length && data.map((item: any) => result?.push(item[key]));
-    
-return [...new Set(result)];
+
+    return [...new Set(result)];
   };
 
   const onDeleteStrategy = (id: string) => {
@@ -163,8 +163,8 @@ return [...new Set(result)];
       };
       result.push(obj);
     });
-    
-return result;
+
+    return result;
   }, [filteredData]);
 
   const listItem = (data: any) => (
@@ -289,8 +289,8 @@ return result;
         ),
       600
     );
-    
-return () => clearTimeout(timer);
+
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, dispatch, pageSize]);
 

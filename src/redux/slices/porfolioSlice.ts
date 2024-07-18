@@ -36,8 +36,8 @@ export const getPortfolioListdata = createAsyncThunk(
         params: payload
       });
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -53,8 +53,8 @@ export const addPortfolio = createAsyncThunk(
       notification.success({ message: "Portfoli Added Successfully" });
       await dispatch(getPortfolioListdata(filterDetails));
       const { data } = response.data;
-      
-return data;
+
+      return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }

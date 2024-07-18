@@ -324,8 +324,7 @@ const PortfolioCreatorContainer = (props: Props) => {
       await form.validateFields();
       if (step < 1) setStep((old) => old + 1);
       else form.submit();
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {

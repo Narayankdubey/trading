@@ -57,8 +57,7 @@ const RunModal = ({
             setIsRunModalOpen(false);
             setTimeout(() => setShowRefresh(true), 50000);
           })
-          .catch((info) => {
-          });
+          .catch((info) => {});
       }}
     >
       <Form form={form} name="runData" layout="inline">

@@ -27,8 +27,7 @@ const SignupContainer: FC<SignupContainerProps> = ({}) => {
     dispatch(signupAsync(values));
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-  };
+  const onFinishFailed = (errorInfo: any) => {};
 
   useEffect(() => {
     if (authenticated) router.push(ROUTES.HOME);

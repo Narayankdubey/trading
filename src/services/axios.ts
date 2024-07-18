@@ -52,8 +52,8 @@ instance.interceptors.response.use(
           "Something Went Wrong"
       });
     }
-    
-return Promise.reject(error);
+
+    return Promise.reject(error);
   }
 );
 
@@ -64,8 +64,8 @@ const fetchTokenToken = async () => {
     const { data } = res.data;
     localStorage.setItem(STORAGE_KEY_CONSTANT, data?.token?.accessToken);
     localStorage.setItem(TOKEN_EXPIRE, data?.token?.expiresIn);
-    
-return data?.token?.accessToken;
+
+    return data?.token?.accessToken;
   } catch (error) {}
 };
 
