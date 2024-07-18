@@ -17,7 +17,7 @@ const index: FC<indexProps> = ({}) => {
         <link rel="icon" href="/logo.png" />
       </Head>
       <LayoutContainer>
-          <PortfolioListContainer />
+        <PortfolioListContainer />
       </LayoutContainer>
     </>
   );

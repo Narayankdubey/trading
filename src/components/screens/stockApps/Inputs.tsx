@@ -4,5 +4,5 @@ export const Inputs = {
   text: Input,
   textArea: Input.TextArea,
   number: InputNumber,
-  date: DatePicker,
+  date: DatePicker
 };

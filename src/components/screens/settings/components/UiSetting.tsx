@@ -3,16 +3,16 @@ import React, { FC } from "react";
 
 const layout = {
   labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
+  wrapperCol: { span: 16 }
 };
 
 const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
+  wrapperCol: { offset: 8, span: 16 }
 };
 
 let initialTheme = {
   primaryColor: "#1677ff",
-  borderRadius: 5,
+  borderRadius: 5
 };
 
 interface UiSettingProps {}
@@ -29,12 +29,13 @@ const UiSetting: FC<UiSettingProps> = ({}) => {
 
   const getInitialData = () => {
     if (typeof localStorage !== "undefined") {
-      let parsedData = JSON.parse(
+      const parsedData = JSON.parse(
         localStorage ? localStorage.getItem("uiSetting") || "{}" : "{}"
       );
       if (Object.keys(parsedData)?.length) initialTheme = parsedData;
     }
-    return initialTheme;
+    
+return initialTheme;
   };
 
   return (

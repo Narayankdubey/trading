@@ -11,14 +11,14 @@ import {
   Popover,
   Row,
   Space,
-  Switch,
+  Switch
 } from "antd";
 import React, {
   Dispatch,
   FC,
   SetStateAction,
   useCallback,
-  useState,
+  useState
 } from "react";
 import { useRouter } from "next/router";
 import type { MenuProps } from "antd";
@@ -28,7 +28,7 @@ import {
   LogoutOutlined,
   BellOutlined,
   MenuUnfoldOutlined,
-  ArrowRightOutlined,
+  ArrowRightOutlined
 } from "@ant-design/icons";
 import { Logo, LogoWithText } from "@/components/elements";
 import Link from "next/link";
@@ -44,7 +44,7 @@ const menus = [
   // { name: "algo", title: "Algo", icon: "" },
   // { name: "graph", title: "Graph", icon: "" },
   { name: "backtesting", title: "Backtesting", icon: "" },
-  { name: "portfolio-creator", title: "Portfolio Creator", icon: "" },
+  { name: "portfolio-creator", title: "Portfolio Creator", icon: "" }
   // { name: "amount", title: "$ 2,45,000", icon: "" },
   // { name: "notes", title: "Notes", icon: "" },
   // { name: "logs", title: "Logs", icon: "" },
@@ -62,20 +62,20 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({}) => {
       key: "1",
       label: "Profile",
       icon: <UserOutlined />,
-      onClick: () => router.push(`/${ROUTES.PROFILE}`),
+      onClick: () => router.push(`/${ROUTES.PROFILE}`)
     },
     {
       key: "2",
       label: "Settings",
       icon: <SettingOutlined />,
-      onClick: () => router.push(`/${ROUTES.SETTINGS}`),
+      onClick: () => router.push(`/${ROUTES.SETTINGS}`)
     },
     {
       key: "3",
       label: "Log Out",
       icon: <LogoutOutlined />,
-      onClick: () => dispatch(logOutAsync()),
-    },
+      onClick: () => dispatch(logOutAsync())
+    }
   ];
 
   const menuPressed = (name: string) => {
@@ -88,7 +88,8 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({}) => {
         return false;
       } else {
         const path = router.pathname.substring(1, router.pathname.length);
-        return path.includes(item?.name);
+        
+return path.includes(item?.name);
       }
     },
     [router.pathname]
@@ -107,14 +108,14 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({}) => {
     "Japanese princess to wed commoner.",
     "Australian walks 100km after outback crash.",
     "Man charged over missing wedding girl.",
-    "Los Angeles battles huge wildfires.",
+    "Los Angeles battles huge wildfires."
   ];
   const content = (
     <div
       id="scrollableDiv"
       style={{
         height: 400,
-        overflow: "auto",
+        overflow: "auto"
       }}
     >
       <List
@@ -136,7 +137,8 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({}) => {
       />
     </div>
   );
-  return (
+  
+return (
     <Row justify={"space-between"} align={"middle"}>
       <Col sm={1} xs={3}>
         <Space align="center" style={{ width: "100%" }}>

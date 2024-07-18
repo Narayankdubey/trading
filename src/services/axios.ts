@@ -3,6 +3,7 @@ import { notification } from "antd";
 import { STORAGE_KEY_CONSTANT, TOKEN_EXPIRE } from "../common/constants";
 import { getRefreshToken, getToken } from "@/utils/helper";
 import API_PATHS from "./apiPaths";
+
 const baseURL = "https://6d69-103-92-103-242.ngrok-free.app/api/v1";
 // const env = process.env.NEXT_PUBLIC_REACT_APP_ENV;
 // const { config } = require(`../config/${env}.config`);
@@ -12,10 +13,13 @@ const instance = axios.create({
   baseURL: baseURL,
   headers: {
     // authorization: "Bearer" + " " + getToken(),
-    authorization: "Bearer" + " " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJlbnRlcnByaXNlSUQiOiIxIiwidXNlcklEIjoiMSJ9.JEnvZlV_F5hXheKX17H8QkAzclKIXlHHmxjZVICDrNE",
+    authorization:
+      "Bearer" +
+      " " +
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJlbnRlcnByaXNlSUQiOiIxIiwidXNlcklEIjoiMSJ9.JEnvZlV_F5hXheKX17H8QkAzclKIXlHHmxjZVICDrNE",
     "ngrok-skip-browser-warning": "6555"
   },
-  timeout: 30 * 1000,
+  timeout: 30 * 1000
 });
 
 instance.interceptors.response.use(
@@ -42,10 +46,14 @@ instance.interceptors.response.use(
       error?.config?.url !== "/auth/logout"
     ) {
       notification.error({
-        message: error.response.data?.message || error.response?.statusText||"Something Went Wrong",
+        message:
+          error.response.data?.message ||
+          error.response?.statusText ||
+          "Something Went Wrong"
       });
     }
-    return Promise.reject(error);
+    
+return Promise.reject(error);
   }
 );
 
@@ -56,7 +64,8 @@ const fetchTokenToken = async () => {
     const { data } = res.data;
     localStorage.setItem(STORAGE_KEY_CONSTANT, data?.token?.accessToken);
     localStorage.setItem(TOKEN_EXPIRE, data?.token?.expiresIn);
-    return data?.token?.accessToken;
+    
+return data?.token?.accessToken;
   } catch (error) {}
 };
 

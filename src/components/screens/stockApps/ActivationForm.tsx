@@ -26,9 +26,9 @@ export const ActivationForm = (props) => {
         title: "Success",
         content: "Credentials submitted successfully.",
         okButtonProps: {
-          style: { backgroundColor: token.colorTextBase },
+          style: { backgroundColor: token.colorTextBase }
         },
-        onOk: () => router.push("/stock"),
+        onOk: () => router.push("/stock")
       });
     };
 
@@ -37,8 +37,8 @@ export const ActivationForm = (props) => {
         title: "Error",
         content: res?.error?.message || "Some error occured.",
         okButtonProps: {
-          style: { backgroundColor: token.colorTextBase },
-        },
+          style: { backgroundColor: token.colorTextBase }
+        }
       });
     };
 
@@ -68,7 +68,7 @@ export const ActivationForm = (props) => {
           <Button
             style={{
               marginRight: 5,
-              backgroundColor: token.colorTextBase,
+              backgroundColor: token.colorTextBase
             }}
             type="primary"
             htmlType="submit"

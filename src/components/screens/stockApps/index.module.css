@@ -1,54 +1,53 @@
 .listItem {
-    padding-left: 16px;
-    border-width: 2px;
+  padding-left: 16px;
+  border-width: 2px;
 }
 
 .listRow {
-    /* background-color: white; */
-    margin-top: 8px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  /* background-color: white; */
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .link {
-    color: royalblue;
+  color: royalblue;
 }
 
 .italic {
-font-style: italic;
+  font-style: italic;
 }
 
 .screen {
-   margin: 120px;
-   margin-top: 32px;
-   margin-bottom: 32px;
+  margin: 120px;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 .action {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 .actionButton {
-    background: linear-gradient(to right, purple, black);
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-    margin-right: 16px;
-
+  background: linear-gradient(to right, purple, black);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  margin-right: 16px;
 }
 
 .actionButton:hover {
-    background: linear-gradient(to right, black, purple);
+  background: linear-gradient(to right, black, purple);
 }
 
 .separator {
-    height: 4px;
-    width: 4px;
-    border-radius: 4px;
-    background-color: yellowgreen;
+  height: 4px;
+  width: 4px;
+  border-radius: 4px;
+  background-color: yellowgreen;
 }

@@ -6,19 +6,19 @@ export const auth: Resource = {
   ENDPOINTS: {
     SIGN_UP: {
       METHOD: Methods.POST,
-      URI: "sign-in",
+      URI: "sign-in"
     },
     SIGN_IN: {
       METHOD: Methods.POST,
-      URI: "sign-up",
+      URI: "sign-up"
     },
     SIGN_OUT: {
       METHOD: Methods.POST,
-      URI: "sign-out",
+      URI: "sign-out"
     },
     REFRESH_TOKEN: {
       METHOD: Methods.POST,
-      URI: "refresh-token",
-    },
-  },
+      URI: "refresh-token"
+    }
+  }
 };

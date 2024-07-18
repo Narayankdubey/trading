@@ -14,13 +14,13 @@ import {
   Space,
   Statistic,
   Table,
-  Typography,
+  Typography
 } from "antd";
 import React, { useEffect, useState } from "react";
 import type { ColumnsType } from "antd/es/table";
 import { CSVLink } from "react-csv";
 import { DoubleRightOutlined } from "@ant-design/icons";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 import PageHeader from "@/components/elements/PageHeader";
 import { createColumns } from "@/utils/helper";
@@ -44,8 +44,8 @@ const Insights = ({ data, loading }: insightsProps) => (
       style={{
         flexDirection: "column",
         margin: 8,
-        height: `calc(100vh - 160px)`,
-        overflow: "auto",
+        height: "calc(100vh - 160px)",
+        overflow: "auto"
       }}
     >
       {Object.keys(data).length > 0 ? (
@@ -81,11 +81,11 @@ const { Option } = Select;
 
 const ResultContainer = () => {
   const dispatch = useAppDispatch();
-  const router = useRouter()
-  const { id } = router.query
+  const router = useRouter();
+  const { id } = router.query;
 
   const [filterData, setFilterData] = useState({
-    headers: [],
+    headers: []
   });
   const [repoRtsOpen, setRepoRtsOpen] = useState(true);
 
@@ -114,12 +114,12 @@ const ResultContainer = () => {
     </CSVLink>,
     <Button key="1" onClick={() => setRepoRtsOpen((old) => !old)}>
       Repo Rts
-    </Button>,
+    </Button>
   ];
 
   useEffect(() => {
     dispatch(getRunData(id));
-  }, [dispatch,id]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     setFilterData((old) => ({ ...old, headers: runData.columns || [] }));
@@ -142,7 +142,7 @@ const ResultContainer = () => {
               style={{
                 width: "100%",
                 maxHeight: "calc(100vh - 70px)",
-                overflow: "auto",
+                overflow: "auto"
               }}
               className="styledScrollBar"
               dataSource={runData?.columns?.toSorted() || []}
@@ -183,11 +183,13 @@ const ResultContainer = () => {
             <Table
               loading={loading}
               columns={columns || []}
-              dataSource={Array.isArray(runData?.records || [])? runData?.records :[]}
-              scroll={{ x: 300, y: `calc(100vh - 300px)` }}
+              dataSource={
+                Array.isArray(runData?.records || []) ? runData?.records : []
+              }
+              scroll={{ x: 300, y: "calc(100vh - 300px)" }}
               sticky={{ offsetHeader: 64 }}
               pagination={{
-                defaultPageSize: 100,
+                defaultPageSize: 100
               }}
             />
           </Flex>
@@ -205,7 +207,7 @@ const ResultContainer = () => {
         onCollapse={() => setRepoRtsOpen(false)}
         style={{
           height: "calc(100vh - 70px)",
-          marginLeft: 5,
+          marginLeft: 5
         }}
       >
         <Flex justify="space-between" align="center" style={{ padding: 5 }}>

@@ -17,7 +17,7 @@ const accData = [
     provider: "ICICI",
     clientId: "",
     clientName: "",
-    createdAt: "2024-06-22T20:27:04.690075600Z",
+    createdAt: "2024-06-22T20:27:04.690075600Z"
   },
   {
     integrationId: "13",
@@ -25,8 +25,8 @@ const accData = [
     provider: "ICICI",
     clientId: "AH059385",
     clientName: "AH059385",
-    createdAt: "2024-06-22T20:27:04.690080400Z",
-  },
+    createdAt: "2024-06-22T20:27:04.690080400Z"
+  }
 ];
 
 export const ConnAppsList: React.FC = () => {
@@ -40,7 +40,7 @@ export const ConnAppsList: React.FC = () => {
   useEffect(() => {
     dispatch(getConnectedAcc());
     setInitLoading(false);
-  }, []);
+  }, [dispatch]);
 
   const onActive = () => {};
 
@@ -78,13 +78,13 @@ export const ConnAppsList: React.FC = () => {
               marginTop: "8px",
               marginBottom: "8px",
               borderRadius: "4px",
-              boxShadow: `5px 5px 10px rgba(0, 0, 0, 0.2)`,
+              boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.2)"
             }}
             actions={[
               <div key={"action"} className={styles.italic}>
                 created on {moment(item.createdAt).format("DD MMM YYYY")}
               </div>,
-              <Switch defaultChecked onChange={onActive} />,
+              <Switch key={"switch"} defaultChecked onChange={onActive} />
             ]}
           >
             <Skeleton title={false} loading={item.loading} active>

@@ -11,7 +11,7 @@ import {
   Row,
   Select,
   Space,
-  Steps,
+  Steps
 } from "antd";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -118,12 +118,12 @@ const Form1 = () => {
                         {optKeyValue([
                           {
                             label: "Absolute",
-                            value: "ABS",
+                            value: "ABS"
                           },
                           {
                             label: "Relative",
-                            value: "REL",
-                          },
+                            value: "REL"
+                          }
                         ])}
                       </Select>
                     }
@@ -138,16 +138,16 @@ const Form1 = () => {
                         {optKeyValue([
                           {
                             label: "ATM",
-                            value: "atm",
+                            value: "atm"
                           },
                           {
                             label: "Delta",
-                            value: "delta",
+                            value: "delta"
                           },
                           {
                             label: "Premium",
-                            value: "premium",
-                          },
+                            value: "premium"
+                          }
                         ])}
                       </Select>
                     </Form.Item>
@@ -161,8 +161,8 @@ const Form1 = () => {
                       {optKeyValue([
                         {
                           label: "Spot",
-                          value: "SPT",
-                        },
+                          value: "SPT"
+                        }
                       ])}
                     </Select>
                   </Form.Item>
@@ -290,12 +290,13 @@ const Form2 = ({ step }: { step: number }) => (
               </Form.Item>
             </Row>
           ))}
-          <Flex justify="center" style={{margin: 40}}>
-          {fields?.length === 0 && (
-            <Button icon={<PlusOutlined />} onClick={() => add()}>
-              Add
-            </Button>
-          )}</Flex>
+          <Flex justify="center" style={{ margin: 40 }}>
+            {fields?.length === 0 && (
+              <Button icon={<PlusOutlined />} onClick={() => add()}>
+                Add
+              </Button>
+            )}
+          </Flex>
         </>
       )}
     </Form.List>
@@ -324,7 +325,6 @@ const PortfolioCreatorContainer = (props: Props) => {
       if (step < 1) setStep((old) => old + 1);
       else form.submit();
     } catch (e) {
-      console.log(e, "e");
     }
   };
 
@@ -333,15 +333,13 @@ const PortfolioCreatorContainer = (props: Props) => {
       ...values,
       equityFormulation: values?.equityFormulation?.map((item) =>
         item?.ratio ? { ...item, ratio: parseInt(item?.ratio) } : item
-      ),
+      )
     };
     const res = dispatch(addPortfolio({ formedData: formatted }));
-    console.log(res, "res");
   };
 
   useEffect(() => {
     if (id) {
-      console.log(id, "with id");
     }
   }, [id]);
 
@@ -355,12 +353,12 @@ const PortfolioCreatorContainer = (props: Props) => {
         items={[
           {
             status: "process",
-            title: "Step 1",
+            title: "Step 1"
           },
           {
             status: "finish",
-            title: "Step 2",
-          },
+            title: "Step 2"
+          }
         ]}
       />
       <Flex justify="center">
@@ -373,7 +371,7 @@ const PortfolioCreatorContainer = (props: Props) => {
           style={{
             maxWidth: firstStep ? 600 : "none",
             padding: 8,
-            width: "100%",
+            width: "100%"
           }}
           initialValues={{ remember: true }}
           onFinish={firstStep ? () => {} : onFinish}

@@ -13,5 +13,5 @@ export {
   SettingsContainer,
   GraphContainer,
   TradingContainer,
-  ProfileContainer,
+  ProfileContainer
 };

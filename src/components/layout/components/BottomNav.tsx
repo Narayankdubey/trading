@@ -12,7 +12,7 @@ const menus = [
   { name: "backtesting", title: "Backtesting", icon: "" },
   { name: "amount", title: "$ 2,45,000", icon: "" },
   { name: "notes", title: "Notes", icon: "" },
-  { name: "logs", title: "Logs", icon: "" },
+  { name: "logs", title: "Logs", icon: "" }
 ];
 export const BottomNav: FC<BottomNavProps> = ({ setDartMode }) => {
   const router = useRouter();
@@ -27,7 +27,8 @@ export const BottomNav: FC<BottomNavProps> = ({ setDartMode }) => {
         return false;
       } else {
         const path = router.pathname.substring(1, router.pathname.length);
-        return path.includes(item?.name);
+        
+return path.includes(item?.name);
       }
     },
     [router.pathname]

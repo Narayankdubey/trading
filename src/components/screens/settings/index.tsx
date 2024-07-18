@@ -15,7 +15,7 @@ const SettingsContainer: FC<SettingsProps> = ({}) => {
         </span>
       ),
       children: <div>Account Setting</div>,
-      key: "account",
+      key: "account"
     },
     {
       label: (
@@ -25,10 +25,11 @@ const SettingsContainer: FC<SettingsProps> = ({}) => {
       ),
       icon: "",
       children: <UiSetting />,
-      key: "ui",
-    },
+      key: "ui"
+    }
   ];
-  return <Tabs className="m-5" tabPosition={"left"} items={tabs} />;
+  
+return <Tabs className="m-5" tabPosition={"left"} items={tabs} />;
 };
 
 export default SettingsContainer;

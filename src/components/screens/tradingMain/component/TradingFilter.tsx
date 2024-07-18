@@ -9,7 +9,6 @@ interface TradingFilterProps {
 }
 
 const TradingFilter: FC<TradingFilterProps> = ({ data }) => {
-
   const Header = ({ item }: any) => (
     <Typography.Text className={"fontWeight600"}>
       {item?.name?.toUpperCase()}
@@ -22,7 +21,7 @@ const TradingFilter: FC<TradingFilterProps> = ({ data }) => {
       style={{
         width: "100%",
         maxHeight: "calc(100vh - 74px)",
-        overflow: "auto",
+        overflow: "auto"
       }}
     >
       <Card size="small">Filter</Card>

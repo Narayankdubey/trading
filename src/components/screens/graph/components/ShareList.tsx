@@ -7,7 +7,7 @@ const dummyData = [
   { name: "HDFC", icon: "H", percentange: 20, quantity: 2700 },
   { name: "ICICI", icon: "I", percentange: 10, quantity: 20 },
   { name: "NMDC", icon: "N", percentange: 50, quantity: 500 },
-  { name: "TCS", icon: "T", percentange: 20, quantity: 70 },
+  { name: "TCS", icon: "T", percentange: 20, quantity: 70 }
   //   { name: "INFOSYS", icon: "I", percentange: 50, quantity: 90 },
   //   { name: "HDFC LIFE", icon: "H", percentange: 10, quantity: 100 },
 ];
@@ -25,7 +25,7 @@ const Shares: FC<SharesProps> = ({
   icon,
   percentage,
   quantity,
-  setDisplayChart,
+  setDisplayChart
 }) => {
   return (
     <div onClick={() => setDisplayChart(name)} style={{ cursor: "pointer" }}>
@@ -57,7 +57,8 @@ export const ShareList: FC<ShareListProps> = ({ setDisplayChart }) => {
   const viewMoreClick = () => {
     router.push(ROUTES.TRADING);
   };
-  return (
+  
+return (
     <Card title="Watchlist" size="small">
       {dummyData.map((item) => (
         <Shares

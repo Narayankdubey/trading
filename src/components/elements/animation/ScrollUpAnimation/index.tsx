@@ -6,7 +6,7 @@ interface Props {
 
 const cardVariants: Variants = {
   offscreen: {
-    y: 300,
+    y: 300
   },
   onscreen: {
     y: 0,
@@ -14,11 +14,10 @@ const cardVariants: Variants = {
     transition: {
       type: "spring",
       bounce: 0.4,
-      duration: 0.8,
-    },
-  },
+      duration: 0.8
+    }
+  }
 };
-
 
 export default function ScrollUpAnimation({ children }: Props) {
   return (

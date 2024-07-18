@@ -10,7 +10,7 @@ import {
   Form,
   Input,
   Select,
-  DatePicker,
+  DatePicker
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import type { FormInstance } from "antd/es/form";
@@ -31,7 +31,7 @@ const StrategyModal = ({
   isStrategyModalOpen,
   setIsStrategyModalOpen,
   strategyId,
-  setStrategyId,
+  setStrategyId
 }: Props) => {
   const formRef = React.useRef<FormInstance>(null);
 
@@ -119,14 +119,14 @@ const StrategyModal = ({
   };
 
   const onFinish = (values: any) => {
-    console.log("Success:", values);
   };
 
   useEffect(() => {
     const formRefTemp = formRef.current;
     if (strategyId) {
     }
-    return () => {
+    
+return () => {
       formRefTemp?.setFieldsValue({});
       setStrategyId("");
     };
@@ -154,7 +154,7 @@ const StrategyModal = ({
                 <Form.Item
                   name="title"
                   rules={[
-                    { required: true, message: "Please input your Title!" },
+                    { required: true, message: "Please input your Title!" }
                   ]}
                 >
                   <Input placeholder="Title" />
@@ -186,7 +186,7 @@ const StrategyModal = ({
               style={{
                 maxHeight: "calc(100vh - 200px)",
                 minHeight: "calc(100vh - 300px)",
-                overflow: "auto",
+                overflow: "auto"
               }}
             >
               <Row>
@@ -239,7 +239,7 @@ const StrategyModal = ({
                               style={{
                                 display: "flex",
                                 justifyContent: "flex-end",
-                                alignItems: "baseline",
+                                alignItems: "baseline"
                               }}
                             >
                               <MinusCircleOutlined

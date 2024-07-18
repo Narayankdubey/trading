@@ -11,7 +11,7 @@ export const store = configureStore({
     appSlice,
     backtestingSlice,
     porfolioSlice
-  },
+  }
 });
 
 export type AppDispatch = typeof store.dispatch;

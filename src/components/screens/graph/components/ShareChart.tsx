@@ -1,13 +1,14 @@
 import { Card, Col, Row, Typography } from "antd";
 import React, { FC, useEffect, useState } from "react";
 import Chart from "react-google-charts";
+
 const data = [
   ["day", "a", "b", "c", "d"],
   ["Mon", 20, 28, 38, 45],
   ["Tue", 31, 38, 55, 66],
   ["Wed", 50, 55, 77, 80],
   ["Thu", 77, 77, 66, 50],
-  ["Fri", 68, 66, 22, 15],
+  ["Fri", 68, 66, 22, 15]
 ];
 
 interface ShareChartProps {
@@ -40,7 +41,7 @@ const ShareChart: FC<ShareChartProps> = ({ displayChart }) => {
                   options={{
                     legend: "none",
                     backgroundColor: "#141414",
-                    color: "white",
+                    color: "white"
                   }}
                   rootProps={{ "data-testid": "1" }}
                 />

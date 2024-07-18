@@ -10,7 +10,7 @@ export const strategiesListMock = {
       author: null,
       orderList: [],
       signals: [],
-      status: "CREATED",
+      status: "CREATED"
     },
     {
       id: 2,
@@ -20,13 +20,13 @@ export const strategiesListMock = {
         {
           buy: 11,
           sell: 7,
-          symbol: "TATA",
+          symbol: "TATA"
         },
         {
           buy: 8,
           sell: 3,
-          symbol: "REL",
-        },
+          symbol: "REL"
+        }
       ],
       signals: [
         {
@@ -40,7 +40,7 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
               param2: {
                 end: "",
@@ -50,12 +50,12 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
-              operator: "GT",
-            },
+              operator: "GT"
+            }
           ],
-          transaction: "BUY",
+          transaction: "BUY"
         },
         {
           conditions: [
@@ -68,7 +68,7 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
               param2: {
                 end: "",
@@ -79,15 +79,15 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
-              operator: "LT",
-            },
+              operator: "LT"
+            }
           ],
-          transaction: "SELL",
-        },
+          transaction: "SELL"
+        }
       ],
-      status: "CREATED",
+      status: "CREATED"
     },
     {
       id: 3,
@@ -97,13 +97,13 @@ export const strategiesListMock = {
         {
           buy: 11,
           sell: 7,
-          symbol: "TATA",
+          symbol: "TATA"
         },
         {
           buy: 8,
           sell: 3,
-          symbol: "REL",
-        },
+          symbol: "REL"
+        }
       ],
       signals: [
         {
@@ -117,7 +117,7 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
               param2: {
                 end: "",
@@ -127,12 +127,12 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
-              operator: "GT",
-            },
+              operator: "GT"
+            }
           ],
-          transaction: "BUY",
+          transaction: "BUY"
         },
         {
           conditions: [
@@ -145,7 +145,7 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
               param2: {
                 end: "",
@@ -156,15 +156,15 @@ export const strategiesListMock = {
                 symbol: "SBIN",
                 attribute: "close",
                 indicator: "SMA",
-                timeframe: "",
+                timeframe: ""
               },
-              operator: "LT",
-            },
+              operator: "LT"
+            }
           ],
-          transaction: "SELL",
-        },
+          transaction: "SELL"
+        }
       ],
-      status: "CREATED",
+      status: "CREATED"
     },
     {
       id: 4,
@@ -172,7 +172,7 @@ export const strategiesListMock = {
       author: null,
       orderList: [],
       signals: [],
-      status: "Processing",
+      status: "Processing"
     },
     {
       id: 5,
@@ -180,9 +180,9 @@ export const strategiesListMock = {
       author: null,
       orderList: [],
       signals: [],
-      status: "completed",
-    },
-  ],
+      status: "completed"
+    }
+  ]
 };
 
 export const strategiesMock = {
@@ -192,13 +192,13 @@ export const strategiesMock = {
     {
       symbol: "TATA",
       buy: 11,
-      sell: 7,
+      sell: 7
     },
     {
       symbol: "REL",
       buy: 8,
-      sell: 3,
-    },
+      sell: 3
+    }
   ],
   signals: [
     {
@@ -213,7 +213,7 @@ export const strategiesMock = {
             type: "IND",
             attribute: "close",
             indicator: "SMA",
-            period: 5,
+            period: 5
           },
           operator: "GT",
           param2: {
@@ -224,10 +224,10 @@ export const strategiesMock = {
             type: "IND",
             attribute: "close",
             indicator: "SMA",
-            period: 10,
-          },
-        },
-      ],
+            period: 10
+          }
+        }
+      ]
     },
     {
       transaction: "SELL",
@@ -241,7 +241,7 @@ export const strategiesMock = {
             type: "ATT",
             attribute: "close",
             indicator: "SMA",
-            period: 5,
+            period: 5
           },
           operator: "LT",
           param2: {
@@ -253,12 +253,12 @@ export const strategiesMock = {
             attribute: "close",
             indicator: "SMA",
             period: 10,
-            value: 1.95,
-          },
-        },
-      ],
-    },
-  ],
+            value: 1.95
+          }
+        }
+      ]
+    }
+  ]
 };
 
 export const runDataMock = {
@@ -292,13 +292,13 @@ export const runDataMock = {
     "calc/ABB.2/19B:S9",
     "cash",
     "pnl",
-    "profit",
+    "profit"
   ],
   insights: {
     "Overall Profit and Loss": -590.979999999865,
     "Total days": 52,
     "Maximum Profit": 44.19999999983702,
-    "Maximum Loss": -84.35999999998603,
+    "Maximum Loss": -84.35999999998603
   },
   records: [
     {
@@ -320,7 +320,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 36.86,
       cash: 999926.28,
       pnl: -73.72,
-      profit: -0.0073725435,
+      profit: -0.0073725435
     },
     {
       "Unnamed: 0": 1,
@@ -341,7 +341,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 17.01,
       cash: 999964.08,
       pnl: -35.92,
-      profit: -0.003592129,
+      profit: -0.003592129
     },
     {
       "Unnamed: 0": 2,
@@ -362,7 +362,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999964.08,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 3,
@@ -383,7 +383,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999964.08,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 4,
@@ -404,7 +404,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999964.08,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 5,
@@ -425,7 +425,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 37.05,
       cash: 999889.98,
       pnl: -110.02,
-      profit: -0.0110032106,
+      profit: -0.0110032106
     },
     {
       "Unnamed: 0": 6,
@@ -446,7 +446,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 17.64,
       cash: 999929.1800000001,
       pnl: -70.82,
-      profit: -0.0070825016,
+      profit: -0.0070825016
     },
     {
       "Unnamed: 0": 7,
@@ -467,7 +467,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999929.1800000001,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 8,
@@ -488,7 +488,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999929.1800000001,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 9,
@@ -509,7 +509,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999929.1800000001,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 10,
@@ -530,7 +530,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999929.1800000001,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 11,
@@ -551,7 +551,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999929.1800000001,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 12,
@@ -572,7 +572,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999929.1800000001,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 13,
@@ -593,7 +593,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 37.43,
       cash: 999854.3199999999,
       pnl: -145.68,
-      profit: -0.0145701226,
+      profit: -0.0145701226
     },
     {
       "Unnamed: 0": 14,
@@ -614,7 +614,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 17.28,
       cash: 999892.72,
       pnl: -107.28,
-      profit: -0.010729151,
+      profit: -0.010729151
     },
     {
       "Unnamed: 0": 15,
@@ -635,7 +635,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 16,
@@ -656,7 +656,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 17,
@@ -677,7 +677,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 18,
@@ -698,7 +698,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 19,
@@ -719,7 +719,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 20,
@@ -740,7 +740,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 21,
@@ -761,7 +761,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 22,
@@ -782,7 +782,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 23,
@@ -803,7 +803,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999892.72,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 24,
@@ -824,7 +824,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 36.67,
       cash: 999819.38,
       pnl: -180.62,
-      profit: -0.0180652629,
+      profit: -0.0180652629
     },
     {
       "Unnamed: 0": 25,
@@ -845,7 +845,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 17.55,
       cash: 999858.38,
       pnl: -141.62,
-      profit: -0.0141640059,
+      profit: -0.0141640059
     },
     {
       "Unnamed: 0": 26,
@@ -866,7 +866,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 37.05,
       cash: 999784.28,
       pnl: -215.72,
-      profit: -0.0215766545,
+      profit: -0.0215766545
     },
     {
       "Unnamed: 0": 27,
@@ -887,7 +887,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 17.46,
       cash: 999823.0800000002,
       pnl: -176.92,
-      profit: -0.0176951306,
+      profit: -0.0176951306
     },
     {
       "Unnamed: 0": 28,
@@ -908,7 +908,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": null,
       cash: 999823.0800000002,
       pnl: null,
-      profit: null,
+      profit: null
     },
     {
       "Unnamed: 0": 29,
@@ -929,7 +929,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 37.05,
       cash: 999748.9800000002,
       pnl: -251.02,
-      profit: -0.0251083027,
+      profit: -0.0251083027
     },
     {
       "Unnamed: 0": 30,
@@ -950,7 +950,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 17.73,
       cash: 999788.3800000002,
       pnl: -211.62,
-      profit: -0.0211664793,
+      profit: -0.0211664793
     },
     {
       "Unnamed: 0": 31,
@@ -971,7 +971,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 36.86,
       cash: 999714.6600000004,
       pnl: -285.34,
-      profit: -0.0285421442,
+      profit: -0.0285421442
     },
     {
       "Unnamed: 0": 32,
@@ -992,7 +992,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 18.09,
       cash: 999754.8600000002,
       pnl: -245.14,
-      profit: -0.0245200108,
+      profit: -0.0245200108
     },
     {
       "Unnamed: 0": 33,
@@ -1013,7 +1013,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 38.38,
       cash: 999678.1000000002,
       pnl: -321.9,
-      profit: -0.0322003653,
+      profit: -0.0322003653
     },
     {
       "Unnamed: 0": 34,
@@ -1034,7 +1034,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 18.18,
       cash: 999718.5000000002,
       pnl: -281.5,
-      profit: -0.0281579265,
+      profit: -0.0281579265
     },
     {
       "Unnamed: 0": 35,
@@ -1055,7 +1055,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 38.38,
       cash: 999641.7400000002,
       pnl: -358.26,
-      profit: -0.0358388396,
+      profit: -0.0358388396
     },
     {
       "Unnamed: 0": 36,
@@ -1076,7 +1076,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 18.81,
       cash: 999683.5400000004,
       pnl: -316.46,
-      profit: -0.0316560179,
+      profit: -0.0316560179
     },
     {
       "Unnamed: 0": 37,
@@ -1097,7 +1097,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 39.33,
       cash: 999604.8800000002,
       pnl: -395.12,
-      profit: -0.0395276182,
+      profit: -0.0395276182
     },
     {
       "Unnamed: 0": 38,
@@ -1118,7 +1118,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 18.18,
       cash: 999645.2800000004,
       pnl: -354.72,
-      profit: -0.0354845871,
+      profit: -0.0354845871
     },
     {
       "Unnamed: 0": 39,
@@ -1139,7 +1139,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 38.57,
       cash: 999568.1400000002,
       pnl: -431.86,
-      profit: -0.0432046584,
+      profit: -0.0432046584
     },
     {
       "Unnamed: 0": 40,
@@ -1160,7 +1160,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 18.72,
       cash: 999609.7400000002,
       pnl: -390.26,
-      profit: -0.0390412362,
+      profit: -0.0390412362
     },
     {
       "Unnamed: 0": 41,
@@ -1181,7 +1181,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 39.52,
       cash: 999530.7000000002,
       pnl: -469.3,
-      profit: -0.0469520346,
+      profit: -0.0469520346
     },
     {
       "Unnamed: 0": 42,
@@ -1202,7 +1202,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 18.72,
       cash: 999572.3000000002,
       pnl: -427.7,
-      profit: -0.0427883006,
+      profit: -0.0427883006
     },
     {
       "Unnamed: 0": 43,
@@ -1223,7 +1223,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 40.85,
       cash: 999490.6000000002,
       pnl: -509.4,
-      profit: -0.0509659621,
+      profit: -0.0509659621
     },
     {
       "Unnamed: 0": 44,
@@ -1244,7 +1244,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 19.17,
       cash: 999533.2000000002,
       pnl: -466.8,
-      profit: -0.0467018004,
+      profit: -0.0467018004
     },
     {
       "Unnamed: 0": 45,
@@ -1265,7 +1265,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 40.28,
       cash: 999452.64,
       pnl: -547.36,
-      profit: -0.0547659767,
+      profit: -0.0547659767
     },
     {
       "Unnamed: 0": 46,
@@ -1286,7 +1286,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 19.35,
       cash: 999495.64,
       pnl: -504.36,
-      profit: -0.0504614507,
+      profit: -0.0504614507
     },
     {
       "Unnamed: 0": 47,
@@ -1307,7 +1307,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 40.85,
       cash: 999413.9400000002,
       pnl: -586.06,
-      profit: -0.0586403668,
+      profit: -0.0586403668
     },
     {
       "Unnamed: 0": 48,
@@ -1328,7 +1328,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 19.62,
       cash: 999457.5400000002,
       pnl: -542.46,
-      profit: -0.0542754423,
+      profit: -0.0542754423
     },
     {
       "Unnamed: 0": 49,
@@ -1349,7 +1349,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 42.18,
       cash: 999373.1800000002,
       pnl: -626.82,
-      profit: -0.062721315,
+      profit: -0.062721315
     },
     {
       "Unnamed: 0": 50,
@@ -1370,7 +1370,7 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 19.89,
       cash: 999417.38,
       pnl: -582.62,
-      profit: -0.0582959644,
+      profit: -0.0582959644
     },
     {
       "Unnamed: 0": 51,
@@ -1391,9 +1391,9 @@ export const runDataMock = {
       "calc/ABB.2/19B:S9": 41.04,
       cash: 999335.3000000002,
       pnl: -664.7,
-      profit: -0.066514212,
-    },
-  ],
+      profit: -0.066514212
+    }
+  ]
 };
 
 export const historyDataMock = {
@@ -1412,7 +1412,7 @@ export const historyDataMock = {
       end: "",
       location: "backtest_7635d4dd-abbf-4155-aac7-fd67a8a28c1c",
       profit: null,
-      status: "CREATED",
+      status: "CREATED"
     },
     {
       id: 3,
@@ -1424,7 +1424,7 @@ export const historyDataMock = {
       end: "",
       location: "backtest_30201a4d-d952-4925-a52f-e7150bca1e8b",
       profit: null,
-      status: "CREATED",
+      status: "CREATED"
     },
     {
       id: 4,
@@ -1436,7 +1436,7 @@ export const historyDataMock = {
       end: "",
       location: "backtest_dcfe381b-997e-464a-bbdd-7dbe8efd048d",
       profit: null,
-      status: "CREATED",
+      status: "CREATED"
     },
     {
       id: 5,
@@ -1448,7 +1448,7 @@ export const historyDataMock = {
       end: "",
       location: "backtest_04013c31-63d7-4dcf-b37c-bc859967c7a4",
       profit: null,
-      status: "CREATED",
+      status: "CREATED"
     },
     {
       id: 6,
@@ -1460,9 +1460,9 @@ export const historyDataMock = {
       end: "",
       location: "backtest_b884529b-54fe-415b-9da1-5687331855d7",
       profit: null,
-      status: "CREATED",
-    },
-  ],
+      status: "CREATED"
+    }
+  ]
 };
 
 export const loginDataMock = {
@@ -1473,7 +1473,7 @@ export const loginDataMock = {
       userId: 1,
       email: "user1@email.com",
       name: "User1",
-      role: "super-admin",
+      role: "super-admin"
     },
     authToken: {
       type: "Bearer",
@@ -1482,180 +1482,180 @@ export const loginDataMock = {
       expiresIn: 604800,
       expiresAt: 1703954721085,
       refreshToken:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb25JZCI6bnVsbCwidXNlcklkIjoxLCJuYW1lIjoiVXNlcjEiLCJyb2xlIjoic3VwZXItYWRtaW4iLCJpYXQiOjE3MDM5NTQxMTYsImV4cCI6MTcwNDU1ODkxNn0.r3jcIbQsMSlag0pK_oMQ6dAaKl-MVFtNiR9OxvhKMdM",
-    },
-  },
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb25JZCI6bnVsbCwidXNlcklkIjoxLCJuYW1lIjoiVXNlcjEiLCJyb2xlIjoic3VwZXItYWRtaW4iLCJpYXQiOjE3MDM5NTQxMTYsImV4cCI6MTcwNDU1ODkxNn0.r3jcIbQsMSlag0pK_oMQ6dAaKl-MVFtNiR9OxvhKMdM"
+    }
+  }
 };
 
 export const blendsMock = {
-    "page": 2,
-    "size": 10,
-    "total": 15,
-    "data": [
-      {
-        "id": 5,
-        "title": "nifty-fin-01",
-        "description": "only nifty financial head 100",
-        "strikeType": "",
-        "priceType": "",
-        "createdBy": "1",
-        "enterpriseID": "1",
-        "versions": [
-          {
-            "version_number": 1,
-            "title": "V1",
-            "equityFormulation": [
-              {
-                "priority": 0,
-                "instrument": "SBIN",
-                "ratio": -2
-              },
-              {
-                "priority": 1,
-                "instrument": "TATA",
-                "ratio": -2
-              },
-              {
-                "priority": 2,
-                "instrument": "REL",
-                "ratio": -2
-              }
-            ],
-            "futureFormulation": null
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "title": "nifty-fin-01",
-        "description": "only nifty financial head 100",
-        "strikeType": "",
-        "priceType": "",
-        "createdBy": "1",
-        "enterpriseID": "1",
-        "versions": [
-          {
-            "version_number": 1,
-            "title": "V1",
-            "equityFormulation": [
-              {
-                "priority": 0,
-                "instrument": "SBIN",
-                "ratio": -2
-              },
-              {
-                "priority": 1,
-                "instrument": "TATA",
-                "ratio": -2
-              },
-              {
-                "priority": 2,
-                "instrument": "REL",
-                "ratio": -2
-              }
-            ],
-            "futureFormulation": null
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "title": "nifty-fin-01",
-        "description": "only nifty financial head 100",
-        "strikeType": "",
-        "priceType": "",
-        "createdBy": "1",
-        "enterpriseID": "1",
-        "versions": [
-          {
-            "version_number": 1,
-            "title": "V1",
-            "equityFormulation": [
-              {
-                "priority": 0,
-                "instrument": "SBIN",
-                "ratio": -2
-              },
-              {
-                "priority": 1,
-                "instrument": "TATA",
-                "ratio": -2
-              },
-              {
-                "priority": 2,
-                "instrument": "REL",
-                "ratio": -2
-              }
-            ],
-            "futureFormulation": null
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "title": "nifty-fin-01",
-        "description": "only nifty financial head 100",
-        "strikeType": "",
-        "priceType": "",
-        "createdBy": "1",
-        "enterpriseID": "1",
-        "versions": [
-          {
-            "version_number": 1,
-            "title": "V1",
-            "equityFormulation": [
-              {
-                "priority": 0,
-                "instrument": "SBIN",
-                "ratio": -2
-              },
-              {
-                "priority": 1,
-                "instrument": "TATA",
-                "ratio": -2
-              },
-              {
-                "priority": 2,
-                "instrument": "REL",
-                "ratio": -2
-              }
-            ],
-            "futureFormulation": null
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "title": "nifty-fin-01",
-        "description": "only nifty financial head 100",
-        "strikeType": "",
-        "priceType": "",
-        "createdBy": "1",
-        "enterpriseID": "1",
-        "versions": [
-          {
-            "version_number": 1,
-            "title": "V1",
-            "equityFormulation": [
-              {
-                "priority": 0,
-                "instrument": "SBIN",
-                "ratio": -2
-              },
-              {
-                "priority": 1,
-                "instrument": "TATA",
-                "ratio": -2
-              },
-              {
-                "priority": 2,
-                "instrument": "REL",
-                "ratio": -2
-              }
-            ],
-            "futureFormulation": null
-          }
-        ]
-      }
-    ]
-  }
+  page: 2,
+  size: 10,
+  total: 15,
+  data: [
+    {
+      id: 5,
+      title: "nifty-fin-01",
+      description: "only nifty financial head 100",
+      strikeType: "",
+      priceType: "",
+      createdBy: "1",
+      enterpriseID: "1",
+      versions: [
+        {
+          version_number: 1,
+          title: "V1",
+          equityFormulation: [
+            {
+              priority: 0,
+              instrument: "SBIN",
+              ratio: -2
+            },
+            {
+              priority: 1,
+              instrument: "TATA",
+              ratio: -2
+            },
+            {
+              priority: 2,
+              instrument: "REL",
+              ratio: -2
+            }
+          ],
+          futureFormulation: null
+        }
+      ]
+    },
+    {
+      id: 4,
+      title: "nifty-fin-01",
+      description: "only nifty financial head 100",
+      strikeType: "",
+      priceType: "",
+      createdBy: "1",
+      enterpriseID: "1",
+      versions: [
+        {
+          version_number: 1,
+          title: "V1",
+          equityFormulation: [
+            {
+              priority: 0,
+              instrument: "SBIN",
+              ratio: -2
+            },
+            {
+              priority: 1,
+              instrument: "TATA",
+              ratio: -2
+            },
+            {
+              priority: 2,
+              instrument: "REL",
+              ratio: -2
+            }
+          ],
+          futureFormulation: null
+        }
+      ]
+    },
+    {
+      id: 3,
+      title: "nifty-fin-01",
+      description: "only nifty financial head 100",
+      strikeType: "",
+      priceType: "",
+      createdBy: "1",
+      enterpriseID: "1",
+      versions: [
+        {
+          version_number: 1,
+          title: "V1",
+          equityFormulation: [
+            {
+              priority: 0,
+              instrument: "SBIN",
+              ratio: -2
+            },
+            {
+              priority: 1,
+              instrument: "TATA",
+              ratio: -2
+            },
+            {
+              priority: 2,
+              instrument: "REL",
+              ratio: -2
+            }
+          ],
+          futureFormulation: null
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: "nifty-fin-01",
+      description: "only nifty financial head 100",
+      strikeType: "",
+      priceType: "",
+      createdBy: "1",
+      enterpriseID: "1",
+      versions: [
+        {
+          version_number: 1,
+          title: "V1",
+          equityFormulation: [
+            {
+              priority: 0,
+              instrument: "SBIN",
+              ratio: -2
+            },
+            {
+              priority: 1,
+              instrument: "TATA",
+              ratio: -2
+            },
+            {
+              priority: 2,
+              instrument: "REL",
+              ratio: -2
+            }
+          ],
+          futureFormulation: null
+        }
+      ]
+    },
+    {
+      id: 1,
+      title: "nifty-fin-01",
+      description: "only nifty financial head 100",
+      strikeType: "",
+      priceType: "",
+      createdBy: "1",
+      enterpriseID: "1",
+      versions: [
+        {
+          version_number: 1,
+          title: "V1",
+          equityFormulation: [
+            {
+              priority: 0,
+              instrument: "SBIN",
+              ratio: -2
+            },
+            {
+              priority: 1,
+              instrument: "TATA",
+              ratio: -2
+            },
+            {
+              priority: 2,
+              instrument: "REL",
+              ratio: -2
+            }
+          ],
+          futureFormulation: null
+        }
+      ]
+    }
+  ]
+};

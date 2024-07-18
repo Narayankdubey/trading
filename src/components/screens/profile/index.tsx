@@ -42,11 +42,13 @@ const ProfileContainer = (props: Props) => {
         </Card>
       </Col>
       <Col span={16}>
-        <Space direction="vertical" style={{width:"100%"}}>
-
-
-                    <Card title='card 1' style={{height:"50vh"}}>1</Card>
-                    <Card title='card 2' style={{height:"30vh"}}>2</Card>
+        <Space direction="vertical" style={{ width: "100%" }}>
+          <Card title="card 1" style={{ height: "50vh" }}>
+            1
+          </Card>
+          <Card title="card 2" style={{ height: "30vh" }}>
+            2
+          </Card>
         </Space>
       </Col>
     </Row>

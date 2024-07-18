@@ -13,8 +13,8 @@ const selectItems = [
       { value: "jack", label: "Jack" },
       { value: "lucy", label: "Lucy" },
       { value: "Yiminghe", label: "yiminghe" },
-      { value: "disabled", label: "Disabled", disabled: true },
-    ],
+      { value: "disabled", label: "Disabled", disabled: true }
+    ]
   },
   {
     defaultValue: "lucy",
@@ -22,8 +22,8 @@ const selectItems = [
       { value: "jack", label: "Jack" },
       { value: "lucy", label: "Lucy" },
       { value: "Yiminghe", label: "yiminghe" },
-      { value: "disabled", label: "Disabled", disabled: true },
-    ],
+      { value: "disabled", label: "Disabled", disabled: true }
+    ]
   },
   {
     defaultValue: "lucy",
@@ -31,8 +31,8 @@ const selectItems = [
       { value: "jack", label: "Jack" },
       { value: "lucy", label: "Lucy" },
       { value: "Yiminghe", label: "yiminghe" },
-      { value: "disabled", label: "Disabled", disabled: true },
-    ],
+      { value: "disabled", label: "Disabled", disabled: true }
+    ]
   },
   {
     defaultValue: "lucy",
@@ -40,8 +40,8 @@ const selectItems = [
       { value: "jack", label: "Jack" },
       { value: "lucy", label: "Lucy" },
       { value: "Yiminghe", label: "yiminghe" },
-      { value: "disabled", label: "Disabled", disabled: true },
-    ],
+      { value: "disabled", label: "Disabled", disabled: true }
+    ]
   },
   {
     defaultValue: "lucy",
@@ -49,9 +49,9 @@ const selectItems = [
       { value: "jack", label: "Jack" },
       { value: "lucy", label: "Lucy" },
       { value: "Yiminghe", label: "yiminghe" },
-      { value: "disabled", label: "Disabled", disabled: true },
-    ],
-  },
+      { value: "disabled", label: "Disabled", disabled: true }
+    ]
+  }
 ];
 
 const AlgoContainer: FC<AlgoContainerProps> = ({}) => {

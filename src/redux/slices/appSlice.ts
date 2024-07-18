@@ -8,17 +8,18 @@ export interface AppState {
   error: string | null;
   userDetails: any;
   darkTheme: Boolean;
-  connAcc: any[]
+  connAcc: any[];
 }
 
 const initialState: AppState = {
   status: "idle",
   error: null,
   userDetails: {},
-  darkTheme:
-      Boolean(typeof localStorage !== "undefined"
-        ? localStorage.getItem("theme") || false
-        : false),
+  darkTheme: Boolean(
+    typeof localStorage !== "undefined"
+      ? localStorage.getItem("theme") || false
+      : false
+  ),
   connAcc: []
 };
 
@@ -38,9 +39,12 @@ export const getConnectedAcc = createAsyncThunk(
 export const connectAcc = createAsyncThunk(
   "connectAcc",
   async (props, { rejectWithValue }) => {
-
     try {
-      const response = await API.post("icici_direct" + API_PATHS.AUTH_ACC, props, {});
+      const response = await API.post(
+        "icici_direct" + API_PATHS.AUTH_ACC,
+        props,
+        {}
+      );
 
       return response;
     } catch (error: any) {
@@ -56,7 +60,7 @@ export const appSlice = createSlice({
     toogleTheme: (state) => {
       state.darkTheme = !state.darkTheme;
       localStorage.setItem("theme", JSON.stringify(!state.darkTheme));
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -66,15 +70,14 @@ export const appSlice = createSlice({
       .addCase(getConnectedAcc.fulfilled, (state, action) => {
         state.status = "idle";
         state.error = null;
-        state.connAcc = action?.payload?.data
+        state.connAcc = action?.payload?.data;
       })
       .addCase(getConnectedAcc.rejected, (state, action) => {
         state.status = "failed";
         state.error = String(action.payload);
       });
-  },
+  }
 });
-
 
 export const selectApp = (state: RootState) => state.appSlice;
 

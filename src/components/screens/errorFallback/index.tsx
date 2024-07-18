@@ -9,7 +9,8 @@ const ErrorFallback = (props: Props) => {
   const backToHome = () => {
     router.push("/");
   };
-  return (
+  
+return (
     <Result
       status="500"
       title="500"

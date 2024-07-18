@@ -16,7 +16,7 @@ import {
   Space,
   Steps,
   Tooltip,
-  Typography,
+  Typography
 } from "antd";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";

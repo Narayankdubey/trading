@@ -22,7 +22,7 @@ const BacktestingFilter: FC<BacktestingFilterProps> = ({
   loading,
   onFilter,
   filterData,
-  applyFilter,
+  applyFilter
 }) => {
   const Header = ({ item }: any) => (
     <Typography.Text className={"fontWeight600"}>
@@ -48,14 +48,14 @@ const BacktestingFilter: FC<BacktestingFilterProps> = ({
         style={{
           width: "100%",
           maxHeight: "calc(100vh - 74px)",
-          overflow: "auto",
+          overflow: "auto"
         }}
       >
         <Input
           placeholder="Search"
           allowClear
           onChange={({ target }) => onFilter("title", target.value)}
-          value={filterData?.title || ''}
+          value={filterData?.title || ""}
         />
         <Collapse
           bordered={false}

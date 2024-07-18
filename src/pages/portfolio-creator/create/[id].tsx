@@ -1,5 +1,5 @@
 import LayoutContainer from "@/components/layout";
-import PortfolioCreatorContainer from '@/components/screens/portfolioCreator/component/CreatePortfolio'
+import PortfolioCreatorContainer from "@/components/screens/portfolioCreator/component/CreatePortfolio";
 import Head from "next/head";
 import React, { FC } from "react";
 

@@ -12,7 +12,7 @@ import {
   Tooltip,
   Tag,
   Collapse,
-  Table,
+  Table
 } from "antd";
 import {
   DeleteOutlined,
@@ -20,7 +20,7 @@ import {
   PlayCircleOutlined,
   PlusOutlined,
   ExclamationCircleOutlined,
-  ReloadOutlined,
+  ReloadOutlined
 } from "@ant-design/icons";
 import type { PaginationProps } from "antd";
 import React, { FC, useEffect, useMemo, useState } from "react";
@@ -33,7 +33,7 @@ import {
   deleteStrategies,
   getHistoryData,
   getStrategiesListdata,
-  backtesingSlice,
+  backtesingSlice
 } from "@/redux/slices/backtestingSlice";
 import { createColumns, getColorByStatus } from "@/utils/helper";
 import RunModal from "./component/RunModal";
@@ -52,7 +52,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   const [filteredData, setFilteredData] = useState<any>([]);
   const [isStrategyModalOpen, setIsStrategyModalOpen] = useState({
     open: false,
-    id: "",
+    id: ""
   });
   const [isRunModalOpen, setIsRunModalOpen] = useState(false);
   const [runStrategyData, setRunStrategyData] = useState("");
@@ -69,9 +69,10 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
   const historyLoading = historyStatus === "loading";
 
   const getOptions = (key: string, data: any) => {
-    let result: any = [];
+    const result: any = [];
     data?.length && data.map((item: any) => result?.push(item[key]));
-    return [...new Set(result)];
+    
+return [...new Set(result)];
   };
 
   const onDeleteStrategy = (id: string) => {
@@ -88,11 +89,11 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
             id,
             filterDetails: {
               ...filterData,
-              ...{ page: currentPage, pageSize },
-            },
+              ...{ page: currentPage, pageSize }
+            }
           })
         );
-      },
+      }
     });
   };
 
@@ -110,13 +111,13 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
           setFilterData((old: any) => ({
             ...old,
             // @ts-ignore
-            [key]: filterData[key].filter((item: string) => item != value),
+            [key]: filterData[key].filter((item: string) => item != value)
           }));
         } else
           setFilterData((old: any) => ({
             ...old,
             // @ts-ignore
-            [key]: [...filterData[key], value],
+            [key]: [...filterData[key], value]
           }));
       } else {
         setFilterData((old: any) => ({ ...old, [key]: [value] }));
@@ -137,7 +138,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
     dispatch(
       getStrategiesListdata({
         ...filterData,
-        ...{ page: currentPage, pageSize },
+        ...{ page: currentPage, pageSize }
       })
     );
     setShowRefresh(false);
@@ -147,22 +148,23 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
     dispatch(
       getStrategiesListdata({
         ...filterData,
-        ...{ page: currentPage, pageSize },
+        ...{ page: currentPage, pageSize }
       })
     );
   };
 
   const filterElement = useMemo(() => {
     const data = filteredData;
-    let result: any = [];
+    const result: any = [];
     backtestingConstant.filterElement.forEach((item) => {
-      let obj = {
+      const obj = {
         name: item,
-        options: getOptions(item, data),
+        options: getOptions(item, data)
       };
       result.push(obj);
     });
-    return result;
+    
+return result;
   }, [filteredData]);
 
   const listItem = (data: any) => (
@@ -230,8 +232,8 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
                   width: 100,
                   render: (elem: any) => (
                     <Link href={`/backtesting/result/${elem?.id}`}>Go</Link>
-                  ),
-                },
+                  )
+                }
               ]}
               dataSource={historyData?.data || []}
               scroll={{ x: 300 }}
@@ -282,12 +284,13 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
         dispatch(
           getStrategiesListdata({
             ...filterData,
-            ...{ page: currentPage, pageSize },
+            ...{ page: currentPage, pageSize }
           })
         ),
       600
     );
-    return () => clearTimeout(timer);
+    
+return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, dispatch, pageSize]);
 
@@ -353,7 +356,7 @@ const BacktestingContainer: FC<BacktesingProps> = ({}) => {
             setIsStrategyModalOpen={setIsStrategyModalOpen}
             filterDetails={{
               ...filterData,
-              ...{ page: currentPage, pageSize },
+              ...{ page: currentPage, pageSize }
             }}
           />
         )}

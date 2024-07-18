@@ -6,31 +6,31 @@ export const algoClient: Resource = {
   ENDPOINTS: {
     GET_ALL: {
       METHOD: Methods.GET,
-      URI: "",
+      URI: ""
     },
     GET_ONE: {
       METHOD: Methods.GET,
-      URI: "{id}",
+      URI: "{id}"
     },
     ADD_ONE: {
       METHOD: Methods.POST,
-      URI: "",
+      URI: ""
     },
     UPDATE_ONE: {
       METHOD: Methods.PATCH,
-      URI: "{id}",
+      URI: "{id}"
     },
     DELETE_ONE: {
       METHOD: Methods.DELETE,
-      URI: "{id}",
+      URI: "{id}"
     },
     START: {
       METHOD: Methods.POST,
-      URI: "{id}/start",
+      URI: "{id}/start"
     },
     STOP: {
       METHOD: Methods.POST,
-      URI: "{id}/stop",
-    },
-  },
+      URI: "{id}/stop"
+    }
+  }
 };

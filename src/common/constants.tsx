@@ -29,16 +29,16 @@ export const backtestingConstant = {
       "10min",
       "15min",
       "20min",
-      "30min",
+      "30min"
     ],
     attribute: ["OPEN", "HIGH", "LOW", "CLOSE"],
     symbol: ["SBIN", "ICICIBANK", "ABB", "ITC", "TCS", "ONGC", "WIPRO"],
     indicator: ["SMA", "EMA", "RSI", "BBANDS"],
     timePeriod: ["7days", "14days"],
-    operator: ["GT", "LTE"],
+    operator: ["GT", "LTE"]
   },
   filterElements: [
-    { name: "STATUS", options: ["created", "processing", "completed"] },
+    { name: "STATUS", options: ["created", "processing", "completed"] }
   ],
   formFields: [
     "type",
@@ -47,22 +47,15 @@ export const backtestingConstant = {
     "start",
     "end",
     "value",
-    "timeframe",
+    "timeframe"
   ],
-  historyColumns: [
-    "id",
-    "title",
-    "start",
-    "end",
-    "profit",
-    "status",
-  ],
+  historyColumns: ["id", "title", "start", "end", "profit", "status"]
 };
 
 export const profileConstant = {
   basicDetails: [
     { label: "Mobile No.", value: "mobile" },
     { label: "Date of Birth", value: "dob" },
-    { label: "Something", value: "some" },
-  ],
+    { label: "Something", value: "some" }
+  ]
 };

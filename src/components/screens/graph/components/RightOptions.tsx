@@ -3,7 +3,7 @@ import type { MenuProps } from "antd";
 import {
   UserOutlined,
   SettingOutlined,
-  LogoutOutlined,
+  LogoutOutlined
 } from "@ant-design/icons";
 import React, { FC } from "react";
 

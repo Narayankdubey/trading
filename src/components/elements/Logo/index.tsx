@@ -13,9 +13,10 @@ const Logo: FC<LogoProps> = ({ size = 1, color }) => {
     width: 2 * size * 8 + 8,
     height: 2 * size * 8 + 4,
     maxWidth: 2 * size * 8 + 8,
-    maxHeight: 2 * size * 8 + 4,
+    maxHeight: 2 * size * 8 + 4
   };
-  return (
+  
+return (
     // <div className={styles.container} style={constainerStyle}>
     //   {[1, 2, 3].map((item) => (
     //     <Card

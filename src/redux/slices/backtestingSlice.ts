@@ -7,7 +7,7 @@ import {
   historyDataMock,
   runDataMock,
   strategiesListMock,
-  strategiesMock,
+  strategiesMock
 } from "@/common/mock";
 import { notification } from "antd";
 
@@ -42,7 +42,7 @@ const initialState: backtestingState = {
   runStatus: "idle",
   startRunStatus: "idle",
   historyData: {},
-  historyStatus: "idle",
+  historyStatus: "idle"
 };
 
 export const getStrategiesListdata = createAsyncThunk(
@@ -50,10 +50,11 @@ export const getStrategiesListdata = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await API.get(API_PATHS.STRATEGIES, {
-        params: payload,
+        params: payload
       });
       const { data } = response.data;
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -66,7 +67,8 @@ export const getStrategies = createAsyncThunk(
     try {
       const response = await API.get(API_PATHS.STRATEGIES + `/${payload}`);
       const { data } = response.data;
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -82,7 +84,8 @@ export const addStrategies = createAsyncThunk(
       notification.success({ message: "Strategy Added Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
       const { data } = response.data;
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -101,7 +104,8 @@ export const updateStrategies = createAsyncThunk(
       const { data } = response.data;
       notification.success({ message: "Strategy Updated Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -112,7 +116,7 @@ export const deleteStrategies = createAsyncThunk(
   "deleteStrategies/backtesing",
   async (payload: any, { dispatch, rejectWithValue }) => {
     try {
-      const {id, filterDetails} = payload;
+      const { id, filterDetails } = payload;
       const response = await API.delete(
         API_PATHS.STRATEGIES + `/${id}`,
         payload
@@ -120,7 +124,8 @@ export const deleteStrategies = createAsyncThunk(
       const { data } = response.data;
       notification.success({ message: "Strategy Deleted Successfully" });
       await dispatch(getStrategiesListdata(filterDetails));
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -133,7 +138,8 @@ export const getRunData = createAsyncThunk(
     try {
       const response = await API.get(API_PATHS.TRADING + `/${payload}`);
       const { data } = response.data;
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -147,7 +153,8 @@ export const runStrategy = createAsyncThunk(
       const response = await API.post(API_PATHS.RUNSTRATEGY, payload);
       notification.success({ message: "Started" });
       const { data } = response.data;
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -159,10 +166,11 @@ export const getHistoryData = createAsyncThunk(
   async (payload: any = {}, { rejectWithValue }) => {
     try {
       const response = await API.get(API_PATHS.TRADING, {
-        params: payload,
+        params: payload
       });
       const { data } = response.data;
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -178,7 +186,7 @@ export const backtesingSlice = createSlice({
     },
     resetStratergyData: (state) => {
       state.strategies = [];
-    },
+    }
   },
   extraReducers: (builder) => {
     //Get strategies list
@@ -295,7 +303,7 @@ export const backtesingSlice = createSlice({
         //setting dummy data just for testing purpose
         // state.historyData = historyDataMock;
       });
-  },
+  }
 });
 
 export const backtesingSelector = (state: RootState) => state.backtestingSlice;

@@ -17,7 +17,7 @@ const RunModal = ({
   isRunModalOpen,
   setIsRunModalOpen,
   setRunStrategyData,
-  setShowRefresh,
+  setShowRefresh
 }: Props) => {
   const [form] = Form.useForm();
   const router = useRouter();
@@ -50,7 +50,7 @@ const RunModal = ({
                 strategyId: data?.id,
                 start: values?.start.toISOString(),
                 end: values?.end.toISOString(),
-                type: "backtest",
+                type: "backtest"
               })
             );
             form.resetFields();
@@ -58,7 +58,6 @@ const RunModal = ({
             setTimeout(() => setShowRefresh(true), 50000);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
           });
       }}
     >
@@ -68,8 +67,8 @@ const RunModal = ({
           rules={[
             {
               required: true,
-              message: "Please input the title",
-            },
+              message: "Please input the title"
+            }
           ]}
         >
           <Input placeholder="Title" />
@@ -79,8 +78,8 @@ const RunModal = ({
           rules={[
             {
               required: true,
-              message: "Please input the start",
-            },
+              message: "Please input the start"
+            }
           ]}
         >
           <DatePicker />
@@ -90,8 +89,8 @@ const RunModal = ({
           rules={[
             {
               required: true,
-              message: "Please input the End",
-            },
+              message: "Please input the End"
+            }
           ]}
         >
           <DatePicker />

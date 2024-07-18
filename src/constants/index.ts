@@ -16,7 +16,7 @@ export const appListData = [
           description:
             "Provide the API key available at the ICICI setting panel",
           required: true,
-          type: "text",
+          type: "text"
         },
         {
           key: "api_secret",
@@ -24,20 +24,20 @@ export const appListData = [
           description:
             "Provide the API secret available at the ICICI setting panel",
           required: true,
-          type: "text",
-        },
+          type: "text"
+        }
       ],
       info: [
         {
           label: "Redirect URI",
           message:
-            "Please set the redirect uri in ICICI setting panel as http://tradeX.com/",
-        },
-      ],
-    },
-  },
+            "Please set the redirect uri in ICICI setting panel as http://tradeX.com/"
+        }
+      ]
+    }
+  }
 ];
 
-export const getProviderLogo = (account: any) => appListData.filter((provider) => provider.provider == account?.provider)?.[0]?.logo
-
-
+export const getProviderLogo = (account: any) =>
+  appListData.filter((provider) => provider.provider == account?.provider)?.[0]
+    ?.logo;

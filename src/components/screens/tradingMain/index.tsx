@@ -1,12 +1,4 @@
-import {
-  Card,
-  Col,
-  Radio,
-  Row,
-  Space,
-  Table,
-  Typography,
-} from "antd";
+import { Card, Col, Radio, Row, Space, Table, Typography } from "antd";
 import React, { FC, useEffect, useMemo, useState } from "react";
 import TradingFilter from "./component/TradingFilter";
 
@@ -14,41 +6,39 @@ const columns = [
   {
     title: "SYMBOL",
     dataIndex: "symbol",
-    key: "symbol",
+    key: "symbol"
   },
   {
     title: "ORDER",
     dataIndex: "order",
-    key: "order",
+    key: "order"
   },
   {
     title: "Net Qty",
     dataIndex: "netQty",
-    key: "netQty",
+    key: "netQty"
   },
   {
     title: "Average Price",
     dataIndex: "averagePrice",
-    key: "averagePrice",
+    key: "averagePrice"
   },
   {
     title: "LTP",
     dataIndex: "ltp",
-    key: "ltp",
+    key: "ltp"
   },
   {
     title: "Day P&L",
     dataIndex: "daypl",
-    key: "daypl",
+    key: "daypl"
   },
   {
     title: "Overall P&L",
     dataIndex: "overallpl",
-    key: "overallpl",
-  },
+    key: "overallpl"
+  }
 ];
-
-
 
 interface TradingProps {}
 
@@ -59,7 +49,7 @@ const TradingContainer: FC<TradingProps> = ({}) => {
   const tradingTabs = [
     { title: "ORDERS", value: "orders" },
     { title: "POSITIONS", value: "positions" },
-    { title: "HOLDINGS", value: "holdings" },
+    { title: "HOLDINGS", value: "holdings" }
   ];
 
   interface dataType {
@@ -75,10 +65,10 @@ const TradingContainer: FC<TradingProps> = ({}) => {
   }
 
   const createData = useMemo(() => {
-    let data = [];
+    const data = [];
     let n = 0;
     for (let i = 0; i < 100; i++) {
-      let obj: dataType = {
+      const obj: dataType = {
         key: i,
         symbol: `${n}-symbol`,
         order: n * 2,
@@ -87,41 +77,42 @@ const TradingContainer: FC<TradingProps> = ({}) => {
         ltp: n * 3,
         daypl: n * 4,
         overallpl: n * 3,
-        status: n % 2 === 0 ? "orders" : n % 3 === 0 ? "positions" : "holdings",
+        status: n % 2 === 0 ? "orders" : n % 3 === 0 ? "positions" : "holdings"
       };
       data.push(obj);
       if (n < 7) n++;
       else n = 1;
     }
-    return data;
+    
+return data;
   }, []);
 
   const getOptions = (key: string, data: any) => {
-    let result: any = [];
+    const result: any = [];
     data.map((item: any) => result.push(item[key]));
-    return [...new Set(result)];
+    
+return [...new Set(result)];
   };
 
   const filterElement = useMemo(() => {
     const data = filteredData;
     let head: any = [];
-    let result = [];
+    const result = [];
     if (data.length) {
       head = Object.keys(data[0]);
     }
-    for (let item of head) {
+    for (const item of head) {
       if (item != "key" && item != "status") {
-        let abc = {
+        const abc = {
           name: item,
-          options: getOptions(item, data),
+          options: getOptions(item, data)
         };
         result.push(abc);
       }
     }
-    return result;
+    
+return result;
   }, [filteredData]);
-
-
 
   useEffect(() => {
     setFilteredData(() => createData.filter((e) => e.status === status));

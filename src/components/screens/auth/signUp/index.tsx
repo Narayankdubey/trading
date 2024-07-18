@@ -1,12 +1,6 @@
 import React, { FC, useEffect, useContext } from "react";
 import Image from "next/image";
-import {
-  Button,
-  Form,
-  Input,
-  Card,
-  Divider,
-} from "antd";
+import { Button, Form, Input, Card, Divider } from "antd";
 import { useAppDispatch } from "@/redux/hooks";
 import { signupAsync } from "@/redux/slices/authSlice";
 import style from "./SignupContainer.module.css";
@@ -16,7 +10,7 @@ import {
   MailOutlined,
   LockOutlined,
   MobileOutlined,
-  UserOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { ROUTES } from "@/common/constants";
 import AuthContext from "@/utils/AuthContext";
@@ -34,7 +28,6 @@ const SignupContainer: FC<SignupContainerProps> = ({}) => {
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
   };
 
   useEffect(() => {
@@ -85,7 +78,7 @@ const SignupContainer: FC<SignupContainerProps> = ({}) => {
               label="Password"
               name="password"
               rules={[
-                { required: true, message: "Please input your password!" },
+                { required: true, message: "Please input your password!" }
               ]}
             >
               <Input.Password

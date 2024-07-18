@@ -10,12 +10,12 @@ import {
   Input,
   Select,
   Spin,
-  Divider,
+  Divider
 } from "antd";
 import {
   MinusCircleOutlined,
   PlusOutlined,
-  CloseOutlined,
+  CloseOutlined
 } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
@@ -25,10 +25,11 @@ import {
   addStrategies,
   backtesingSlice,
   getStrategies,
-  updateStrategies,
+  updateStrategies
 } from "@/redux/slices/backtestingSlice";
 
 import { backtestingConstant } from "@/common/constants";
+
 const constants = backtestingConstant.form;
 
 const { Title } = Typography;
@@ -45,7 +46,7 @@ type Props = {
 const StrategyModal = ({
   isStrategyModalOpen,
   setIsStrategyModalOpen,
-  filterDetails,
+  filterDetails
 }: Props) => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
@@ -177,7 +178,7 @@ const StrategyModal = ({
         updateStrategies({
           formedData,
           strategyId: isStrategyModalOpen?.id,
-          filterDetails,
+          filterDetails
         })
       ).then((e: any) => {
         if (!e?.error?.message) setIsStrategyModalOpen({ open: false, id: "" });
@@ -197,7 +198,8 @@ const StrategyModal = ({
     if (isStrategyModalOpen?.id) {
       dispatch(getStrategies(isStrategyModalOpen?.id));
     }
-    return () => {
+    
+return () => {
       dispatch(backtesingSlice.actions.resetStratergyData());
     };
   }, [dispatch, isStrategyModalOpen?.id]);
@@ -231,7 +233,7 @@ const StrategyModal = ({
                   <Form.Item
                     name="title"
                     rules={[
-                      { required: true, message: "Please input your Title!" },
+                      { required: true, message: "Please input your Title!" }
                     ]}
                   >
                     <Input placeholder="Title" size="large" />
@@ -336,7 +338,7 @@ const StrategyModal = ({
                                             style={{
                                               display: "flex",
                                               justifyContent: "flex-end",
-                                              alignItems: "baseline",
+                                              alignItems: "baseline"
                                             }}
                                           >
                                             <MinusCircleOutlined
@@ -366,7 +368,7 @@ const StrategyModal = ({
                               style={{
                                 display: "flex",
                                 justifyContent: "flex-end",
-                                alignItems: "baseline",
+                                alignItems: "baseline"
                               }}
                             >
                               <CloseOutlined onClick={() => remove(name)} />
@@ -402,7 +404,7 @@ const StrategyModal = ({
                   minHeight: "70%",
                   overflow: "auto",
                   maxHeight: "300px",
-                  marginTop: "8px",
+                  marginTop: "8px"
                 }}
               >
                 <Form.List name="orderList">
@@ -430,9 +432,9 @@ const StrategyModal = ({
                               name={[name, "buy"]}
                               rules={[
                                 {
-                                  required: true,
+                                  required: true
                                   // message: "Missing first name",
-                                },
+                                }
                               ]}
                               wrapperCol={{ span: 24 }}
                             >
@@ -445,9 +447,9 @@ const StrategyModal = ({
                               name={[name, "sell"]}
                               rules={[
                                 {
-                                  required: true,
+                                  required: true
                                   // message: "Missing last name",
-                                },
+                                }
                               ]}
                               wrapperCol={{ span: 24 }}
                             >

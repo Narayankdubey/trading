@@ -29,27 +29,27 @@ export const AppsList: React.FC = () => {
               marginTop: "8px",
               marginBottom: "8px",
               borderRadius: "4px",
-              boxShadow: `5px 5px 10px rgba(0, 0, 0, 0.2)`,
+              boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.2)"
             }}
             actions={[
               <Link
-              key={"form"}
+                key={"form"}
                 href={{
                   pathname: "/stock/activateForm",
-                  query: { id: item?.id },
+                  query: { id: item?.id }
                 }}
               >
                 <Button
                   style={{
                     marginRight: 5,
-                    backgroundColor: token.colorTextBase,
+                    backgroundColor: token.colorTextBase
                   }}
                   type="primary"
                 >
                   Connect
                 </Button>
                 ,
-              </Link>,
+              </Link>
             ]}
           >
             <Skeleton title={false} loading={item.loading} active>

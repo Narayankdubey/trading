@@ -13,7 +13,7 @@ const API_PATHS = {
   PORTFOLIO: "blendport",
 
   CONN_ACC_LIST: "/integrations",
-  AUTH_ACC: "/authorize",
+  AUTH_ACC: "/authorize"
 };
 
 export default API_PATHS;

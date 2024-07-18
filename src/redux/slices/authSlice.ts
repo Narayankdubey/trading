@@ -7,10 +7,11 @@ import {
   ROUTES,
   STORAGE_KEY_CONSTANT,
   TOKEN_EXPIRE,
-  USER_INFO,
+  USER_INFO
 } from "../../common/constants";
 import API_PATHS from "@/services/apiPaths";
 import { getUserInfo } from "@/utils/helper";
+
 const env = process.env.REACT_APP_ENV;
 // const { config } = require(`../../config/${env}.config`);
 
@@ -23,7 +24,7 @@ export interface LoginState {
 const initialState: LoginState = {
   status: "idle",
   error: null,
-  userDetails: {},
+  userDetails: {}
 };
 
 export const signupAsync = createAsyncThunk(
@@ -31,10 +32,11 @@ export const signupAsync = createAsyncThunk(
   async (payload: any, { rejectWithValue }) => {
     try {
       const response = await API.post(API_PATHS.SIGNUP, payload, {
-        params: { domain: "tcs" },
+        params: { domain: "tcs" }
       });
-      return {
-        accessToken: response.data.data.accessToken,
+      
+return {
+        accessToken: response.data.data.accessToken
       };
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
@@ -50,7 +52,8 @@ export const loginAsync = createAsyncThunk(
         // params: { domain: "tcs" },
       });
       const { data } = response.data;
-      return data;
+      
+return data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -64,9 +67,10 @@ export const logOutAsync = createAsyncThunk(
       const userId = getUserInfo().userId;
       const realmId = 1;
       const response = await API.post(API_PATHS.SIGNOUT, {
-        auth: { userId, realmId },
+        auth: { userId, realmId }
       });
-      return response.data;
+      
+return response.data;
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
     }
@@ -138,7 +142,7 @@ export const loginSlice = createSlice({
         }
         state.status = "failed";
       });
-  },
+  }
 });
 
 export const selectAuth = (state: RootState) => state.auth;

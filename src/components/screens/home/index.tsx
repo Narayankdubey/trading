@@ -10,7 +10,7 @@ const HomeContainer: FC<HomeContainerProps> = ({}) => {
     <div className={style.container}>
       <div>
         <Typography.Paragraph>Welcome back, Alferd</Typography.Paragraph>
-        <LogoWithText size={2} color="white"/>
+        <LogoWithText size={2} color="white" />
       </div>
     </div>
   );
