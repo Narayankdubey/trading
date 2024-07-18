@@ -6,6 +6,7 @@ export const ROUTES = {
   SIGNUP: "auth/signup",
   SETTINGS: "settings",
   PROFILE: "profile",
+  INTEGRATION: "stock"
 };
 
 export const STORAGE_KEY_CONSTANT = "access_token";

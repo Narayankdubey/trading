@@ -3,7 +3,7 @@ import { notification } from "antd";
 import { STORAGE_KEY_CONSTANT, TOKEN_EXPIRE } from "../common/constants";
 import { getRefreshToken, getToken } from "@/utils/helper";
 import API_PATHS from "./apiPaths";
-const baseURL = "http://16.171.193.137:3001/v0/";
+const baseURL = "https://6d69-103-92-103-242.ngrok-free.app/api/v1";
 // const env = process.env.NEXT_PUBLIC_REACT_APP_ENV;
 // const { config } = require(`../config/${env}.config`);
 
@@ -11,7 +11,9 @@ const instance = axios.create({
   //change this to baseURL: config.REACT_APP_API_HOST if you are using .env with config
   baseURL: baseURL,
   headers: {
-    authorization: "Bearer" + " " + getToken(),
+    // authorization: "Bearer" + " " + getToken(),
+    authorization: "Bearer" + " " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJlbnRlcnByaXNlSUQiOiIxIiwidXNlcklEIjoiMSJ9.JEnvZlV_F5hXheKX17H8QkAzclKIXlHHmxjZVICDrNE",
+    "ngrok-skip-browser-warning": "6555"
   },
   timeout: 30 * 1000,
 });
@@ -40,7 +42,7 @@ instance.interceptors.response.use(
       error?.config?.url !== "/auth/logout"
     ) {
       notification.error({
-        message: error.response.data?.message || error.response?.statusText,
+        message: error.response.data?.message || error.response?.statusText||"Something Went Wrong",
       });
     }
     return Promise.reject(error);

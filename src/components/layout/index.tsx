@@ -24,7 +24,6 @@ const initialTheme = {
 };
 
 const LayoutContainer: React.FC<layoutContainerProps> = ({ children }) => {
-  // const [darkMode, setDartMode] = useState(false);
   const [localTheme, setLocalTheme] = useState(initialTheme);
 
   const { darkTheme } = useAppSelector((state) => state.appSlice);

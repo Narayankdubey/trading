@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }: { children: any }) => {
     if (authenticated) {
       // token && dispatch(logOutAsync());
     } else {
-      router.push(ROUTES.LOGIN); // Redirect on the client side
+      // router.push(ROUTES.LOGIN); // Redirect on the client side
     }
   }, [authenticated, dispatch, router]);
 

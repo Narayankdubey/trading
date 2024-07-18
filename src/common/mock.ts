@@ -1486,3 +1486,176 @@ export const loginDataMock = {
     },
   },
 };
+
+export const blendsMock = {
+    "page": 2,
+    "size": 10,
+    "total": 15,
+    "data": [
+      {
+        "id": 5,
+        "title": "nifty-fin-01",
+        "description": "only nifty financial head 100",
+        "strikeType": "",
+        "priceType": "",
+        "createdBy": "1",
+        "enterpriseID": "1",
+        "versions": [
+          {
+            "version_number": 1,
+            "title": "V1",
+            "equityFormulation": [
+              {
+                "priority": 0,
+                "instrument": "SBIN",
+                "ratio": -2
+              },
+              {
+                "priority": 1,
+                "instrument": "TATA",
+                "ratio": -2
+              },
+              {
+                "priority": 2,
+                "instrument": "REL",
+                "ratio": -2
+              }
+            ],
+            "futureFormulation": null
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "nifty-fin-01",
+        "description": "only nifty financial head 100",
+        "strikeType": "",
+        "priceType": "",
+        "createdBy": "1",
+        "enterpriseID": "1",
+        "versions": [
+          {
+            "version_number": 1,
+            "title": "V1",
+            "equityFormulation": [
+              {
+                "priority": 0,
+                "instrument": "SBIN",
+                "ratio": -2
+              },
+              {
+                "priority": 1,
+                "instrument": "TATA",
+                "ratio": -2
+              },
+              {
+                "priority": 2,
+                "instrument": "REL",
+                "ratio": -2
+              }
+            ],
+            "futureFormulation": null
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "nifty-fin-01",
+        "description": "only nifty financial head 100",
+        "strikeType": "",
+        "priceType": "",
+        "createdBy": "1",
+        "enterpriseID": "1",
+        "versions": [
+          {
+            "version_number": 1,
+            "title": "V1",
+            "equityFormulation": [
+              {
+                "priority": 0,
+                "instrument": "SBIN",
+                "ratio": -2
+              },
+              {
+                "priority": 1,
+                "instrument": "TATA",
+                "ratio": -2
+              },
+              {
+                "priority": 2,
+                "instrument": "REL",
+                "ratio": -2
+              }
+            ],
+            "futureFormulation": null
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "nifty-fin-01",
+        "description": "only nifty financial head 100",
+        "strikeType": "",
+        "priceType": "",
+        "createdBy": "1",
+        "enterpriseID": "1",
+        "versions": [
+          {
+            "version_number": 1,
+            "title": "V1",
+            "equityFormulation": [
+              {
+                "priority": 0,
+                "instrument": "SBIN",
+                "ratio": -2
+              },
+              {
+                "priority": 1,
+                "instrument": "TATA",
+                "ratio": -2
+              },
+              {
+                "priority": 2,
+                "instrument": "REL",
+                "ratio": -2
+              }
+            ],
+            "futureFormulation": null
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "title": "nifty-fin-01",
+        "description": "only nifty financial head 100",
+        "strikeType": "",
+        "priceType": "",
+        "createdBy": "1",
+        "enterpriseID": "1",
+        "versions": [
+          {
+            "version_number": 1,
+            "title": "V1",
+            "equityFormulation": [
+              {
+                "priority": 0,
+                "instrument": "SBIN",
+                "ratio": -2
+              },
+              {
+                "priority": 1,
+                "instrument": "TATA",
+                "ratio": -2
+              },
+              {
+                "priority": 2,
+                "instrument": "REL",
+                "ratio": -2
+              }
+            ],
+            "futureFormulation": null
+          }
+        ]
+      }
+    ]
+  }

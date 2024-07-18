@@ -28,6 +28,7 @@ import {
   LogoutOutlined,
   BellOutlined,
   MenuUnfoldOutlined,
+  ArrowRightOutlined,
 } from "@ant-design/icons";
 import { Logo, LogoWithText } from "@/components/elements";
 import Link from "next/link";
@@ -36,21 +37,21 @@ import { useAppDispatch } from "@/redux/hooks";
 import { logOutAsync } from "@/redux/slices/authSlice";
 import { appSlice } from "@/redux/slices/appSlice";
 
-interface HeaderContainerProps {
-}
+interface HeaderContainerProps {}
 
 const menus = [
   // { name: "trading", title: "Trading", icon: "" },
   // { name: "algo", title: "Algo", icon: "" },
   // { name: "graph", title: "Graph", icon: "" },
   { name: "backtesting", title: "Backtesting", icon: "" },
+  { name: "portfolio-creator", title: "Portfolio Creator", icon: "" },
   // { name: "amount", title: "$ 2,45,000", icon: "" },
   // { name: "notes", title: "Notes", icon: "" },
   // { name: "logs", title: "Logs", icon: "" },
 ];
 
-export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {
-  const dispatch = useAppDispatch()
+export const HeaderContainer: FC<HeaderContainerProps> = ({}) => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const { useBreakpoint } = Grid;
   const screen = useBreakpoint();
@@ -73,7 +74,7 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {
       key: "3",
       label: "Log Out",
       icon: <LogoutOutlined />,
-      onClick:()=>dispatch(logOutAsync())
+      onClick: () => dispatch(logOutAsync()),
     },
   ];
 
@@ -139,7 +140,12 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {
     <Row justify={"space-between"} align={"middle"}>
       <Col sm={1} xs={3}>
         <Space align="center" style={{ width: "100%" }}>
-          {!screen?.lg && <MenuUnfoldOutlined onClick={showDrawer} height={300} />}
+          {!screen?.lg && (
+            <MenuUnfoldOutlined
+              onClick={showDrawer}
+              style={{ fontSize: "1.2rem" }}
+            />
+          )}
           <Link href={"/"}>
             <Logo size={1} />
           </Link>
@@ -164,7 +170,7 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {
         </Col>
       )}
       <Drawer
-        title={<LogoWithText/>}
+        title={<LogoWithText />}
         placement={"left"}
         closable={true}
         onClose={onClose}
@@ -190,6 +196,13 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({  }) => {
       <Col span={7}>
         <Row justify={"end"} align={"middle"} gutter={[8, 8]}>
           <Space>
+            <Button
+              onClick={() => router.push(`/${ROUTES.INTEGRATION}`)}
+              icon={<ArrowRightOutlined />}
+              iconPosition="end"
+            >
+              Integration
+            </Button>
             <Switch
               checkedChildren={"Dark"}
               unCheckedChildren={"Light"}

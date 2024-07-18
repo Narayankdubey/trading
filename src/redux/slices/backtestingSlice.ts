@@ -264,7 +264,7 @@ export const backtesingSlice = createSlice({
       })
       .addCase(getRunData.rejected, (state) => {
         state.runStatus = "failed";
-        // state.runData = runDataMock;
+        state.runData = runDataMock;
       });
 
     //run strategy
