@@ -43,7 +43,6 @@ export const ActivationForm = (props) => {
     };
 
     res?.payload?.data?.success ? success() : error();
-
   };
 
   const authForm = (
@@ -55,8 +54,9 @@ export const ActivationForm = (props) => {
         initialValues={{ modifier: "public" }}
         onFinish={handleSubmit}
       >
-        {fields?.map((item) => (
+        {fields?.map((item, i) => (
           <Form.Item
+            key={i}
             label={item.label}
             name={item.key}
             rules={[{ required: item.required, message: item.description }]}

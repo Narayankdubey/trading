@@ -81,7 +81,7 @@ export const ConnAppsList: React.FC = () => {
               boxShadow: `5px 5px 10px rgba(0, 0, 0, 0.2)`,
             }}
             actions={[
-              <div className={styles.italic}>
+              <div key={"action"} className={styles.italic}>
                 created on {moment(item.createdAt).format("DD MMM YYYY")}
               </div>,
               <Switch defaultChecked onChange={onActive} />,

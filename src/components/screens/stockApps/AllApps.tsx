@@ -33,6 +33,7 @@ export const AppsList: React.FC = () => {
             }}
             actions={[
               <Link
+              key={"form"}
                 href={{
                   pathname: "/stock/activateForm",
                   query: { id: item?.id },
