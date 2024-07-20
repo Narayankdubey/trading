@@ -198,13 +198,15 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({}) => {
       <Col span={7}>
         <Row justify={"end"} align={"middle"} gutter={[8, 8]}>
           <Space>
-            <Button
-              onClick={() => router.push(`/${ROUTES.INTEGRATION}`)}
-              icon={<ArrowRightOutlined />}
-              iconPosition="end"
-            >
-              Integration
-            </Button>
+            <a href={`/${ROUTES.INTEGRATION}`}>
+              <Button
+                // onClick={() => router.push()}
+                icon={<ArrowRightOutlined />}
+                iconPosition="end"
+              >
+                Integration
+              </Button>
+            </a>
             <Switch
               checkedChildren={"Dark"}
               unCheckedChildren={"Light"}
