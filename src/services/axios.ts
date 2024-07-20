@@ -4,7 +4,7 @@ import { STORAGE_KEY_CONSTANT, TOKEN_EXPIRE } from "../common/constants";
 import { getRefreshToken, getToken } from "@/utils/helper";
 import API_PATHS from "./apiPaths";
 
-const baseURL = `${process.env.BASE_URL??""}/api/v1`;
+const baseURL = `${process.env.BASE_URL ?? ""}/api/v1`;
 
 const instance = axios.create({
   baseURL: baseURL,
