@@ -10,10 +10,7 @@ const API_PATHS = {
 
   TRADING: "trading",
 
-  PORTFOLIO: "blendport",
-
-  CONN_ACC_LIST: "/integrations",
-  AUTH_ACC: "/authorize"
+  PORTFOLIO: "blendport"
 };
 
 export default API_PATHS;

@@ -4,12 +4,9 @@ import { STORAGE_KEY_CONSTANT, TOKEN_EXPIRE } from "../common/constants";
 import { getRefreshToken, getToken } from "@/utils/helper";
 import API_PATHS from "./apiPaths";
 
-const baseURL = "https://6d69-103-92-103-242.ngrok-free.app/api/v1";
-// const env = process.env.NEXT_PUBLIC_REACT_APP_ENV;
-// const { config } = require(`../config/${env}.config`);
+const baseURL = `${process.env.BASE_URL??""}/api/v1`;
 
 const instance = axios.create({
-  //change this to baseURL: config.REACT_APP_API_HOST if you are using .env with config
   baseURL: baseURL,
   headers: {
     // authorization: "Bearer" + " " + getToken(),
