@@ -1,9 +1,5 @@
-import AnimatedPage from "./AnimatedPage"
-import { BottomNav } from "./BottomNav"
-import { HeaderContainer } from "./Header"
+import AnimatedPage from "./AnimatedPage";
+import { BottomNav } from "./BottomNav";
+import { HeaderContainer } from "./Header";
 
-export {
-    HeaderContainer,
-    AnimatedPage,
-    BottomNav
-}
+export { HeaderContainer, AnimatedPage, BottomNav };
